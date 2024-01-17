@@ -250,7 +250,7 @@ const PageTwoContent = () => {
          <img
           src={detail.signature}
           alt="Signature"
-          className="w-[80%] h-[50%] object-cover"
+          className="w-[80%] h-[400px] object-contain"
          />
         )}
         {!detail.signature && (

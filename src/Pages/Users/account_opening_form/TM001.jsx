@@ -2,6 +2,7 @@
 import React, { useState } from 'react'
 import Logo from '../../../mainlogo.png'
 import CustomInput from '../../../Components/CustomInput';
+import { readFileAsDataURL } from '../../../Components/FormatDate';
 
 const TM001 = () => {
   const localStorageKey = 'TM001FormData';
@@ -54,7 +55,7 @@ const TM001 = () => {
       // Update the specified field in the object at the given index
       updatedOtherAccounts[index] = {
         ...updatedOtherAccounts[index],
-        [fieldName]: fieldValue,
+        [fieldName]: fieldValue.toUpperCase(),
       };
 
       return {
@@ -297,7 +298,7 @@ const TM001 = () => {
         </section>
         {/* OTHER BANKS */}
         <section className='my-[12px]'>
-          <h2 className='greenheader'>ACCOUNTS WITH OTHER BANKS (INCLUDING TMFB LTD, BRANCH)</h2>
+          <h2 className='greenheader my-4'>ACCOUNTS WITH OTHER BANKS (INCLUDING TMFB LTD, BRANCH)</h2>
           <table className="tables mb-2">
             <thead>
               <tr>
@@ -359,82 +360,82 @@ const TM001 = () => {
         </section>
         {/* OTHER ACCOUNTS */}
         <section className='my-[12px]'>
-          <h2 className='greenheader'>FOR OTHER ACCOUNTS'S (PARTICULARLY OF OTHER ACCOUNTS'S HOLDERS)</h2>
-          <table className="tables mb-2">
-            <thead>
-              <tr>
-                <th className="py-2 px-4 border-b">Name</th>
-                <th className="py-2 px-4 border-b">Address</th>
-                <th className="py-2 px-4 border-b">Signature</th>
-                <th className="py-2 px-4 border-b">Telephone</th>
-                <th className="py-2 px-4 border-b">Email</th>
-              </tr>
-            </thead>
-            <tbody>
-              {form1.other_accounts.map((row, index) => (
-                <tr key={index}>
-                  <td className="border-b">
-                    <input
-                      type="text"
-                      value={row.name}
-                      onChange={(e) => handleOtherAccountsChange(index, 'name', e.target.value)}
-                      className="otherbank_input"
-                    />
-                  </td>
-                  <td className="border-b">
-                    <input
-                      type="text"
-                      value={row.address}
-                      onChange={(e) => handleOtherAccountsChange(index, 'address', e.target.value)}
-                      className="otherbank_input"
-                    />
-                  </td>
-                  <td className="border-b">
-                    <input
-                      type="file"
-                      accept="image/*"
-                      onChange={(e) => handleImageChange(index, e.target.files[0])}
-                      className="hidden"
-                      id={`fileInput${index}`}
-                    />
-                    {/* Display area for the image */}
-                    <label htmlFor={`fileInput${index}`} className="relative block cursor-pointer">
-                      {row.signature && (
-                        <img
-                          src={row.signature}
-                          alt="Signature"
-                          className="w-[80%] mx-auto h-[50px] object-cover"
-                        />
-                      )}
-                      {!row.signature && (
-                        <div className="w-full h-full border-dashed border-2 border-gray-300 flex items-center justify-center">
-                          <span className="text-gray-500">Upload Signature</span>
-                        </div>
-                      )}
-                    </label>
-                  </td>
-
-                  <td className="border-b">
-                    <input
-                      type="text"
-                      value={row.telephone}
-                      onChange={(e) => handleOtherAccountsChange(index, 'telephone', e.target.value)}
-                      className="otherbank_input"
-                    />
-                  </td>
-                  <td className="border-b">
-                    <input
-                      type="text"
-                      value={row.email}
-                      onChange={(e) => handleOtherAccountsChange(index, 'email', e.target.value)}
-                      className="otherbank_input"
-                    />
-                  </td>
+          <h2 className='greenheader my-4'>FOR OTHER ACCOUNTS'S (PARTICULARLY OF OTHER ACCOUNTS'S HOLDERS)</h2>
+          <div className='overflow-scroll'>
+            <table className="tables mb-2 ">
+              <thead>
+                <tr>
+                  <th className="py-2 px-4 border-b">Name</th>
+                  <th className="py-2 px-4 border-b">Address</th>
+                  <th className="py-2 px-4 border-b">Signature</th>
+                  <th className="py-2 px-4 border-b">Telephone</th>
+                  <th className="py-2 px-4 border-b">Email</th>
                 </tr>
-              ))}
-            </tbody>
-
-          </table>
+              </thead>
+              <tbody>
+                {form1.other_accounts.map((row, index) => (
+                  <tr key={index}>
+                    <td className="border-b">
+                      <input
+                        type="text"
+                        value={row.name}
+                        onChange={(e) => handleOtherAccountsChange(index, 'name', e.target.value)}
+                        className="otherbank_input"
+                      />
+                    </td>
+                    <td className="border-b">
+                      <input
+                        type="text"
+                        value={row.address}
+                        onChange={(e) => handleOtherAccountsChange(index, 'address', e.target.value)}
+                        className="otherbank_input"
+                      />
+                    </td>
+                    <td className="border-b">
+                      <input
+                        type="file"
+                        accept="image/*"
+                        onChange={(e) => handleImageChange(index, e.target.files[0])}
+                        className="hidden"
+                        id={`fileInput${index}`}
+                      />
+                      {/* Display area for the image */}
+                      <label htmlFor={`fileInput${index}`} className="relative block cursor-pointer">
+                        {row.signature && (
+                          <img
+                            src={row.signature}
+                            alt="Signature"
+                            className="w-[80%] mx-auto h-[150px] object-contain"
+                          />
+                        )}
+                        {!row.signature && (
+                          <div className="w-full h-full border-dashed border-2 border-gray-300 flex items-center justify-center">
+                            <span className="text-gray-500">Upload Signature</span>
+                          </div>
+                        )}
+                      </label>
+                    </td>
+                    <td className="border-b">
+                      <input
+                        type="text"
+                        value={row.telephone}
+                        onChange={(e) => handleOtherAccountsChange(index, 'telephone', e.target.value)}
+                        className="otherbank_input"
+                      />
+                    </td>
+                    <td className="border-b">
+                      <input
+                        type="text"
+                        value={row.email}
+                        onChange={(e) => handleOtherAccountsChange(index, 'email', e.target.value)}
+                        className="otherbank_input"
+                      />
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </section>
         <section>
           <article className='flex flex-col md:flex-row gap-2 my-1'>
@@ -458,7 +459,7 @@ const TM001 = () => {
                   <img
                     src={form1.customers_signature}
                     alt="Signature"
-                    className="w-[80%] h-[50px] object-cover"
+                    className="w-[80%] h-[150px] object-contain"
                   />
                 )}
                 {!form1.customers_signature && (

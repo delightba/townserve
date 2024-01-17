@@ -6,7 +6,17 @@ import { GrDocumentPdf } from "react-icons/gr";
 
 
 function InvestmentNote() {
-  const [details, setDetails] = useState({
+  const localStorageKey = 'investmentNote';
+  // Function to load form data from localStorage
+  const loadFormDataFromLocalStorage = () => {
+    const storedFormData = sessionStorage.getItem(localStorageKey);
+    return storedFormData ? JSON.parse(storedFormData) : null;
+  };
+
+  const saveFormDataToLocalStorage = (formData) => {
+    sessionStorage.setItem(localStorageKey, JSON.stringify(formData));
+  };
+  const [details, setDetails] = useState(loadFormDataFromLocalStorage() || {
     date: '',
     name: '',
     address: '',
@@ -45,6 +55,10 @@ function InvestmentNote() {
       ...prev,
       [name]: uppercaseValue
     }))
+    saveFormDataToLocalStorage({
+      ...details,
+      [name]: uppercaseValue
+    })
   }
 
   const handleSubmit = () => {

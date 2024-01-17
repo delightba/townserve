@@ -174,7 +174,8 @@ const ReferenceForm = () => {
             <CustomInput label={'Account Number'} value={reference.account_number} handleChange={handleInputChange} name='account_number' type={'text'} />
 
             <p>Yours faithfully,</p>
-            <section className='flex gap-3 justify-evenly '>
+            <section className='flex flex-col gap-3 justify-evenly '>
+              <h1 className='greenheader my-4'>Refrees</h1>
               <article className='flex flex-col gap-2 my-1'>
                 <CustomInput name={'name'} type={'text'} value={reference.refree1.name} label={'Name:'} handleChange={handleRefree1Change} />
                 <CustomInput name={'address'} type={'text'} value={reference.refree1.address} label={'Address:'} handleChange={handleRefree1Change} />
@@ -195,7 +196,7 @@ const ReferenceForm = () => {
                       <img
                         src={reference.refree1.signature}
                         alt="Signature"
-                        className="w-[300px] h-full object-cover"
+                        className="w-[300px] h-[400px] object-contain"
                       />
                     )}
                     {!reference.refree1.signature && (
@@ -227,7 +228,7 @@ const ReferenceForm = () => {
                       <img
                         src={reference.refree2.signature}
                         alt="Signature"
-                        className="w-[300px] h-full object-cover"
+                        className="w-[300px] h-[400px] object-contain"
                       />
                     )}
                     {!reference.refree2.signature && (

@@ -1,15 +1,10 @@
 import React from 'react'
 import Logo from '../../mainlogo.png'
+import { formatDate } from '../../Components/FormatDate';
 
 
 
 const Letter = ({ details, targetRef }) => {
- const formatDate = (inputDate) => {
-  const options = { day: 'numeric', month: 'long', year: 'numeric' };
-  const formattedDate = new Date(inputDate).toLocaleDateString('en-US', options);
-
-  return formattedDate;
- };
 
  return (
   <div ref={targetRef} className='p-6 shadow-xl w-full xl:w-[60%] mx-auto'>

@@ -285,7 +285,7 @@ const TM002 = () => {
             </tr>
            </tbody>
           </table>
-          <section className='mt-3 flex gap-3'>
+          <section className='mt-3 flex flex-col gap-3'>
            <div className="border-b">
             <h2>Signature</h2>
             {/* Input for image upload */}
@@ -302,7 +302,7 @@ const TM002 = () => {
               <img
                src={mandate.mandate_details.signature}
                alt="Signature"
-               className="w-[300px] h-full object-cover"
+               className="w-[80%] h-[400px] object-contain"
               />
              )}
              {!mandate.mandate_details.signature && (
@@ -329,7 +329,7 @@ const TM002 = () => {
               <img
                src={mandate.mandate_details.moi}
                alt="Means of Identification"
-               className="w-[300px] h-full object-cover"
+               className="w-[80%] h-[400px] object-contain"
               />
              )}
              {!mandate.mandate_details.moi && (
@@ -355,7 +355,7 @@ const TM002 = () => {
               <img
                src={mandate.mandate_details.passport_photograph}
                alt="Passport Photograph"
-               className="w-[300px] h-full object-cover"
+               className="w-[80%] h-[400px] object-contain"
               />
              )}
              {!mandate.mandate_details.passport_photograph && (

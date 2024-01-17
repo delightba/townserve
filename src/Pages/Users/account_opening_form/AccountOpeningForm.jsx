@@ -10,11 +10,22 @@ function AccountOpeningForm() {
   const [showModal, setShowModal] = useState(false)
   const name = sessionStorage.getItem('TM001FormData')
   const parsed = JSON.parse(name)
-
+  const options = {
+    page: {
+      margin: Margin.MEDIUM,
+    },
+    overrides: {
+      pdf: {
+        compress: true
+      },
+      canvas: {
+        useCORS: true
+      }
+    }
+  }
   const { toPDF, targetRef } = usePDF({
     method: "save",
-    filename: `${parsed?.fullname || 'myform'}.pdf`,
-    page: { margin: Margin.SMALL },
+    filename: `${parsed?.fullname || 'myform'}.pdf`, options
   });
 
 

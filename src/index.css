@@ -24,7 +24,7 @@ body{
   @apply text-red-800 text-xl font-extrabold
 }
 .formInput{
-  @apply outline-none border-b-[3px] border-asparagus-900 px-1 indent-2 w-full uppercase
+  @apply outline-none text-xl border-b-[3px] border-asparagus-900 px-1 indent-2 w-full uppercase
 }
 
 .tables{
@@ -32,7 +32,7 @@ body{
 }
 
 .otherbank_input{
-  @apply w-full border-2 outline-none py-2 border-black indent-2
+  @apply w-full border-2 outline-none py-2 border-black indent-2 text-xl
 }
 
 .next{
@@ -55,4 +55,8 @@ body{
 .myshadow{
   -webkit-box-shadow: 7px 8px 4px 1px rgba(0,0,0,0.77); 
   box-shadow: 7px 8px 4px 1px rgba(0,0,0,0.77);
+}
+
+.ulLi li{
+  list-style: '👉';
 }
