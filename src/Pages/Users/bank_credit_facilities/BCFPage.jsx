@@ -24,7 +24,7 @@ const BCFPage = () => {
   state: '',
   date: '',
   name: '',
-  amount_to_invest: '',
+  amount: '',
   purpose: '',
   tenure: '',
   pay_back_period: '',

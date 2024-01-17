@@ -19,8 +19,7 @@ const AdminLogin = () => {
   }
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    navigate('/login')
+    navigate('/admin/dashboard/create-investmentnote')
   }
   useEffect(() => {
     document.title = 'Login page'

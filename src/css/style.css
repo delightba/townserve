@@ -6,7 +6,7 @@
 
 }
 .navbar{
-    background: rgb(34, 55, 29);
+    background: rgb(21, 138, 60);
     font-family: monospace;
     padding: 15px;
 }
@@ -121,4 +121,49 @@ button a{
    }
    .lin a:hover{
     background-color: red;
+   }
+
+   .site-container{
+    margin: 2rem;
+    /* max-width: calc(50% - 40px); */
+   }
+   .article-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(265px, 1fr));
+    gap: 2rem;
+   }
+   .article-image{
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+   }
+   .article-image img{
+    max-width: 50%;
+    height: auto;
+    border-radius: 10px 10px 0 0;
+   }
+   .article-card{
+    background: white;
+    border-radius: 5px;
+    transition: 0.3s;
+   }
+   .article-card :hover{
+    box-shadow: 0 4px 20px 0 red;
+    cursor: pointer;
+   }
+   .article-content{
+    padding: 2rem;
+   }
+   .article-content .card-cartegory{
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+    color: green;
+    display: block;
+    text-decoration: none;
+   }
+   .article-content .card-title{
+    margin: 1rem 0;
+    color: red;
    }

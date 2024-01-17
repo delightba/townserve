@@ -1,6 +1,6 @@
 import React from 'react'
 
-const BCFPdf = () => {
+const BCFPdf = ({details}) => {
   return (
     <div>BCFPdf</div>
   )

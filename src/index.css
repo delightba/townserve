@@ -60,3 +60,14 @@ body{
 .ulLi li{
   list-style: '👉';
 }
+
+.fcard{
+  @apply w-[350px] flex flex-col border-2 items-center border-green-600 gap-3 pl-4
+}
+.fcard a{
+  @apply text-xl text-green-600
+}
+
+.fcard:hover a{
+  @apply scale-105 
+}
