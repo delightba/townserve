@@ -1,15 +1,14 @@
 import React, { useState } from 'react'
 import { usePDF, Margin } from 'react-to-pdf';
-import DepositForm from './DepositForm'
-import DepositPdf from './DepositPdf'
 import { GrDocumentPdf } from "react-icons/gr";
 import { readFileAsDataURL } from '../../../Components/FormatDate';
 import { useNavigate } from 'react-router-dom';
+import BCFForm from './BCFForm';
+import BCFPdf from './BCFPdf';
 
-
-const DepositPage = () => {
+const BCFPage = () => {
  const navigate = useNavigate()
- const localStorageKey = 'DepositPage';
+ const localStorageKey = 'BCFPage';
  // Function to load form data from localStorage
  const loadFormDataFromLocalStorage = () => {
   const storedFormData = sessionStorage.getItem(localStorageKey);
@@ -21,24 +20,40 @@ const DepositPage = () => {
  };
  const [isFillingForm, setIsFillingForm] = useState(true)
  const [details, setDetails] = useState(loadFormDataFromLocalStorage() || {
+  address: '',
+  state: '',
   date: '',
   name: '',
-  name_of_investors: '',
-  type_of_investment: '',
   amount_to_invest: '',
-  interest_rate: '',
-  duration: '',
-  commencement_date: '',
-  maturity_date: '',
-  transferred_amount: '',
-  bank_name: '',
-  account_number: '',
-  date_transferred: '',
-  from_bank: '',
-  from_account_number: '',
-  from_date_transferred: '',
+  purpose: '',
+  tenure: '',
+  pay_back_period: '',
+  issuing_company: '',
+  lpo_and_date: '',
+  shares_held: '',
+  shares_receipt_number: '',
+  security_asset: {
+   first: '',
+   second: '',
+   third: ''
+  },
+  applicant_name: '',
+  applicant_address: '',
+  tel: '',
+  length_of_stay: '',
+  state_of_origin: '',
+  permanent_address: '',
+  business: '',
+  business_length: '',
+  marital_status: '',
+  nok: '',
+  nok_address: '',
+  relationsip: '',
+  guarantors: {
+   first: '',
+   second: ''
+  },
   signature: '',
-  evidence: ''
  })
 
  const handleChange = (e) => {
@@ -54,6 +69,7 @@ const DepositPage = () => {
    [name]: uppercaseValue
   })
  }
+
  const handleCustomerSignatureChange = async (e) => {
   const file = e.target.files[0];
   if (file) {
@@ -67,22 +83,6 @@ const DepositPage = () => {
    saveFormDataToLocalStorage({
     ...details,
     signature: dataUrl,
-   });
-  }
- };
- const handleEvidenceChange = async (e) => {
-  const file = e.target.files[0];
-  if (file) {
-   // Convert the file to a data URL
-   const dataUrl = await readFileAsDataURL(file);
-   setDetails((prev) => ({
-    ...prev,
-    evidence: dataUrl,
-   }));
-   // Save the updated form data to localStorage
-   saveFormDataToLocalStorage({
-    ...details,
-    evidence: dataUrl,
    });
   }
  };
@@ -111,14 +111,49 @@ const DepositPage = () => {
   }
  }
 
- const { toPDF, targetRef } = usePDF({ filename: `${details.name}.pdf` }, options);
+ const handleSecurityAssetChange = (e) => {
+  const { name, value } = e.target;
+  const uppercaseValue = value.toUpperCase()
+  setDetails((prevDetails) => ({
+   ...prevDetails,
+   security_asset: {
+    ...prevDetails.security_asset,
+    [name]: uppercaseValue
+   }
+  }));
+  saveFormDataToLocalStorage({
+   ...details,
+   security_asset: { ...details.security_asset, [name]: uppercaseValue },
+  })
+ };
 
+ const handleGuarantorsChange = (e) => {
+  const { name, value } = e.target;
+  const uppercaseValue = value.toUpperCase()
+
+  setDetails((prevDetails) => ({
+   ...prevDetails,
+   guarantors: {
+    ...prevDetails.guarantors,
+    [name]: uppercaseValue
+   }
+  }));
+  saveFormDataToLocalStorage({
+   ...details,
+   guarantors: {
+    ...details.guarantors,
+    [name]: uppercaseValue
+   }
+  })
+ };
+
+ const { toPDF, targetRef } = usePDF({ filename: `${details.name}.pdf` }, options);
  return (
   <div className="w-full md:w-[80%] mx-auto mt-8">
-   {isFillingForm && <DepositForm details={details} handleChange={handleChange} handleSubmit={handleSubmit} handleSignature={handleCustomerSignatureChange} handleEvidence={handleEvidenceChange} />}
+   {isFillingForm && <BCFForm details={details} handleChange={handleChange} handleSubmit={handleSubmit} handleSignature={handleCustomerSignatureChange} handleSecurityAsset={handleSecurityAssetChange} handleGuarantor={handleGuarantorsChange} />}
    {!isFillingForm &&
     <div className="relative flex flex-col gap-3">
-     <DepositPdf details={details} targetRef={targetRef} />
+     <BCFPdf details={details} targetRef={targetRef} />
      <div className="mx-auto">
       <button type='button' onClick={() => {
        toPDF().then(() => {
@@ -134,4 +169,4 @@ const DepositPage = () => {
  )
 }
 
-export default DepositPage
+export default BCFPage

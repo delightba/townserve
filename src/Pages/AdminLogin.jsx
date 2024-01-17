@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import '../css/style.css'
+import { useNavigate } from 'react-router-dom'
 
 
 const AdminLogin = () => {
+  const navigate = useNavigate()
   const [login, setLogin] = useState({
     username: '',
     password: ''
@@ -18,7 +20,7 @@ const AdminLogin = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log(login)
+    navigate('/login')
   }
   useEffect(() => {
     document.title = 'Login page'

@@ -6,7 +6,7 @@ const Form = ({details, handleChange, handleSubmit}) => {
  return (
   <form className='flex flex-col gap-3'>
    <div>
-    <h1 className='greenheader text-center'>TownServe Investment Note Form</h1>
+    <h1 className='greenheader text-center'>TownServe Investment Note/Certificate Form</h1>
     <p className='text-center text-lg font-medium'>Kindly fill this form before submitting, so we can generate the pdf file for you.</p>
    </div>
    <section>

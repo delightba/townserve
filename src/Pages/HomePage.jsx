@@ -31,7 +31,7 @@ const HomePage = () => {
      <div className="flex justify-center my-4">
       <ul className='flex flex-col gap-3 ulLi'>
        <li className='dashboardLinks'>
-        <Link to="/user/open-account">BANK ACCOUNT OPPENING FORM</Link>
+        <Link to="/user/open-account">BANK ACCOUNT OPENNING FORM</Link>
        </li>
        <li className='dashboardLinks'>
         <Link to="/user/deposit-form">INVESTMENT/DEPOSIT FORM</Link>
