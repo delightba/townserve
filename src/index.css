@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body{
+  font-size: 16px;
+  line-height: 1.6;
+  color: #333;
+  font-family: 'Sofia Sans Condensed', sans-serif;
+}
+
+
+.form_input_container{
+  @apply flex items-end gap-1 w-full my-6 uppercase
+}
+
+.important{
+  @apply text-red-800 text-xl font-extrabold
+}
+.formInput{
+  @apply outline-none border-b-[3px] border-asparagus-900 px-1 indent-2 w-full uppercase
+}
+
+.tables{
+  @apply min-w-full bg-white border border-black shadow-md rounded-md
+}
+
+.otherbank_input{
+  @apply w-full border-2 outline-none py-2 border-black indent-2
+}
+
+.next{
+  @apply mt-4 bg-blue-500 text-white px-4 py-2 rounded
+}
+.back{
+  @apply mt-4 mr-4 bg-red-500 text-white px-4 py-2 rounded
+}
+.greenheader{
+  @apply text-xl lg:text-3xl text-green-600 font-bold
+}
+.list{
+@apply flex gap-8 justify-between text-lg py-2
+}
+
+.dashboardLinks{
+  @apply flex gap-3 items-center text-xl font-bold hover:bg-asparagus-600 hover:text-white p-2 hover:rounded-lg cursor-pointer
+}
+
+.myshadow{
+  -webkit-box-shadow: 7px 8px 4px 1px rgba(0,0,0,0.77); 
+  box-shadow: 7px 8px 4px 1px rgba(0,0,0,0.77);
+}
