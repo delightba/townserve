@@ -10,6 +10,7 @@ import HomePage from './Pages/HomePage'
 import LoanPage from './Pages/Users/loan_application/LoanPage'
 import BCFPage from './Pages/Users/bank_credit_facilities/BCFPage'
 import EsusuPage from './Pages/Users/esusu_loan_appliction/EsusuPage'
+import GUAPage from './Pages/Users/guarantors_form/GUAPage'
 // import Dashboard from './Pages/Dashboard'
 
 
@@ -23,6 +24,7 @@ const App = () => {
     <Route path='/user/loan-form' element={<LoanPage />} />
     <Route path='/user/bcf-form' element={<BCFPage />} />
     <Route path='/user/esusu-form' element={<EsusuPage />} />
+    <Route path='/user/gua-form' element={<GUAPage />} />
     <Route path='/login' element={<AdminLogin />} />
     <Route path='/admin/dashboard' element={<Layout />}>
      {/* <Route index element={<Dashboard />} /> */}

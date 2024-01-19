@@ -65,7 +65,7 @@ const HomePage = () => {
          <h3 class="card-title">HOW TO CREATE GUARANTOR FORM</h3>
          <article className='flex gap-1 items-center'>
           <FaArrowRight className='hidden group-hover:block group-hover:animate-ping' />
-          <Link to="" class="card-cartegory">GUARANTOR form</Link>
+          <Link to="/user/gua-form" class="card-cartegory">GUARANTOR form</Link>
          </article>
         </div>
        </article>
