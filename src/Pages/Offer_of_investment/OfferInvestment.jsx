@@ -4,9 +4,11 @@ import OfferInvestmentLetter from './OfferInvestmentLetter';
 import OfferForm from './OfferForm'
 import { readFileAsDataURL } from '../../Components/FormatDate';
 import { GrDocumentPdf } from "react-icons/gr";
+import { useNavigate } from 'react-router-dom';
 
 
 const OfferInvestment = () => {
+  const navigate = useNavigate()
   const localStorageKey = 'offerInvestmentPage';
   // Function to load form data from localStorage
   const loadFormDataFromLocalStorage = () => {

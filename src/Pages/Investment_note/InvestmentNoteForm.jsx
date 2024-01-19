@@ -3,9 +3,11 @@ import { usePDF, Margin } from 'react-to-pdf';
 import Form from "./Form";
 import Letter from './Letter'
 import { GrDocumentPdf } from "react-icons/gr";
+import { useNavigate } from "react-router-dom";
 
 
 function InvestmentNote() {
+  const navigate = useNavigate()
   const localStorageKey = 'investmentNote';
   // Function to load form data from localStorage
   const loadFormDataFromLocalStorage = () => {
