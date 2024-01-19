@@ -8,6 +8,8 @@ import AccountOpeningForm from './Pages/Users/account_opening_form/AccountOpenin
 import DepositPage from './Pages/Users/investment_deposit/DepositPage'
 import HomePage from './Pages/HomePage'
 import LoanPage from './Pages/Users/loan_application/LoanPage'
+import BCFPage from './Pages/Users/bank_credit_facilities/BCFPage'
+import EsusuPage from './Pages/Users/esusu_loan_appliction/EsusuPage'
 // import Dashboard from './Pages/Dashboard'
 
 
@@ -19,6 +21,8 @@ const App = () => {
     <Route path='/user/open-account' element={<AccountOpeningForm />} />
     <Route path='/user/deposit-form' element={<DepositPage />} />
     <Route path='/user/loan-form' element={<LoanPage />} />
+    <Route path='/user/bcf-form' element={<BCFPage />} />
+    <Route path='/user/esusu-form' element={<EsusuPage />} />
     <Route path='/login' element={<AdminLogin />} />
     <Route path='/admin/dashboard' element={<Layout />}>
      {/* <Route index element={<Dashboard />} /> */}

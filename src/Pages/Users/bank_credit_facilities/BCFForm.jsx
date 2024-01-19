@@ -13,6 +13,7 @@ const BCFForm = ({ details, handleChange, handleSubmit, handleSignature, handleS
    </div>
    <section>
     <CustomInput value={details.address} placeholder={"address"} name={"address"} type={"text"} label={"Address"} handleChange={handleChange} />
+    <CustomInput value={details.state} placeholder={"state"} name={"state"} type={"text"} label={"State"} handleChange={handleChange} />
 
     <CustomInput value={details.date} placeholder={"Today's date"} name={"date"} type={"date"} label={"Date"} handleChange={handleChange} />
 
@@ -41,6 +42,8 @@ const BCFForm = ({ details, handleChange, handleSubmit, handleSignature, handleS
 
     <h2 className='font-bold greenheader'>Personal Data</h2>
     <CustomInput value={details.applicant_name} placeholder={"Applicant name"} name={"applicant_name"} type={"text"} label={"Applicant name"} handleChange={handleChange} />
+    <CustomInput value={details.applicant_address} placeholder={"Applicant address"} name={"applicant_address"} type={"text"} label={"Applicant address"} handleChange={handleChange} />
+    <CustomInput value={details.tel} placeholder={"Applicant phone number"} name={"tel"} type={"tel"} label={"Applicant phone no."} handleChange={handleChange} />
     <CustomInput value={details.length_of_stay} placeholder={"How long have you stayed here"} name={"length_of_stay"} type={"text"} label={"Length of stay in this address"} handleChange={handleChange} />
     <CustomInput value={details.state_of_origin} placeholder={"State of origin"} name={"state_of_origin"} type={"text"} label={"State of origin"} handleChange={handleChange} />
 

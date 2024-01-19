@@ -157,7 +157,7 @@ const ReferenceForm = () => {
         </div>
       </div>
       <div>
-        <h2 className='greenheader'>REFERECE FORM</h2>
+        <h2 className='greenheader'>REFERENCE FORM</h2>
         <p>To be completed by Referee</p> <br />
 
         <p className='font-bold'>Caution: It is dangerous to introduce any person(s) who is / are not well known to you.</p>
@@ -170,7 +170,7 @@ const ReferenceForm = () => {
           <h2>I/We maintain a current account with:</h2>
           <form>
             <CustomInput label={'Name of Bank'} value={reference.bank_name} handleChange={handleInputChange} name='bank_name' type={'text'} />
-            <CustomInput label={'Address'} value={reference.address} handleChange={ handleInputChange} name='address' type={'text'} />
+            <CustomInput label={'Address'} value={reference.address} handleChange={handleInputChange} name='address' type={'text'} />
             <CustomInput label={'Account Number'} value={reference.account_number} handleChange={handleInputChange} name='account_number' type={'text'} />
 
             <p>Yours faithfully,</p>
@@ -179,9 +179,9 @@ const ReferenceForm = () => {
               <article className='flex flex-col gap-2 my-1'>
                 <CustomInput name={'name'} type={'text'} value={reference.refree1.name} label={'Name:'} handleChange={handleRefree1Change} />
                 <CustomInput name={'address'} type={'text'} value={reference.refree1.address} label={'Address:'} handleChange={handleRefree1Change} />
-                <CustomInput name={'date'} type={'text'} value={reference.refree1.date} label={'Date:'} handleChange={handleRefree1Change} />
+                <CustomInput name={'date'} type={'date'} value={reference.refree1.date} label={'Date:'} handleChange={handleRefree1Change} />
                 <div className="border-b">
-                  <h2>Signature</h2>
+                  <h2 className='py-2 font-bold'>Signature</h2>
                   {/* Input for image upload */}
                   <input
                     type="file"
@@ -196,7 +196,7 @@ const ReferenceForm = () => {
                       <img
                         src={reference.refree1.signature}
                         alt="Signature"
-                        className="w-[300px] h-[400px] object-contain"
+                        className="w-[200px] h-[100px] object-contain"
                       />
                     )}
                     {!reference.refree1.signature && (
@@ -211,9 +211,9 @@ const ReferenceForm = () => {
               <article className='flex flex-col gap-2 my-1'>
                 <CustomInput name={'name'} type={'text'} value={reference.refree2.name} label={'Name:'} handleChange={handleRefree2Change} />
                 <CustomInput name={'address'} type={'text'} value={reference.refree2.address} label={'Address:'} handleChange={handleRefree2Change} />
-                <CustomInput name={'date'} type={'text'} value={reference.refree2.date} label={'Date:'} handleChange={handleRefree2Change} />
+                <CustomInput name={'date'} type={'date'} value={reference.refree2.date} label={'Date:'} handleChange={handleRefree2Change} />
                 <div className="border-b">
-                  <h2>Signature</h2>
+                  <h2 className='py-2 font-bold'>Signature</h2>
                   {/* Input for image upload */}
                   <input
                     type="file"
@@ -228,7 +228,7 @@ const ReferenceForm = () => {
                       <img
                         src={reference.refree2.signature}
                         alt="Signature"
-                        className="w-[300px] h-[400px] object-contain"
+                        className="w-[200px] h-[100px] object-contain"
                       />
                     )}
                     {!reference.refree2.signature && (

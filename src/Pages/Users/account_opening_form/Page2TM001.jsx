@@ -149,11 +149,11 @@ const PageTwoContent = () => {
       The Managing Director, <br />
       TOWNSERVE MICROFINANCE BANK PLC
      </p>
-     <CustomInput name={'to'} value={page2.to} handleChange={handleToChange} label={''} />
+     <CustomInput name={'to'} value={page2.to} handleChange={handleToChange} label={''} type={'text'}/>
     </article>
 
     <div>
-     <CustomInput name={'dated'} value={page2.dated} handleChange={handleToChange} label={'Dated this'} />
+     <CustomInput name={'dated'} value={page2.dated} handleChange={handleToChange} label={'Dated this'} type={'date'}/>
     </div>
    </div>
    <p>Dear Sirs,</p>
@@ -250,7 +250,7 @@ const PageTwoContent = () => {
          <img
           src={detail.signature}
           alt="Signature"
-          className="w-[80%] h-[400px] object-contain"
+          className="w-[150] h-[100px] object-contain"
          />
         )}
         {!detail.signature && (
@@ -275,7 +275,7 @@ const PageTwoContent = () => {
      </article>
      <CustomInput name={'remarks'} value={page2.approvedBy.remarks} handleChange={(event) => handleApprovedByChange('remarks', event.target.value)} label={'Remarks'} />
     </div>
-    <p className='ml-auto mt-4'>Signature with (₦1,50k Stamp)</p>
+    <p className='ml-auto mt-4'>Signature with (₦50 Stamp)</p>
    </div>
 
   </div>

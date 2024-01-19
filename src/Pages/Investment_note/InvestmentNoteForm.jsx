@@ -78,8 +78,17 @@ function InvestmentNote() {
       {!isFillingForm &&
         <div className="relative flex flex-col gap-3">
           <Letter details={details} targetRef={targetRef} />
-          <div className="mx-auto">
-            <button type='button' onClick={() => toPDF()} className="next"><GrDocumentPdf /></button>
+          <div className="mx-auto flex gap-3">
+            <button type='button' onClick={() => {
+              toPDF().then(() => {
+                setTimeout(() => {
+                  sessionStorage.clear()
+                  window.location.reload()
+                  navigate('/')
+                }, 5000)
+              })
+            }} ><GrDocumentPdf size={24} className='text-blue-600' /></button>
+            <button type="button" className='back' onClick={() => setIsFillingForm(true)}>Make changes</button>
           </div>
         </div>
       }

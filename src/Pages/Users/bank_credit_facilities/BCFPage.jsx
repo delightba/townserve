@@ -48,7 +48,7 @@ const BCFPage = () => {
   marital_status: '',
   nok: '',
   nok_address: '',
-  relationsip: '',
+  relationship: '',
   guarantors: {
    first: '',
    second: ''
@@ -99,7 +99,7 @@ const BCFPage = () => {
 
  const options = {
   page: {
-   margin: Margin.SMALL,
+   margin: Margin.MEDIUM,
   },
   overrides: {
    pdf: {
@@ -154,14 +154,19 @@ const BCFPage = () => {
    {!isFillingForm &&
     <div className="relative flex flex-col gap-3">
      <BCFPdf details={details} targetRef={targetRef} />
-     <div className="mx-auto">
+     <div className="mx-auto flex gap-3">
       <button type='button' onClick={() => {
        toPDF().then(() => {
         setTimeout(() => {
+         alert('Now attach the file you downloaded')
+        window.location.href = `mailto:tmfbapplicationform@gmail.com?subject=My%20Account%20Form&body=''`;
+        sessionStorage.clear()
+        window.location.reload()
          navigate('/')
         }, 5000)
        })
-      }} className="next"><GrDocumentPdf /></button>
+      }}><GrDocumentPdf size={24} className='text-blue-600'/></button>
+      <button type="button" className='back' onClick={()=>setIsFillingForm(true)}>Make changes</button>
      </div>
     </div>
    }

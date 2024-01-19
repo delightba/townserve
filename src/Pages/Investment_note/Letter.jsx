@@ -16,32 +16,32 @@ const Letter = ({ details, targetRef }) => {
     <div>
      <p>{formatDate(details.date)}</p>
      <article className='font-bold text-lg'>
-      <p className='text-xl'>{details.name}</p>
+      <p className=''>{details.name}</p>
       <address>{details.address},{details.state}.</address>
       <br />
       <h1>Dear Sir,</h1>
      </article>
     </div>
     {/* admin address */}
-    <div className='text-lg font-medium'>
+    <div className='text-md font-medium text-right'>
      <address>2, TOS Benson Rd,</address>
      <address>Ojogbe Junction, Ikorodu, Lagos State,</address>
      <p>Tel: 08133031328, 08033063405, 08027746564</p>
-     <p>E-mail: <a href="mailto:info@townservemicrofinancebank.com">info@townservemicrofinancebank.com</a>,<br /><a href="mailto:townservemicrofinancebank@yahoo.com">townservemicrofinancebank@yahoo.com</a> </p>
+     <p>E-mail: <a href="mailto:info@townservemicrofinancebank.com">info@townservemicrofinancebank.com</a></p>
     </div>
    </section>
    <section>
     <h2 className='underline text-xl font-bold'>INVESTMENT NOTE</h2>
-    <p className='text-lg'>We ackowledge the receipt of your <span>{details.amount}({details.amount_in_words})</span> cash lodgement into our Call Investment Appreciation Note.</p>
+    <p className='text-lg'>We ackowledge the receipt of your <span>₦{details.amount}({details.amount_in_words})</span> cash lodgement into our Call Investment Appreciation Note.</p>
     <p>Your investment is hereby confirmed under the following terms and conditions:</p>
     <ul className="mt-6 w-full lg:w-[80%] font-bold">
      <li className='list'>
       <p>AMOUNT:</p>
-      <p>{details.amount}</p>
+      <p>₦{details.amount}</p>
      </li>
      <li className='list'>
       <p>RATE:</p>
-      <p>{details.rate}</p>
+      <p>{details.rate}%</p>
      </li>
      <li className='list'>
       <p>TENOR:</p>

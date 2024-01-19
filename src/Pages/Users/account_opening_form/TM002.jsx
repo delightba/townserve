@@ -302,7 +302,7 @@ const TM002 = () => {
               <img
                src={mandate.mandate_details.signature}
                alt="Signature"
-               className="w-[80%] h-[400px] object-contain"
+               className="w-[200px] h-[100px] object-contain"
               />
              )}
              {!mandate.mandate_details.signature && (
@@ -329,7 +329,7 @@ const TM002 = () => {
               <img
                src={mandate.mandate_details.moi}
                alt="Means of Identification"
-               className="w-[80%] h-[400px] object-contain"
+               className="w-[200px] h-[100px] object-contain"
               />
              )}
              {!mandate.mandate_details.moi && (
@@ -355,7 +355,7 @@ const TM002 = () => {
               <img
                src={mandate.mandate_details.passport_photograph}
                alt="Passport Photograph"
-               className="w-[80%] h-[400px] object-contain"
+               className="w-[200px] h-[100px] object-contain"
               />
              )}
              {!mandate.mandate_details.passport_photograph && (

@@ -62,12 +62,16 @@ body{
 }
 
 .fcard{
-  @apply w-[350px] flex flex-col border-2 items-center border-green-600 gap-3 pl-4
+  @apply w-[350px] h-[300px] flex flex-col border-2 items-center border-green-600 gap-3 hover:cursor-pointer
 }
 .fcard a{
   @apply text-xl text-green-600
 }
 
-.fcard:hover a{
-  @apply scale-105 
+.smallheader{
+  @apply underline text-center text-xl font-semibold py-2
+}
+
+.li-spacing li{
+  @apply pl-3
 }

@@ -17,12 +17,12 @@ const OfferForm = ({ handleChange, handleSubmit, details, handleSignature }) => 
     <CustomInput value={details.local_government} placeholder={"Your LGA"} name={"local_government"} type={"text"} label={"LGA"} handleChange={handleChange} />
     <CustomInput value={details.state} placeholder={"Your state"} name={"state"} type={"text"} label={"State"} handleChange={handleChange} />
     <CustomInput value={details.product} placeholder={"Your product"} name={"product"} type={"text"} label={"Product"} handleChange={handleChange} />
-    <CustomInput value={details.tenor1} placeholder={"Your tenor"} name={"tenor1"} type={"text"} label={"Tenor (from)"} handleChange={handleChange} />
-    <CustomInput value={details.tenor2} placeholder={"Your tenor"} name={"tenor2"} type={"text"} label={"Tenor (to)"} handleChange={handleChange} />
-    <CustomInput value={details.interest1} placeholder={"Your interest"} name={"interest1"} type={"text"} label={"Interest (from)"} handleChange={handleChange} />
-    <CustomInput value={details.interest2} placeholder={"Your interest"} name={"interest2"} type={"text"} label={"Interest (to)"} handleChange={handleChange} />
-    <CustomInput value={`${details.principal_range1}`} placeholder={"eg: 50M, 300K"} name={"principal_range1"} type={"text"} label={"Principal range (from)"} handleChange={handleChange} />
-    <CustomInput value={`${details.principal_range2}`} placeholder={"eg: 50M, 300K"} name={"principal_range2"} type={"text"} label={"Principal range (to)"} handleChange={handleChange} />
+    <CustomInput value={details.tenor1} placeholder={"Your tenor"} name={"tenor1"} type={"number"} label={"Tenor (from)"} handleChange={handleChange} />
+    <CustomInput value={details.tenor2} placeholder={"Your tenor"} name={"tenor2"} type={"number"} label={"Tenor (to)"} handleChange={handleChange} />
+    <CustomInput value={details.interest1} placeholder={"Your interest"} name={"interest1"} type={"number"} label={"Interest (min)"} handleChange={handleChange} />
+    <CustomInput value={details.interest2} placeholder={"Your interest"} name={"interest2"} type={"number"} label={"Interest (max)"} handleChange={handleChange} />
+    <CustomInput value={`${details.principal_range1}`} placeholder={"eg: 50M, 300K"} name={"principal_range1"} type={"text"} label={"Principal range (min)"} handleChange={handleChange} />
+    <CustomInput value={`${details.principal_range2}`} placeholder={"eg: 50M, 300K"} name={"principal_range2"} type={"text"} label={"Principal range (max)"} handleChange={handleChange} />
     <article className='ml-auto '>
      <h1 className='greenheader pb-3'>Upload your signature below</h1>
      {/* Input for image upload */}
@@ -39,7 +39,7 @@ const OfferForm = ({ handleChange, handleSubmit, details, handleSignature }) => 
        <img
         src={details.signature}
         alt="Signature"
-        className="w-[80%] h-full object-cover"
+        className="w-[200px] h-full object-cover"
        />
       )}
       {!details.signature && (

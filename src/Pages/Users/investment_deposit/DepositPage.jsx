@@ -123,10 +123,15 @@ const DepositPage = () => {
       <button type='button' onClick={() => {
        toPDF().then(() => {
         setTimeout(() => {
+         alert('Now attach the file you downloaded')
+         window.location.href = `mailto:tmfbapplicationform@gmail.com?subject=My%20Account%20Form&body=''`;
+         sessionStorage.clear()
+         window.location.reload()
          navigate('/')
         }, 5000)
        })
-      }} className="next"><GrDocumentPdf /></button>
+      }}><GrDocumentPdf size={24} className='text-blue-600' /></button>
+      <button type="button" className='back' onClick={() => setIsFillingForm(true)}>Make changes</button>
      </div>
     </div>
    }

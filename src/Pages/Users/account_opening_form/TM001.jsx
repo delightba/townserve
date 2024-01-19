@@ -240,10 +240,10 @@ const TM001 = () => {
             <CustomInput name={'branch'} type={'text'} value={form1.branch} label={'BRANCH:'} handleChange={handleChange} />
             <CustomInput name={'account_type'} type={'text'} value={form1.account_type} label={'TYPE OF ACCOUNT:'} handleChange={handleChange} />
           </article>
-          <CustomInput name={'fullname'} type={'text'} value={form1.fullname} label={'NAME:'} handleChange={handleChange} />
+          <CustomInput name={'fullname'} type={'text'} value={form1.fullname} label={'NAME Individiual /Corporate name:'} handleChange={handleChange} />
           <CustomInput name={'company_name'} type={'text'} value={form1.company_name} label={'COMPANY NAME:'} handleChange={handleChange} />
           <article className='flex flex-col md:flex-row gap-2 my-1'>
-            <CustomInput name={'dob'} type={'text'} value={form1.dob} label={'DATE OF BIRTH/REGISTRATION:'} handleChange={handleChange} />
+            <CustomInput name={'dob'} type={'date'} value={form1.dob} label={'DATE OF BIRTH/REGISTRATION:'} handleChange={handleChange} />
             <CustomInput name={'nationality'} type={'text'} value={form1.nationality} label={'NATIONALITY:'} handleChange={handleChange} />
           </article>
           <table className="tables mt-4">
@@ -290,7 +290,7 @@ const TM001 = () => {
             <CustomInput name={'phone'} type={'tel'} value={form1.phone} label={'PHONE:'} handleChange={handleChange} />
             <CustomInput name={'occupation'} type={'text'} value={form1.occupation} label={'OCCUPATION/BUSINESS TYPE:'} handleChange={handleChange} />
           </article>
-          <CustomInput name={'current_employer'} type={'tel'} value={form1.current_employer} label={'CURRENT EMPLOYER:'} handleChange={handleChange} />
+          <CustomInput name={'current_employer'} type={'text'} value={form1.current_employer} label={'CURRENT EMPLOYER:'} handleChange={handleChange} />
           <CustomInput name={'employer_address'} type={'text'} value={form1.employer_address} label={'EMPLOYERS ADDRESS:'} handleChange={handleChange} />
           <CustomInput name={'position'} type={'text'} value={form1.position} label={'POSITION:'} handleChange={handleChange} />
           <CustomInput name={'length_of_employment'} type={'text'} value={form1.length_of_employment} label={'LENGTH OF EMPLOYMENT:'} handleChange={handleChange} />
@@ -298,7 +298,7 @@ const TM001 = () => {
         </section>
         {/* OTHER BANKS */}
         <section className='my-[12px]'>
-          <h2 className='greenheader my-4'>ACCOUNTS WITH OTHER BANKS (INCLUDING TMFB LTD, BRANCH)</h2>
+          <h2 className='greenheader my-4'>ACCOUNTS WITH OTHER BANKS (INCLUDING TMFB, BRANCH)</h2>
           <table className="tables mb-2">
             <thead>
               <tr>
@@ -360,7 +360,7 @@ const TM001 = () => {
         </section>
         {/* OTHER ACCOUNTS */}
         <section className='my-[12px]'>
-          <h2 className='greenheader my-4'>FOR OTHER ACCOUNTS'S (PARTICULARLY OF OTHER ACCOUNTS'S HOLDERS)</h2>
+          <h2 className='greenheader my-4'>FOR OTHER ACCOUNTS (PARTICULARLY OF OTHER ACCOUNT HOLDERS)</h2>
           <div className='overflow-scroll'>
             <table className="tables mb-2 ">
               <thead>
@@ -405,7 +405,7 @@ const TM001 = () => {
                           <img
                             src={row.signature}
                             alt="Signature"
-                            className="w-[80%] mx-auto h-[150px] object-contain"
+                            className="w-[100px] mx-auto h-[150px] object-contain"
                           />
                         )}
                         {!row.signature && (
@@ -443,7 +443,7 @@ const TM001 = () => {
             <CustomInput name={'fax'} type={'text'} value={form1.fax} label={'Fax no (if any):'} handleChange={handleChange} />
           </article>
           <div className='my-3 border-t-4 border-red-700 flex flex-col gap-3'>
-            <p>I/We request the opening of an account and confirm that the aboe are true, I/We agree to the Terms and conditions on the reverse of this application</p>
+            <p>I/We request the opening of an account and confirm that the aboe are true, I/We agree to the Terms and Conditions on the reverse of this application</p>
             <article className='ml-auto '>
               {/* Input for image upload */}
               <input
@@ -459,7 +459,7 @@ const TM001 = () => {
                   <img
                     src={form1.customers_signature}
                     alt="Signature"
-                    className="w-[80%] h-[150px] object-contain"
+                    className="w-[100px] h-[80px] object-contain"
                   />
                 )}
                 {!form1.customers_signature && (
@@ -468,7 +468,7 @@ const TM001 = () => {
                   </div>
                 )}
               </label>
-              <CustomInput name={'date_of_registration'} type={'text'} value={form1.date_of_registration} label={''} handleChange={handleChange} />
+              <CustomInput name={'date_of_registration'} type={'date'} value={form1.date_of_registration} label={''} handleChange={handleChange} />
               <p>Customer's Signature and date</p>
             </article>
           </div>

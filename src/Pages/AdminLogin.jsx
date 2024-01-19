@@ -17,10 +17,26 @@ const AdminLogin = () => {
       [name]: value
     }))
   }
+  const apiUrl = 'https://tmbonline.ng/api/auth/login'
 
   const handleSubmit = (e) => {
-    navigate('/admin/dashboard/create-investmentnote')
+    e.preventDefault()
+    const formData = new FormData()
+
+    formData.append('email', login.username)
+    formData.append('password', login.password)
+
+    fetch(apiUrl,{
+      method: 'POST',
+  body: formData,
+    }).then((res)=>{
+      if(res.status === 200){
+        alert('Login successful')
+        navigate('/admin/dashboard/create-investmentnote')
+      }
+    }).catch((res)=>console.log(res))
   }
+
   useEffect(() => {
     document.title = 'Login page'
   }, [])
@@ -29,19 +45,14 @@ const AdminLogin = () => {
       <form>
         <h1 className='greenheader'>Login</h1>
         <div className="input-box">
-          <input type="text" name='username' placeholder="username" required value={login.username} onChange={handleChange} />
+          <input type="text" name='username' placeholder="email" required value={login.username} onChange={handleChange} />
           <i class="fa-solid fa-user"></i>
         </div>
         <div class="input-box">
           <input type="password" name='password' placeholder="password" required value={login.password} onChange={handleChange} />
           <i class="fa-solid fa-lock"></i>
         </div>
-        {/* <div className="remember-password">
-          <label><input type="checkbox" />remember me</label>
-          <a href="'">forgotten password</a>
-
-        </div> */}
-        <button type="submit" className="btn" onClick={handleSubmit}>Login</button>
+        <button type="submit" className="btn" onClick={handleSubmit} disabled>Login</button>
       </form>
     </div>
   )
