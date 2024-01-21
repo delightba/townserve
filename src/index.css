@@ -75,3 +75,7 @@ body{
 .li-spacing li{
   @apply pl-3
 }
+
+.myh2{
+  @apply text-center text-xl font-bold underline underline-offset-1
+}
