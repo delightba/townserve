@@ -3,7 +3,12 @@ import React from 'react'
 import Logo from '../mainlogo.png'
 import '../css/style.css'
 import { Link } from 'react-router-dom'
-import Image from '../WhatsApp Image 2024-01-16 at 12.13.42_c436269d.jpg'
+import Openaccount from '../images/openaccount.jpg'
+import Deposit from '../images/deposit.png'
+import Guarantor from '../images/guarantor.jpg'
+import Esusu from '../images/esusu.jpg'
+import Credit from '../images/credit.jpg'
+import Loan from '../images/loan.jpg'
 import { FaArrowRight } from "react-icons/fa";
 
 const HomePage = () => {
@@ -33,7 +38,7 @@ const HomePage = () => {
 
        <article class="fcard myshadow group">
         <figure class="">
-         <img src={Image} className='w-full h-full' alt='' />
+         <img src={Openaccount} className='w-full h-[150px]' alt='' />
         </figure>
         <div class="article-content">
          <h3 class="card-title">HOW TO OPEN YOUR ACCT</h3>
@@ -46,7 +51,7 @@ const HomePage = () => {
 
        <article class="fcard myshadow group">
         <figure class="">
-         <img src={Image} className='w-full h-full' alt='' />
+         <img src={Deposit} className='w-full h-[150px]' alt='' />
         </figure>
         <div class="article-content">
          <h3 class="card-title">HOW TO DEPOSIT</h3>
@@ -59,7 +64,7 @@ const HomePage = () => {
 
        <article class="fcard myshadow group">
         <figure class="">
-         <img src={Image} className='w-full h-full' alt='' />
+         <img src={Guarantor} className='w-full h-[150px]' alt='' />
         </figure>
         <div class="article-content">
          <h3 class="card-title">HOW TO CREATE GUARANTOR FORM</h3>
@@ -72,7 +77,7 @@ const HomePage = () => {
 
        <article class="fcard myshadow group">
         <figure class="">
-         <img src={Image} className='w-full h-full' alt='' />
+         <img src={Esusu} className='w-full h-[150px]' alt='' />
         </figure>
         <div class="article-content">
          <h3 class="card-title">CREATE ESUSU FORM</h3>
@@ -85,7 +90,7 @@ const HomePage = () => {
 
        <article class="fcard myshadow group">
         <figure class="">
-         <img src={Image} className='w-full h-full' alt='' />
+         <img src={Credit} className='w-full h-[150px]' alt='' />
         </figure>
         <div class="article-content">
          <h3 class="card-title">CREATE BANK/CREDIT APPLICATION</h3>
@@ -98,7 +103,7 @@ const HomePage = () => {
 
        <article class="fcard myshadow group">
         <figure class="">
-         <img src={Image} className='w-full h-full' alt='' />
+         <img src={Loan} className='w-full h-[150px]' alt='' />
         </figure>
         <div class="article-content">
          <h3 class="card-title">CREATE LOAN INVESTMENT APPLICATION</h3>

@@ -17,24 +17,30 @@ const AdminLogin = () => {
       [name]: value
     }))
   }
-  const apiUrl = 'https://tmbonline.ng/api/auth/login'
+  // const apiUrl = 'https://tmbonline.ng/api/auth/login'
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    const formData = new FormData()
-
-    formData.append('email', login.username)
-    formData.append('password', login.password)
-
-    fetch(apiUrl,{
-      method: 'POST',
-  body: formData,
-    }).then((res)=>{
-      if(res.status === 200){
+    setTimeout(() => {
+      navigate('/admin/dashboard/create-investmentnote')
+      setTimeout(() => {
         alert('Login successful')
-        navigate('/admin/dashboard/create-investmentnote')
-      }
-    }).catch((res)=>console.log(res))
+      }, 1000)
+    }, 1000)
+    //   const formData = new FormData()
+
+    //   formData.append('email', login.username)
+    //   formData.append('password', login.password)
+
+    //   fetch(apiUrl,{
+    //     method: 'POST',
+    // body: formData,
+    //   }).then((res)=>{
+    //     if(res.status === 200){
+    //       alert('Login successful')
+    //       navigate('/admin/dashboard/create-investmentnote')
+    //     }
+    //   }).catch((res)=>console.log(res))
   }
 
   useEffect(() => {
@@ -52,7 +58,7 @@ const AdminLogin = () => {
           <input type="password" name='password' placeholder="password" required value={login.password} onChange={handleChange} />
           <i class="fa-solid fa-lock"></i>
         </div>
-        <button type="submit" className="btn" onClick={handleSubmit} disabled>Login</button>
+        <button type="submit" className="btn" onClick={handleSubmit}>Login</button>
       </form>
     </div>
   )
