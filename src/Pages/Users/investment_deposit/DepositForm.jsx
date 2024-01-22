@@ -3,7 +3,7 @@ import CustomInput from '../../../Components/CustomInput'
 
 const DepositForm = ({ details, handleChange, handleSubmit, handleSignature, handleEvidence }) => {
  return (
-  <form className='flex flex-col gap-3'>
+  <form className='flex flex-col gap-3 p-[15px]'>
    <div>
     <h1 className='greenheader text-center'>TownServe Investment/Deposit Application Form</h1>
     <p className='text-center text-lg font-medium'>Kindly fill this form before submitting, so we can generate the pdf file for you.</p>

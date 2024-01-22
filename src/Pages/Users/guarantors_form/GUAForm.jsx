@@ -4,7 +4,7 @@ import CustomInput from '../../../Components/CustomInput'
 
 const GUAForm = ({ details, handleChange, handleSubmit, handleGuarantor, guarantorpassport, guarantorsignature }) => {
  return (
-  <form className='flex flex-col gap-3'>
+  <form className='flex flex-col gap-3 p-[15px]'>
    <div>
     <h1 className='greenheader text-center'>APPLICATION FOR ESUSU CONTRIBUTION LOAN FORM</h1>
     <p className='text-center text-lg font-medium'>Kindly fill this form before submitting, so we can generate the pdf file for you.</p>

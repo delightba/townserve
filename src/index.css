@@ -17,7 +17,7 @@ body{
 
 
 .form_input_container{
-  @apply flex items-end gap-1 w-full my-6 uppercase
+  @apply flex flex-col items-baseline lg:flex-row gap-1 w-full my-6 uppercase
 }
 
 .important{
@@ -62,7 +62,7 @@ body{
 }
 
 .fcard{
-  @apply w-[350px] h-[300px] flex flex-col border-2 items-center border-green-600 gap-3 hover:cursor-pointer
+  @apply w-[350px] h-[300px] flex flex-col border-2 items-center border-green-600 gap-3 hover:cursor-pointer text-center
 }
 .fcard a{
   @apply text-xl text-green-600

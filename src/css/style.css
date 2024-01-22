@@ -140,6 +140,7 @@ button a{
     color: green;
     display: block;
     text-decoration: none;
+    text-align: center;
    }
    .article-content .card-title{
     margin: 1rem 0;

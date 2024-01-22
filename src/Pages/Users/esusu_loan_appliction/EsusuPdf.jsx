@@ -4,7 +4,7 @@ import Logo from '../../../mainlogo.png'
 
 const EsusuPdf = ({ details, targetRef }) => {
   return (
-    <div className='pt-4 p-[60px] pb-[15px] w-full xl:w-[60%] mx-auto' ref={targetRef}>
+    <div className='p-[20px] lg:py-[60px] lg:px-[70px] w-full xl:w-[60%] mx-auto' ref={targetRef}>
       <p className='font-bold text-lg'>TM 008</p>
       <header className='flex flex-col justify-center text-right text-[14px] w-[55%] h-[100px] mx-auto mb-[20px]'>
         <img src={Logo} alt="" className='w-full h-[100px] mx-auto' />

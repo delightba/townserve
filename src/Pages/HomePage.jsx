@@ -41,8 +41,8 @@ const HomePage = () => {
          <img src={Openaccount} className='w-full h-[150px]' alt='' />
         </figure>
         <div class="article-content">
-         <h3 class="card-title">HOW TO OPEN YOUR ACCT</h3>
-         <article className='flex gap-1 items-center'>
+         <h3 class="card-title">HOW TO OPEN YOUR ACCOUNT</h3>
+         <article className='flex gap-1 items-center justify-center text-center'>
           <FaArrowRight className='hidden group-hover:block group-hover:animate-ping' />
           <Link to="/user/open-account" class="card-cartegory">bank account opening form</Link>
          </article>
@@ -55,7 +55,7 @@ const HomePage = () => {
         </figure>
         <div class="article-content">
          <h3 class="card-title">HOW TO DEPOSIT</h3>
-         <article className='flex gap-1 items-center'>
+         <article className='flex gap-1 items-center justify-center text-center'>
           <FaArrowRight className='hidden group-hover:block group-hover:animate-ping' />
           <Link to="/user/deposit-form" class="card-cartegory">INVESTMENT/DEPOSIT form</Link>
          </article>
@@ -67,10 +67,10 @@ const HomePage = () => {
          <img src={Guarantor} className='w-full h-[150px]' alt='' />
         </figure>
         <div class="article-content">
-         <h3 class="card-title">HOW TO CREATE GUARANTOR FORM</h3>
-         <article className='flex gap-1 items-center'>
+         <h3 class="card-title">COMPLETE A GUARANTOR FORM</h3>
+         <article className='flex gap-1 items-center justify-center text-center'>
           <FaArrowRight className='hidden group-hover:block group-hover:animate-ping' />
-          <Link to="/user/gua-form" class="card-cartegory">GUARANTOR form</Link>
+          <Link to="/user/gua-form" class="card-cartegory !text-center">GUARANTOR form</Link>
          </article>
         </div>
        </article>
@@ -81,7 +81,7 @@ const HomePage = () => {
         </figure>
         <div class="article-content">
          <h3 class="card-title">CREATE ESUSU FORM</h3>
-         <article className='flex gap-1 items-center'>
+         <article className='flex gap-1 items-center justify-center text-center'>
           <FaArrowRight className='hidden group-hover:block group-hover:animate-ping' />
           <Link to="/user/esusu-form" class="card-cartegory">ESUSU FORM form</Link>
          </article>
@@ -94,7 +94,7 @@ const HomePage = () => {
         </figure>
         <div class="article-content">
          <h3 class="card-title">CREATE BANK/CREDIT APPLICATION</h3>
-         <article className='flex gap-1 items-center'>
+         <article className='flex gap-1 items-center justify-center text-center'>
           <FaArrowRight className='hidden group-hover:block group-hover:animate-ping' />
           <Link to="/user/bcf-form" class="card-cartegory">BANK/CREDIT APPLICATION form</Link>
          </article>
@@ -107,9 +107,9 @@ const HomePage = () => {
         </figure>
         <div class="article-content">
          <h3 class="card-title">CREATE LOAN INVESTMENT APPLICATION</h3>
-         <article className='flex gap-1 items-center'>
+         <article className='flex gap-1 items-center justify-center text-center'>
           <FaArrowRight className='hidden group-hover:block group-hover:animate-ping' />
-          <Link to="" class="card-cartegory">LOAN INVESTMENT APPLICATION form</Link>
+          <Link to="" class="card-cartegory">LOAN INVESTMENT APPLICATION FORM</Link>
          </article>
         </div>
        </article>

@@ -45,7 +45,7 @@ const Letter = ({ details, targetRef }) => {
      </li>
      <li className='list'>
       <p>TENOR:</p>
-      <p>{details.tenor}</p>
+      <p>{details.tenor}days</p>
      </li>
      <li className='list'>
       <p>EFFECTIVE DATE:</p>

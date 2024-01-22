@@ -3,7 +3,7 @@ import { formatDate } from '../../../Components/FormatDate'
 
 const DepositPdf = ({ details, targetRef }) => {
  return (
-  <div ref={targetRef} className='py-[60px] px-[70px] shadow-xl w-full xl:w-[60%] mx-auto flex flex-col gap-6'>
+  <div ref={targetRef} className='p-[20px] lg:py-[60px] lg:px-[70px] shadow-xl w-full xl:w-[60%] mx-auto flex flex-col gap-6'>
    <header className='flex flex-col gap-3 font-bold text-xl'>
     <h2>DATE: {formatDate(details.date)}</h2>
     <article>

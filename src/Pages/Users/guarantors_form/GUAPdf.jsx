@@ -5,7 +5,7 @@ import { formatDate } from '../../../Components/FormatDate'
 
 const GUAPdf = ({ details, targetRef }) => {
  return (
-  <div ref={targetRef} className='p-[60px] w-full xl:w-[60%] mx-auto'>
+  <div ref={targetRef} className='p-[20px] lg:py-[60px] lg:px-[70px] w-full lg:w-[60%] mx-auto'>
    <header className='flex flex-col justify-center text-right text-[14px] w-[55%] h-[100px] mx-auto mb-[20px]'>
     <img src={Logo} alt="" className='w-full h-[100px] mx-auto' />
     <address className='text-asparagus-600'>26,Gbasemo Street, Aga, Ikorodu, Lagos State</address>

@@ -30,8 +30,8 @@ const OfferInvestmentLetter = ({ details, targetRef }) => {
           <li className='list'>
             <p>Tenor:</p>
             <article className='flex gap-3'>
-              <p>{details.tenor1} -</p>
-              <p>{details.tenor2}</p>
+              <p>{details.tenor1}days -</p>
+              <p>{details.tenor2}days</p>
             </article>
           </li>
           <li className='list'>
