@@ -111,7 +111,7 @@ const DepositPage = () => {
   }
  }
 
- const { toPDF, targetRef } = usePDF({ filename: `${details.name}.pdf` }, options);
+ const { toPDF, targetRef } = usePDF({ filename: `${details.name} depositApplicationForm.pdf` }, options);
 
  return (
   <div className="w-full md:w-[80%] mx-auto mt-8">
@@ -124,7 +124,7 @@ const DepositPage = () => {
        toPDF().then(() => {
         setTimeout(() => {
          alert('Now attach the file you downloaded')
-         window.location.href = `mailto:tmfbapplicationform@gmail.com?subject=My%20Account%20Form&body=''`;
+         window.location.href = `mailto:tmfbapplicationform@gmail.com?subject=My%20Depositi%20Application%20Form&body=''`;
          sessionStorage.clear()
          window.location.reload()
          navigate('/')

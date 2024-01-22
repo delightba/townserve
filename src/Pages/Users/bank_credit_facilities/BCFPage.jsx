@@ -147,7 +147,7 @@ const BCFPage = () => {
   })
  };
 
- const { toPDF, targetRef } = usePDF({ filename: `${details.name}.pdf` }, options);
+ const { toPDF, targetRef } = usePDF({ filename: `${details.name} creditApplicationForm.pdf` }, options);
  return (
   <div className="w-full md:w-[80%] mx-auto mt-8">
    {isFillingForm && <BCFForm details={details} handleChange={handleChange} handleSubmit={handleSubmit} handleSignature={handleCustomerSignatureChange} handleSecurityAsset={handleSecurityAssetChange} handleGuarantor={handleGuarantorsChange} />}
@@ -159,7 +159,7 @@ const BCFPage = () => {
        toPDF().then(() => {
         setTimeout(() => {
          alert('Now attach the file you downloaded')
-        window.location.href = `mailto:tmfbapplicationform@gmail.com?subject=My%20Account%20Form&body=''`;
+        window.location.href = `mailto:tmfbapplicationform@gmail.com?subject=My%20Credit%20Application%20Form&body=''`;
         sessionStorage.clear()
         window.location.reload()
          navigate('/')

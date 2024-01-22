@@ -158,7 +158,7 @@ const GUAPage = () => {
        toPDF().then(() => {
         setTimeout(() => {
          alert('Now attach the file you downloaded')
-         window.location.href = `mailto:tmfbapplicationform@gmail.com?subject=My%20Account%20Form&body=''`;
+         window.location.href = `mailto:tmfbapplicationform@gmail.com?subject=My%20Guarantor%20Form&body=''`;
          sessionStorage.clear()
          window.location.reload()
          navigate('/')
