@@ -5,7 +5,7 @@ import CustomInput from '../../Components/CustomInput'
 const OfferForm = ({ handleChange, handleSubmit, details, handleSignature }) => {
 
  return (
-  <form className='flex flex-col gap-3'>
+  <form className='flex flex-col gap-3 p-[15px]'>
    <div>
     <h1 className='greenheader text-center'>Offer Of Investment Form</h1>
     <p className='text-center text-lg font-medium'>Kindly fill this form before submitting</p>

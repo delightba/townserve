@@ -3,7 +3,7 @@ import { formatDate } from '../../Components/FormatDate'
 
 const OfferInvestmentLetter = ({ details, targetRef }) => {
   return (
-    <div ref={targetRef} className='p-[100px] shadow-xl w-full xl:w-[60%] mx-auto'>
+    <div ref={targetRef} className='p-[20px] lg:p-[100px] shadow-xl w-full xl:w-[60%] mx-auto'>
       <section className='flex justify-between my-4'>
         {/* user side */}
         <div>

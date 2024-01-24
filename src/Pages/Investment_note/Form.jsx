@@ -1,10 +1,10 @@
 import React from 'react'
 import CustomInput from '../../Components/CustomInput'
 
-const Form = ({details, handleChange, handleSubmit}) => {
- 
+const Form = ({ details, handleChange, handleSubmit }) => {
+
  return (
-  <form className='flex flex-col gap-3'>
+  <form className='flex flex-col gap-3 p-[15px]'>
    <div>
     <h1 className='greenheader text-center'>TownServe Investment Note/Certificate Form</h1>
     <p className='text-center text-lg font-medium'>Kindly fill this form before submitting, so we can generate the pdf file for you.</p>
@@ -23,7 +23,7 @@ const Form = ({details, handleChange, handleSubmit}) => {
     <CustomInput value={details.value_at_maturity} placeholder={"Your matured value"} name={"value_at_maturity"} type={"number"} label={"Matured value (figure)"} handleChange={handleChange} />
     <CustomInput value={details.value_at_maturity_words} placeholder={"Your matured value in words"} name={"value_at_maturity_words"} type={"text"} label={"Matured value in words"} handleChange={handleChange} />
     <CustomInput value={details.repayment_date} placeholder={"Your repayment date"} name={"repayment_date"} type={"date"} label={"Repayment date"} handleChange={handleChange} />
-    <CustomInput value={details.type_of_investment} placeholder={"Your investment type"} name={"type_of_investment"} type={"text"} label={"Invetment type"} handleChange={handleChange} />
+    <CustomInput value={details.type_of_investment} placeholder={"Your investment type"} name={"type_of_investment"} type={"text"} label={"Investment type"} handleChange={handleChange} />
    </section>
 
    <button type="button" className='next' onClick={handleSubmit}>Submit</button>
