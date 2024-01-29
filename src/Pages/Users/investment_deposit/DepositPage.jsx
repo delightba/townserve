@@ -1,14 +1,17 @@
-import React, { useState } from 'react'
-import { usePDF, Margin } from 'react-to-pdf';
+import React, { useRef, useState } from 'react'
 import DepositForm from './DepositForm'
 import DepositPdf from './DepositPdf'
 import { GrDocumentPdf } from "react-icons/gr";
 import { readFileAsDataURL } from '../../../Components/FormatDate';
 import { useNavigate } from 'react-router-dom';
+import { useReactToPrint } from 'react-to-print'
+
+
 
 
 const DepositPage = () => {
  const navigate = useNavigate()
+ const targetRef = useRef()
  const localStorageKey = 'DepositPage';
  // Function to load form data from localStorage
  const loadFormDataFromLocalStorage = () => {
@@ -97,21 +100,19 @@ const DepositPage = () => {
   setIsFillingForm(false)
  }
 
- const options = {
-  page: {
-   margin: Margin.SMALL,
-  },
-  overrides: {
-   pdf: {
-    compress: true
-   },
-   canvas: {
-    useCORS: true
-   }
+ const handlePrint = useReactToPrint({
+  content: () => targetRef.current,
+  documentTitle: `${details?.name}`,
+  onAfterPrint: () => {
+   setTimeout(() => {
+    alert('Now attach the file you downloaded')
+    window.location.href = `mailto:tmfbapplicationform@gmail.com?subject=My%20Depositi%20Application%20Form&body='Attached to this mail is my Deposit Form, kindly treat as urgent. Thank you.'`;
+    sessionStorage.clear()
+    window.location.reload()
+    navigate('/')
+   }, 200)
   }
- }
-
- const { toPDF, targetRef } = usePDF({ filename: `${details.name} depositApplicationForm.pdf` }, options);
+ })
 
  return (
   <div className="w-full md:w-[80%] mx-auto mt-8">
@@ -120,22 +121,12 @@ const DepositPage = () => {
     <div className="relative flex flex-col gap-3">
      <DepositPdf details={details} targetRef={targetRef} />
      <div className="mx-auto">
-      <button type='button' onClick={() => {
-       toPDF().then(() => {
-        setTimeout(() => {
-         alert('Now attach the file you downloaded')
-         window.location.href = `mailto:tmfbapplicationform@gmail.com?subject=My%20Depositi%20Application%20Form&body=''`;
-         sessionStorage.clear()
-         window.location.reload()
-         navigate('/')
-        }, 5000)
-       })
-      }}><GrDocumentPdf size={24} className='text-blue-600' /></button>
+      <button type='button' onClick={handlePrint}><GrDocumentPdf size={24} className='text-blue-600' /></button>
       <button type="button" className='back' onClick={() => setIsFillingForm(true)}>Make changes</button>
      </div>
     </div>
    }
-  </div>
+  </div >
  )
 }
 

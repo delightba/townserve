@@ -1,45 +1,31 @@
-import { usePDF, Margin } from "react-to-pdf";
 import Home from './Home';
 import Download from './Download';
 import ProceedModal from '../../../ProceedModal'
-import React, { useState } from "react";
-
+import React, { useRef, useState } from "react";
+import { useReactToPrint } from 'react-to-print'
+import { useNavigate } from "react-router-dom";
 
 
 function AccountOpeningForm() {
+  const targetRef = useRef()
+  const navigate = useNavigate()
   const [showModal, setShowModal] = useState(false)
   const name = sessionStorage.getItem('TM001FormData')
   const parsed = JSON.parse(name)
-  const options = {
-    page: {
-      margin: Margin.MEDIUM,
-    },
-    overrides: {
-      pdf: {
-        compress: true
-      },
-      canvas: {
-        useCORS: true
-      }
-    }
-  }
-  const { toPDF, targetRef } = usePDF({
-    method: "save",
-    filename: `${parsed?.fullname || 'myform'}.pdf`, options
-  });
 
-
-  const handleCreateAccount = () => {
-    toPDF().then(() => {
+  const handlePrint = useReactToPrint({
+    content: () => targetRef.current,
+    documentTitle: `${parsed?.fullname}`,
+    onAfterPrint: () => {
       setTimeout(() => {
         alert('Now attach the file you downloaded')
-        window.location.href = `mailto:tmfbapplicationform@gmail.com?subject=My%20Account%20Form&body=I%20${parsed?.fullname}%20wants%20an%20with%20your%20bank`;
+        window.location.href = `mailto:tmfbapplicationform@gmail.com?subject=My%20Account%20Form&body='Attached to this mail is my ACCOUNT OPENING Form, kindly treat as urgent. Thank you.'`;
         sessionStorage.clear()
         window.location.reload()
-      }, 5000)
-    }).catch((error) => console.log(error))
-  }
-
+        navigate('/')
+      }, 200)
+    }
+  })
 
   return (
     <div>
@@ -47,7 +33,7 @@ function AccountOpeningForm() {
       {
         showModal &&
         <>
-          <ProceedModal handleDownload={handleCreateAccount} closeModal={() => setShowModal(false)} />
+          <ProceedModal handleDownload={handlePrint} closeModal={() => setShowModal(false)} />
           <Download targetRef={targetRef} />
         </>
       }

@@ -1,13 +1,13 @@
-import React, { useState } from 'react'
-import { usePDF, Margin } from 'react-to-pdf';
+import React, { useRef, useState } from 'react'
 import { GrDocumentPdf } from "react-icons/gr";
 import { readFileAsDataURL } from '../../../Components/FormatDate';
 import { useNavigate } from 'react-router-dom';
 import EsusuForm from './EsusuForm';
 import EsusuPdf from './EsusuPdf';
-
+import { useReactToPrint } from 'react-to-print'
 
 const EsusuPage = () => {
+  const targetRef = useRef()
   const navigate = useNavigate()
   const localStorageKey = 'EsusuPage';
   // Function to load form data from localStorage
@@ -110,20 +110,6 @@ const EsusuPage = () => {
     setIsFillingForm(false)
   }
 
-  const options = {
-    page: {
-      margin: Margin.MEDIUM,
-    },
-    overrides: {
-      pdf: {
-        compress: true
-      },
-      canvas: {
-        useCORS: true
-      }
-    }
-  }
-
   const handleSecurityAssetChange = (e) => {
     const { name, value } = e.target;
     const uppercaseValue = value.toUpperCase()
@@ -202,7 +188,21 @@ const EsusuPage = () => {
     }
   };
 
-  const { toPDF, targetRef } = usePDF({ filename: `${details.name} esusuApplicationForm.pdf` }, options);
+  const handlePrint = useReactToPrint({
+    content: () => targetRef.current,
+    documentTitle: `${details?.name}`,
+    onAfterPrint: () => {
+      setTimeout(() => {
+        alert('Now attach the file you downloaded')
+        window.location.href = `mailto:tmfbapplicationform@gmail.com?subject=My%20Esusu%20Application%20Form&body='Attached to this mail is my ESUSU LOAN Form, kindly treat as urgent. Thank you.'`;
+        sessionStorage.clear()
+        window.location.reload()
+        navigate('/')
+      }, 200)
+    }
+  })
+
+
   return (
     <div className="w-full md:w-[80%] mx-auto mt-8">
       {isFillingForm && <EsusuForm details={details} handleChange={handleChange} handleSubmit={handleSubmit} handleSignature={handleCustomerSignatureChange} handleSecurityAsset={handleSecurityAssetChange} handleGuarantor={handleGuarantorsChange} customerpassport={handleCustomerPassportChange} guarantorpassport={handleGuarantorPassportChange} guarantorsignature={handleGuarantorSignatureChange} />}
@@ -210,17 +210,7 @@ const EsusuPage = () => {
         <div className="relative flex flex-col gap-3">
           <EsusuPdf details={details} targetRef={targetRef} />
           <div className="mx-auto flex gap-3">
-            <button type='button' onClick={() => {
-              toPDF().then(() => {
-                setTimeout(() => {
-                  alert('Now attach the file you downloaded')
-                  window.location.href = `mailto:tmfbapplicationform@gmail.com?subject=My%20Esusu%20Application%20Form&body=''`;
-                  sessionStorage.clear()
-                  window.location.reload()
-                  navigate('/')
-                }, 5000)
-              })
-            }} ><GrDocumentPdf size={24} className='text-blue-600' /></button>
+            <button type='button' onClick={handlePrint} >Download<GrDocumentPdf size={24} className='text-blue-600' /></button>
             <button type="button" className='back' onClick={() => setIsFillingForm(true)}>Make changes</button>
           </div>
         </div>

@@ -1,12 +1,15 @@
-import React, { useState } from 'react'
-import { usePDF, Margin } from 'react-to-pdf';
+import React, { useRef, useState } from 'react'
 import { GrDocumentPdf } from "react-icons/gr";
 import { readFileAsDataURL } from '../../../Components/FormatDate';
 import { useNavigate } from 'react-router-dom';
 import BCFForm from './BCFForm';
 import BCFPdf from './BCFPdf';
+import { useReactToPrint } from 'react-to-print'
+
+
 
 const BCFPage = () => {
+ const targetRef = useRef()
  const navigate = useNavigate()
  const localStorageKey = 'BCFPage';
  // Function to load form data from localStorage
@@ -97,20 +100,6 @@ const BCFPage = () => {
   setIsFillingForm(false)
  }
 
- const options = {
-  page: {
-   margin: Margin.MEDIUM,
-  },
-  overrides: {
-   pdf: {
-    compress: true
-   },
-   canvas: {
-    useCORS: true
-   }
-  }
- }
-
  const handleSecurityAssetChange = (e) => {
   const { name, value } = e.target;
   const uppercaseValue = value.toUpperCase()
@@ -147,7 +136,19 @@ const BCFPage = () => {
   })
  };
 
- const { toPDF, targetRef } = usePDF({ filename: `${details.name} creditApplicationForm.pdf` }, options);
+ const handlePrint = useReactToPrint({
+  content: () => targetRef.current,
+  documentTitle: `${details?.name}`,
+  onAfterPrint: () => {
+   setTimeout(() => {
+    alert('Now attach the file you downloaded')
+    window.location.href = `mailto:tmfbapplicationform@gmail.com?subject=My%20Credit%20Application%20Form&body='Attached to this mail is my BANK/CREDIT APPLICATION Form, kindly treat as urgent. Thank you.'`;
+    sessionStorage.clear()
+    window.location.reload()
+    navigate('/')
+   }, 200)
+  }
+ })
  return (
   <div className="w-full md:w-[80%] mx-auto mt-8">
    {isFillingForm && <BCFForm details={details} handleChange={handleChange} handleSubmit={handleSubmit} handleSignature={handleCustomerSignatureChange} handleSecurityAsset={handleSecurityAssetChange} handleGuarantor={handleGuarantorsChange} />}
@@ -155,18 +156,8 @@ const BCFPage = () => {
     <div className="relative flex flex-col gap-3">
      <BCFPdf details={details} targetRef={targetRef} />
      <div className="mx-auto flex gap-3">
-      <button type='button' onClick={() => {
-       toPDF().then(() => {
-        setTimeout(() => {
-         alert('Now attach the file you downloaded')
-        window.location.href = `mailto:tmfbapplicationform@gmail.com?subject=My%20Credit%20Application%20Form&body=''`;
-        sessionStorage.clear()
-        window.location.reload()
-         navigate('/')
-        }, 5000)
-       })
-      }}><GrDocumentPdf size={24} className='text-blue-600'/></button>
-      <button type="button" className='back' onClick={()=>setIsFillingForm(true)}>Make changes</button>
+      <button type='button' onClick={handlePrint}>Download<GrDocumentPdf size={24} className='text-blue-600' /></button>
+      <button type="button" className='back' onClick={() => setIsFillingForm(true)}>Make changes</button>
      </div>
     </div>
    }

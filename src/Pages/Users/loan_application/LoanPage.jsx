@@ -1,14 +1,14 @@
-import React, { useState } from 'react'
-import { usePDF, Margin } from 'react-to-pdf';
+import React, { useRef, useState } from 'react'
 import { GrDocumentPdf } from "react-icons/gr";
 import { useNavigate } from 'react-router-dom';
 import { readFileAsDataURL } from '../../../Components/FormatDate';
 import LoanForm from './LoanForm'
 import LoanPdf from './LoanPdf'
-
+import { useReactToPrint } from 'react-to-print'
 
 
 const LoanPage = () => {
+  const targetRef = useRef()
   const navigate = useNavigate()
   const localStorageKey = 'LoanPage';
   // Function to load form data from localStorage
@@ -99,21 +99,21 @@ const LoanPage = () => {
     console.log(details)
   }
 
-  const options = {
-    page: {
-      margin: Margin.SMALL,
-    },
-    overrides: {
-      pdf: {
-        compress: true
-      },
-      canvas: {
-        useCORS: true
-      }
+  const handlePrint = useReactToPrint({
+    content: () => targetRef.current,
+    documentTitle: `${details?.name}`,
+    onAfterPrint: () => {
+      setTimeout(() => {
+        alert('Now attach the file you downloaded')
+        window.location.href = `mailto:tmfbapplicationform@gmail.com?subject=My%20Credit%20Application%20Form&body='Attached to this mail is my BANK/CREDIT APPLICATION Form, kindly treat as urgent. Thank you.'`;
+        sessionStorage.clear()
+        window.location.reload()
+        navigate('/')
+      }, 200)
     }
-  }
+  })
 
-  const { toPDF, targetRef } = usePDF({ filename: `${details.name}.pdf` }, options);
+
   return (
     <div className="w-full md:w-[80%] mx-auto mt-8">
       {isFillingForm && <LoanForm details={details} handleChange={handleChange} handleSubmit={handleSubmit} handleSignature={handleCustomerSignatureChange} handleEvidence={handleEvidenceChange} />}
@@ -121,13 +121,7 @@ const LoanPage = () => {
         <div className="relative flex flex-col gap-3">
           <LoanPdf details={details} targetRef={targetRef} />
           <div className="mx-auto">
-            <button type='button' onClick={() => {
-              toPDF().then(() => {
-                setTimeout(() => {
-                  navigate('/')
-                }, 5000)
-              })
-            }} className="next"><GrDocumentPdf /></button>
+            <button type='button' onClick={handlePrint} className="next"><GrDocumentPdf /></button>
           </div>
         </div>
       }
