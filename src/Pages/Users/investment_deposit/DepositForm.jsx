@@ -8,6 +8,14 @@ const DepositForm = ({ details, handleChange, handleSubmit, handleSignature, han
     <h1 className='greenheader text-center'>TownServe Investment/Deposit Application Form</h1>
     <p className='text-center text-lg font-medium'>Kindly fill this form before submitting, so we can generate the pdf file for you.</p>
    </div>
+   <div>
+    <h1 className='font-bold text-xl'>Account details to send your money to</h1>
+    <ul className='my-3 flex flex-col gap-3 text-xl'>
+     <li>Bank name - Polaris Bank</li>
+     <li>Account Name: Townserve Microfinance Bank Limited</li>
+     <li>Account No:1770640271.</li>
+    </ul>
+   </div>
    <section>
     <CustomInput value={details.date} placeholder={"Today's date"} name={"date"} type={"date"} label={"Date"} handleChange={handleChange} />
     <CustomInput value={details.name} placeholder={"Fullname"} name={"name"} type={"text"} label={"name"} handleChange={handleChange} />
