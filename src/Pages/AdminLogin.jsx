@@ -36,14 +36,12 @@ const AdminLogin = ({ setAdmin, admin }) => {
       method: 'POST',
       body: formData,
     }).then((res) => {
-      console.log(res)
       if (res.ok) {
         return res.json()
       } else {
         return Promise.reject(res.status)
       }
     }).then((data) => {
-      console.log(data)
       setAdmin((prevAdmin) => ({
         token: data.access_token,
         user: data.user,
