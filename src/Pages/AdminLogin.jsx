@@ -36,18 +36,27 @@ const AdminLogin = ({ setAdmin, admin }) => {
       method: 'POST',
       body: formData,
     }).then((res) => {
+      console.log(res)
       if (res.ok) {
         return res.json()
       } else {
         return Promise.reject(res.status)
       }
     }).then((data) => {
-      navigate('/admin/dashboard/create-investmentnote')
-      setAdmin({
+      console.log(data)
+      setAdmin((prevAdmin) => ({
         token: data.access_token,
-        user: data.user
-      })
-      sessionStorage.setItem('admin', JSON.stringify(admin));
+        user: data.user,
+      }));
+
+      const updatedAdmin = {
+        token: data.access_token,
+        user: data.user,
+      };
+      sessionStorage.setItem('admin', JSON.stringify(updatedAdmin));
+
+      // Use navigate after the state has been updated and saved
+      navigate('/admin/dashboard/create-investmentnote');
     }).catch((res) => console.log(res))
   }
 
