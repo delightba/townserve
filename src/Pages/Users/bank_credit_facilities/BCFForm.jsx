@@ -1,12 +1,18 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import CustomInput from '../../../Components/CustomInput'
 
 
 
 
 const BCFForm = ({ details, handleChange, handleSubmit, handleSignature, handleSecurityAsset, handleGuarantor }) => {
+ 
+ const containerRef = useRef(null);
+ useEffect(() => {
+  containerRef.current.scrollIntoView({ behavior: 'smooth' });
+ }, []);
+
  return (
-  <form className='flex flex-col gap-3 p-[15px]'>
+  <form className='flex flex-col gap-3 p-[15px]' ref={containerRef}>
    <div>
     <h1 className='greenheader text-center'>APPLICATION FOR BANK/CREDIT FACILITIES Form</h1>
     <p className='text-center text-lg font-medium'>Kindly fill this form before submitting, so we can generate the pdf file for you.</p>

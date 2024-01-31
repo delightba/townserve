@@ -1,5 +1,5 @@
-import React from 'react'
-import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router-dom'
+import React, { useState } from 'react'
+import { createBrowserRouter, createRoutesFromElements, Navigate, Route, RouterProvider } from 'react-router-dom'
 import AdminLogin from './Pages/AdminLogin'
 import Layout from './Layout'
 import InvestmentNoteForm from './Pages/Investment_note/InvestmentNoteForm'
@@ -15,6 +15,12 @@ import GUAPage from './Pages/Users/guarantors_form/GUAPage'
 
 
 const App = () => {
+ const [admin, setAdmin] = useState({
+  token: '',
+  user: ''
+ })
+
+
  const router = createBrowserRouter(
   createRoutesFromElements(
    <>
@@ -25,8 +31,8 @@ const App = () => {
     <Route path='/user/bcf-form' element={<BCFPage />} />
     <Route path='/user/esusu-form' element={<EsusuPage />} />
     <Route path='/user/gua-form' element={<GUAPage />} />
-    <Route path='/login' element={<AdminLogin />} />
-    <Route path='/admin/dashboard' element={<Layout />}>
+    <Route path='/login' element={<AdminLogin setAdmin={setAdmin} admin={admin} />} />
+    <Route path='/admin/dashboard' element={!admin ? <Navigate to='/' replace /> : <Layout />}>
      {/* <Route index element={<Dashboard />} /> */}
      <Route index path='create-investmentnote' element={<InvestmentNoteForm />} />
      <Route path='create-offerofinvestment' element={<OfferInvestment />} />

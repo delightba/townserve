@@ -62,7 +62,7 @@ body{
 }
 
 .fcard{
-  @apply w-[350px] h-[300px] flex flex-col border-2 items-center border-green-600 gap-3 hover:cursor-pointer text-center
+  @apply w-[350px] h-[300px] flex flex-col border-2 items-center border-green-600 gap-3 hover:cursor-pointer text-center cursor-pointer
 }
 .fcard a{
   @apply text-xl text-green-600

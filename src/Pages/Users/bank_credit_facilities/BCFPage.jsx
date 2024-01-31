@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import BCFForm from './BCFForm';
 import BCFPdf from './BCFPdf';
 import { useReactToPrint } from 'react-to-print'
-
+import InstructionPopUp from '../../../Components/InstructionPopUp';
 
 
 const BCFPage = () => {
@@ -58,6 +58,11 @@ const BCFPage = () => {
   },
   signature: '',
  })
+
+ const [isOpen, setIsOpen] = useState(true)
+ const closeModal = () => {
+  setIsOpen(false)
+ }
 
  const handleChange = (e) => {
   const { name, value } = e.target;
@@ -151,6 +156,7 @@ const BCFPage = () => {
  })
  return (
   <div className="w-full md:w-[80%] mx-auto mt-8">
+   {isOpen && <InstructionPopUp closeModal={closeModal} />}
    {isFillingForm && <BCFForm details={details} handleChange={handleChange} handleSubmit={handleSubmit} handleSignature={handleCustomerSignatureChange} handleSecurityAsset={handleSecurityAssetChange} handleGuarantor={handleGuarantorsChange} />}
    {!isFillingForm &&
     <div className="relative flex flex-col gap-3">

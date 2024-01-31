@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import GUAForm from './GUAForm';
 import GUAPdf from './GUAPdf';
 import { useReactToPrint } from 'react-to-print'
+import InstructionPopUp from '../../../Components/InstructionPopUp';
 
 
 const GUAPage = () => {
@@ -44,6 +45,11 @@ const GUAPage = () => {
    signature: '',
   }
  })
+
+ const [isOpen, setIsOpen] = useState(true)
+ const closeModal = () => {
+  setIsOpen(false)
+ }
 
  const handleChange = (e) => {
   const { name, value } = e.target;
@@ -142,14 +148,15 @@ const GUAPage = () => {
     alert('Now attach the file you downloaded')
     window.location.href = `mailto:tmfbapplicationform@gmail.com?subject=My%20Guarantor%20Form&body='Attached to this mail is my Guarantor's Form, kindly treat as urgent. Thank you.'`;
     sessionStorage.clear()
-    window.location.reload()
     navigate('/')
+    window.location.reload()
    }, 200)
   }
  })
 
  return (
   <div className="w-full md:w-[80%] mx-auto mt-8">
+   {isOpen && <InstructionPopUp closeModal={closeModal} />}
    {isFillingForm && <GUAForm details={details} handleChange={handleChange} handleSubmit={handleSubmit} handleGuarantor={handleGuarantorsChange} guarantorpassport={handleGuarantorPassportChange} guarantorsignature={handleGuarantorSignatureChange} />}
    {!isFillingForm &&
     <div className="relative flex flex-col gap-3">

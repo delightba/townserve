@@ -10,7 +10,7 @@ import { TiDocument } from "react-icons/ti";
 
 
 const Layout = () => {
- const [isNavbarCollapsed, setIsNavbarCollapsed] = useState(false);
+ const [isNavbarCollapsed, setIsNavbarCollapsed] = useState(true);
 
  const toggleNavbar = () => {
   setIsNavbarCollapsed((prev) => !prev);

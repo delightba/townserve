@@ -3,7 +3,7 @@ import '../css/style.css'
 import { useNavigate } from 'react-router-dom'
 
 
-const AdminLogin = () => {
+const AdminLogin = ({ setAdmin, admin }) => {
   const navigate = useNavigate()
   const [login, setLogin] = useState({
     username: '',
@@ -17,30 +17,38 @@ const AdminLogin = () => {
       [name]: value
     }))
   }
-  // const apiUrl = 'https://tmbonline.ng/api/auth/login'
+  const apiUrl = 'https://townserve.itl.ng/api/auth/login'
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    setTimeout(() => {
+    // setTimeout(() => {
+    //   navigate('/admin/dashboard/create-investmentnote')
+    //   setTimeout(() => {
+    //     alert('Login successful')
+    //   }, 1000)
+    // }, 1000)
+    const formData = new FormData()
+
+    formData.append('email', login.username)
+    formData.append('password', login.password)
+
+    fetch(apiUrl, {
+      method: 'POST',
+      body: formData,
+    }).then((res) => {
+      if (res.ok) {
+        return res.json()
+      } else {
+        return Promise.reject(res.status)
+      }
+    }).then((data) => {
       navigate('/admin/dashboard/create-investmentnote')
-      setTimeout(() => {
-        alert('Login successful')
-      }, 1000)
-    }, 1000)
-    //   const formData = new FormData()
-
-    //   formData.append('email', login.username)
-    //   formData.append('password', login.password)
-
-    //   fetch(apiUrl,{
-    //     method: 'POST',
-    // body: formData,
-    //   }).then((res)=>{
-    //     if(res.status === 200){
-    //       alert('Login successful')
-    //       navigate('/admin/dashboard/create-investmentnote')
-    //     }
-    //   }).catch((res)=>console.log(res))
+      setAdmin({
+        token: data.access_token,
+        user: data.user
+      })
+      sessionStorage.setItem('admin', JSON.stringify(admin));
+    }).catch((res) => console.log(res))
   }
 
   useEffect(() => {

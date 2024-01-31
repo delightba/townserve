@@ -5,6 +5,7 @@ import { readFileAsDataURL } from '../../../Components/FormatDate';
 import LoanForm from './LoanForm'
 import LoanPdf from './LoanPdf'
 import { useReactToPrint } from 'react-to-print'
+import InstructionPopUp from '../../../Components/InstructionPopUp';
 
 
 const LoanPage = () => {
@@ -41,6 +42,11 @@ const LoanPage = () => {
     signature: '',
     evidence: ''
   })
+
+  const [isOpen, setIsOpen] = useState(true)
+  const closeModal = () => {
+    setIsOpen(false)
+  }
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -116,6 +122,7 @@ const LoanPage = () => {
 
   return (
     <div className="w-full md:w-[80%] mx-auto mt-8">
+      {isOpen && <InstructionPopUp closeModal={closeModal} />}
       {isFillingForm && <LoanForm details={details} handleChange={handleChange} handleSubmit={handleSubmit} handleSignature={handleCustomerSignatureChange} handleEvidence={handleEvidenceChange} />}
       {!isFillingForm &&
         <div className="relative flex flex-col gap-3">

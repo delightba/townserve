@@ -5,6 +5,7 @@ import { GrDocumentPdf } from "react-icons/gr";
 import { readFileAsDataURL } from '../../../Components/FormatDate';
 import { useNavigate } from 'react-router-dom';
 import { useReactToPrint } from 'react-to-print'
+import InstructionPopUp from '../../../Components/InstructionPopUp';
 
 
 
@@ -43,6 +44,11 @@ const DepositPage = () => {
   signature: '',
   evidence: ''
  })
+
+ const [isOpen, setIsOpen] = useState(true)
+ const closeModal = () => {
+  setIsOpen(false)
+ }
 
  const handleChange = (e) => {
   const { name, value } = e.target;
@@ -116,6 +122,7 @@ const DepositPage = () => {
 
  return (
   <div className="w-full md:w-[80%] mx-auto mt-8">
+   {isOpen && <InstructionPopUp closeModal={closeModal} />}
    {isFillingForm && <DepositForm details={details} handleChange={handleChange} handleSubmit={handleSubmit} handleSignature={handleCustomerSignatureChange} handleEvidence={handleEvidenceChange} />}
    {!isFillingForm &&
     <div className="relative flex flex-col gap-3">

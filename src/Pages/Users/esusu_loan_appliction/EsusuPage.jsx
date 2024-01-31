@@ -5,6 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import EsusuForm from './EsusuForm';
 import EsusuPdf from './EsusuPdf';
 import { useReactToPrint } from 'react-to-print'
+import InstructionPopUp from '../../../Components/InstructionPopUp';
+
 
 const EsusuPage = () => {
   const targetRef = useRef()
@@ -51,6 +53,11 @@ const EsusuPage = () => {
     signature: '',
     applicant_passport_photo: '',
   })
+
+  const [isOpen, setIsOpen] = useState(true)
+  const closeModal = () => {
+    setIsOpen(false)
+  }
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -205,6 +212,7 @@ const EsusuPage = () => {
 
   return (
     <div className="w-full md:w-[80%] mx-auto mt-8">
+      {isOpen && <InstructionPopUp closeModal={closeModal} />}
       {isFillingForm && <EsusuForm details={details} handleChange={handleChange} handleSubmit={handleSubmit} handleSignature={handleCustomerSignatureChange} handleSecurityAsset={handleSecurityAssetChange} handleGuarantor={handleGuarantorsChange} customerpassport={handleCustomerPassportChange} guarantorpassport={handleGuarantorPassportChange} guarantorsignature={handleGuarantorSignatureChange} />}
       {!isFillingForm &&
         <div className="relative flex flex-col gap-3">

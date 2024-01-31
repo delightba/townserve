@@ -3,8 +3,9 @@ import OfferInvestmentLetter from './OfferInvestmentLetter';
 import OfferForm from './OfferForm'
 import { readFileAsDataURL } from '../../Components/FormatDate';
 import { GrDocumentPdf } from "react-icons/gr";
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import { useReactToPrint } from 'react-to-print'
+import InstructionPopUp from '../../Components/InstructionPopUp';
 
 
 
@@ -12,7 +13,7 @@ import { useReactToPrint } from 'react-to-print'
 
 const OfferInvestment = () => {
   const targetRef = useRef()
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
   const localStorageKey = 'offerInvestmentPage';
   // Function to load form data from localStorage
   const loadFormDataFromLocalStorage = () => {
@@ -39,6 +40,11 @@ const OfferInvestment = () => {
     signature: ''
   })
   const [isFillingForm, setIsFillingForm] = useState(true)
+
+  const [isOpen, setIsOpen] = useState(true)
+  const closeModal = () => {
+    setIsOpen(false)
+  }
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -90,12 +96,13 @@ const OfferInvestment = () => {
         window.location.href = `mailto:tmfbapplicationform@gmail.com?subject=My%20Credit%20Application%20Form&body='Attached to this mail is OFFER INVESTMENT Form for ${details.name} , kindly treat as urgent. Thank you.'`;
         sessionStorage.clear()
         window.location.reload()
-        navigate('/')
+        // navigate('/')
       }, 200)
     }
   })
   return (
     <div className="w-full md:w-[80%] mx-auto mt-8">
+      {isOpen && <InstructionPopUp closeModal={closeModal} />}
       {isFillingForm && <OfferForm details={details} handleChange={handleChange} handleSubmit={handleSubmit} handleSignature={handleCustomerSignatureChange} />}
       {!isFillingForm &&
         <div className="relative flex flex-col gap-3">

@@ -1,8 +1,8 @@
 /* eslint-disable react/style-prop-object */
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import Logo from '../mainlogo.png'
 import '../css/style.css'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Openaccount from '../images/openaccount.png'
 import Deposit from '../images/deposit.png'
 import Guarantor from '../images/guarantor.jpg'
@@ -11,9 +11,18 @@ import Credit from '../images/credit.jpg'
 import Loan from '../images/loan.jpg'
 import { FaArrowRight } from "react-icons/fa";
 
+
+
 const HomePage = () => {
+ const navigate = useNavigate()
+
+ const containerRef = useRef(null);
+ useEffect(() => {
+  containerRef.current.scrollIntoView({ behavior: 'smooth' });
+ }, []);
+
  return (
-  <div className='mb-[30px] pb-[40px]'>
+  <div className='mb-[30px] pb-[40px]' ref={containerRef}>
    <header>
     <nav class="navbar">
      <div class="navdiv">
@@ -36,7 +45,7 @@ const HomePage = () => {
      <div class="py-[40px]">
       <div class="flex gap-4 gap-y-6 flex-wrap justify-center my-8">
 
-       <article class="fcard myshadow group">
+       <article class="fcard myshadow group" onClick={() => navigate('/user/open-account')}>
         <figure class="">
          <img src={Openaccount} className='w-full h-[150px]' alt='' />
         </figure>
@@ -49,7 +58,7 @@ const HomePage = () => {
         </div>
        </article>
 
-       <article class="fcard myshadow group">
+       <article class="fcard myshadow group" onClick={() => navigate('/user/deposit-form')}>
         <figure class="">
          <img src={Deposit} className='w-full h-[150px]' alt='' />
         </figure>
@@ -62,7 +71,7 @@ const HomePage = () => {
         </div>
        </article>
 
-       <article class="fcard myshadow group">
+       <article class="fcard myshadow group" onClick={() => navigate('/user/gua-form')}>
         <figure class="">
          <img src={Guarantor} className='w-full h-[150px]' alt='' />
         </figure>
@@ -75,7 +84,7 @@ const HomePage = () => {
         </div>
        </article>
 
-       <article class="fcard myshadow group">
+       <article class="fcard myshadow group" onClick={() => navigate('/user/esusu-form')}>
         <figure class="">
          <img src={Esusu} className='w-full h-[150px]' alt='' />
         </figure>
@@ -88,7 +97,7 @@ const HomePage = () => {
         </div>
        </article>
 
-       <article class="fcard myshadow group">
+       <article class="fcard myshadow group" onClick={() => navigate('/user/bcf-form')}>
         <figure class="">
          <img src={Credit} className='w-full h-[150px]' alt='' />
         </figure>
@@ -101,7 +110,7 @@ const HomePage = () => {
         </div>
        </article>
 
-       <article class="fcard myshadow group">
+       <article class="fcard myshadow group" onClick={() => navigate('')}>
         <figure class="">
          <img src={Loan} className='w-full h-[150px]' alt='' />
         </figure>

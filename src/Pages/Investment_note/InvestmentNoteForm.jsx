@@ -2,14 +2,15 @@ import { useRef, useState } from "react";
 import Form from "./Form";
 import Letter from './Letter'
 import { GrDocumentPdf } from "react-icons/gr";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { useReactToPrint } from 'react-to-print'
+import InstructionPopUp from "../../Components/InstructionPopUp";
 
 
 
 function InvestmentNote() {
   const targetRef = useRef()
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
   const localStorageKey = 'investmentNote';
   // Function to load form data from localStorage
   const loadFormDataFromLocalStorage = () => {
@@ -37,6 +38,11 @@ function InvestmentNote() {
     type_of_investment: ''
   })
   const [isFillingForm, setIsFillingForm] = useState(true)
+
+  const [isOpen, setIsOpen] = useState(true)
+  const closeModal = () => {
+    setIsOpen(false)
+  }
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -72,13 +78,13 @@ function InvestmentNote() {
         window.location.href = `mailto:tmfbapplicationform@gmail.com?subject=My%20Credit%20Application%20Form&body='Attached to this mail is INVESTMENT NOTE for ${details.name} , kindly treat as urgent. Thank you.'`;
         sessionStorage.clear()
         window.location.reload()
-        navigate('/')
       }, 200)
     }
   })
 
   return (
     <div className="w-full md:w-[80%] mx-auto mt-8">
+      {isOpen && <InstructionPopUp closeModal={closeModal} />}
       {isFillingForm && <Form details={details} handleChange={handleChange} handleSubmit={handleSubmit} />}
       {!isFillingForm &&
         <div className="relative flex flex-col gap-3">
