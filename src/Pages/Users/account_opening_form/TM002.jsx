@@ -105,6 +105,7 @@ const TM002 = () => {
     reader.readAsDataURL(file);
    }
   }
+  saveFormDataToSessionStorageTM002Mandates(updatedMandates);
  };
 
  const addMandate = () => {
