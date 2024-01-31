@@ -20,6 +20,14 @@ const App = () => {
   user: ''
  })
 
+ function logout() {
+  setAdmin({
+   token: '',
+   user: ''
+  })
+  window.location.replace('/')
+ }
+
 
  const router = createBrowserRouter(
   createRoutesFromElements(
@@ -32,7 +40,7 @@ const App = () => {
     <Route path='/user/esusu-form' element={<EsusuPage />} />
     <Route path='/user/gua-form' element={<GUAPage />} />
     <Route path='/login' element={<AdminLogin setAdmin={setAdmin} admin={admin} />} />
-    <Route path='/admin/dashboard' element={!admin ? <Navigate to='/' replace /> : <Layout />}>
+    <Route path='/admin/dashboard' element={!admin.token || !admin.user ? <Navigate to='/' replace /> : <Layout logout={logout} />}>
      {/* <Route index element={<Dashboard />} /> */}
      <Route index path='create-investmentnote' element={<InvestmentNoteForm />} />
      <Route path='create-offerofinvestment' element={<OfferInvestment />} />

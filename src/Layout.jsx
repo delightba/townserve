@@ -7,9 +7,9 @@ import { RxCross2 } from "react-icons/rx";
 import { MdOutlineDashboard } from "react-icons/md";
 import { FaWpforms } from "react-icons/fa6";
 import { TiDocument } from "react-icons/ti";
+import { MdLogout } from "react-icons/md";
 
-
-const Layout = () => {
+const Layout = ({ logout }) => {
  const [isNavbarCollapsed, setIsNavbarCollapsed] = useState(true);
 
  const toggleNavbar = () => {
@@ -45,6 +45,10 @@ const Layout = () => {
       <li className='dashboardLinks' onClick={toggleNavbar}>
        <TiDocument />
        <Link to='/admin/dashboard/create-offerofinvestment'>Offer Investment Form</Link>
+      </li>
+      <li className='dashboardLinks' onClick={logout}>
+       <MdLogout />
+       Logout
       </li>
       <li className='dashboardLinks' onClick={toggleNavbar}>
        <MdOutlineDashboard />
