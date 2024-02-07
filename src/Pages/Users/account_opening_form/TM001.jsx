@@ -242,10 +242,10 @@ const TM001 = () => {
         <section>
           <h2 className='greenheader'>APPLICATION FOR OPENING PERSONAL/JOINT, CORPORATE, CLUB/ASS. ACCOUNT</h2>
           <article className='flex flex-col md:flex-row gap-2 my-1'>
-            <CustomInput name={'branch'} type={'text'} value={form1.branch} label={'BRANCH:'} handleChange={handleChange} />
-            <CustomInput name={'account_type'} type={'text'} value={form1.account_type} label={'TYPE OF ACCOUNT:'} handleChange={handleChange} />
+            <CustomInput name={'branch'} type={'text'} value={form1.branch} label={'Branch:'} handleChange={handleChange} />
+            <CustomInput name={'account_type'} type={'text'} value={form1.account_type} label={'Type of account:'} handleChange={handleChange} />
           </article>
-          <CustomInput name={'fullname'} type={'text'} value={form1.fullname} label={'NAME Individiual /Corporate name:'} handleChange={handleChange} />
+          <CustomInput name={'fullname'} type={'text'} value={form1.fullname} label={'Name Individiual /Corporate name:'} handleChange={handleChange} />
           <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
             <CustomInput name={'state_of_origin'} type={'text'} value={form1.state_of_origin} label={'State of origin:'} handleChange={handleChange} />
             <CustomInput name={'local_government'} type={'text'} value={form1.local_government} label={'Local government:'} handleChange={handleChange} />
@@ -253,10 +253,10 @@ const TM001 = () => {
             <CustomInput name={'district'} type={'text'} value={form1.district} label={'district:'} handleChange={handleChange} />
             <CustomInput name={'mother_maiden_name'} type={'text'} value={form1.mother_maiden_name} label={"Mother's maiden name"} handleChange={handleChange} />
           </div>
-          <CustomInput name={'company_name'} type={'text'} value={form1.company_name} label={'COMPANY NAME:'} handleChange={handleChange} />
+          <CustomInput name={'company_name'} type={'text'} value={form1.company_name} label={'Company Name:'} handleChange={handleChange} />
           <article className='flex flex-col md:flex-row gap-2 my-1'>
-            <CustomInput name={'dob'} type={'date'} value={form1.dob} label={'DATE OF BIRTH/REGISTRATION:'} handleChange={handleChange} />
-            <CustomInput name={'nationality'} type={'text'} value={form1.nationality} label={'NATIONALITY:'} handleChange={handleChange} />
+            <CustomInput name={'dob'} type={'date'} value={form1.dob} label={'Date Of Birth/Registration:'} handleChange={handleChange} />
+            <CustomInput name={'nationality'} type={'text'} value={form1.nationality} label={'Nationality:'} handleChange={handleChange} />
           </article>
           <table className="tables mt-4">
             <thead>
@@ -296,20 +296,20 @@ const TM001 = () => {
             </tbody>
           </table>
           <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
-            <CustomInput name={'office_address'} type={'text'} value={form1.office_address} label={'OFFICE ADDRESS:'} handleChange={handleChange} />
-            <CustomInput name={'residential_address'} type={'text'} value={form1.residential_address} label={'RESIDENTIAL ADDRESS:'} handleChange={handleChange} />
-            <CustomInput name={'email'} type={'text'} value={form1.email} label={'EMAIL:'} handleChange={handleChange} />
+            <CustomInput name={'office_address'} type={'text'} value={form1.office_address} label={'Office address:'} handleChange={handleChange} />
+            <CustomInput name={'residential_address'} type={'text'} value={form1.residential_address} label={'Residential address:'} handleChange={handleChange} />
+            <CustomInput name={'email'} type={'text'} value={form1.email} label={'Email:'} handleChange={handleChange} />
           </div>
           <article className='flex flex-col md:flex-row gap-2 my-1'>
-            <CustomInput name={'phone'} type={'tel'} value={form1.phone} label={'PHONE:'} handleChange={handleChange} />
-            <CustomInput name={'occupation'} type={'text'} value={form1.occupation} label={'OCCUPATION/BUSINESS TYPE:'} handleChange={handleChange} />
+            <CustomInput name={'phone'} type={'tel'} value={form1.phone} label={'Phone:'} handleChange={handleChange} />
+            <CustomInput name={'occupation'} type={'text'} value={form1.occupation} label={'Occupation/Business Type:'} handleChange={handleChange} />
           </article>
           <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
-            <CustomInput name={'current_employer'} type={'text'} value={form1.current_employer} label={'CURRENT EMPLOYER:'} handleChange={handleChange} />
-            <CustomInput name={'employer_address'} type={'text'} value={form1.employer_address} label={'EMPLOYERS ADDRESS:'} handleChange={handleChange} />
-            <CustomInput name={'position'} type={'text'} value={form1.position} label={'POSITION:'} handleChange={handleChange} />
-            <CustomInput name={'length_of_employment'} type={'text'} value={form1.length_of_employment} label={'LENGTH OF EMPLOYMENT:'} handleChange={handleChange} />
-            <CustomInput name={'initial_deposit'} type={'text'} value={form1.initial_deposit} label={'DESIRED INITIAL DEPOSIT:'} handleChange={handleChange} />
+            <CustomInput name={'current_employer'} type={'text'} value={form1.current_employer} label={'Current employer:'} handleChange={handleChange} />
+            <CustomInput name={'employer_address'} type={'text'} value={form1.employer_address} label={'Employers address:'} handleChange={handleChange} />
+            <CustomInput name={'position'} type={'text'} value={form1.position} label={'Position:'} handleChange={handleChange} />
+            <CustomInput name={'length_of_employment'} type={'text'} value={form1.length_of_employment} label={'Length of employment:'} handleChange={handleChange} />
+            <CustomInput name={'initial_deposit'} type={'text'} value={form1.initial_deposit} label={'Desired initial deposit:'} handleChange={handleChange} />
           </div>
         </section>
         {/* OTHER BANKS */}
@@ -353,14 +353,14 @@ const TM001 = () => {
                 name={`references[${index}].name`}
                 type={'text'}
                 value={form1.references[index].name}
-                label={`REFEREE'S NAME:`}
+                label={`Referee's Name:`}
                 handleChange={(e) => handleChangeReferences(index, 'name', e.target.value)}
               />
               <CustomInput
                 name={`references[${index}].bank`}
                 type={'text'}
                 value={form1.references[index].bank}
-                label={'BANK:'}
+                label={'Bank:'}
                 handleChange={(e) => handleChangeReferences(index, 'bank', e.target.value)}
               />
               <CustomInput

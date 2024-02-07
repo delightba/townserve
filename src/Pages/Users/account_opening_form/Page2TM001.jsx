@@ -229,12 +229,12 @@ const PageTwoContent = () => {
        <CustomInput
         value={detail.fullname}
         handleChange={(event) => handleDetailsChange(index, 'fullname', event.target.value)}
-        label={'FULL NAME:'}
+        label={'Full Name:'}
        />
        <CustomInput
         value={detail.address}
         handleChange={(event) => handleDetailsChange(index, 'address', event.target.value)}
-        label={'ADDRESS:'}
+        label={'address:'}
        />
       </article>
       <article className='my-2'>
