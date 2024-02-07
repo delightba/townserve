@@ -283,30 +283,34 @@ const TM001 = () => {
               </tr>
             </tbody>
           </table>
-          <CustomInput name={'office_address'} type={'text'} value={form1.office_address} label={'OFFICE ADDRESS:'} handleChange={handleChange} />
-          <CustomInput name={'residential_address'} type={'text'} value={form1.residential_address} label={'RESIDENTIAL ADDRESS:'} handleChange={handleChange} />
-          <CustomInput name={'email'} type={'text'} value={form1.email} label={'EMAIL:'} handleChange={handleChange} />
+          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
+            <CustomInput name={'office_address'} type={'text'} value={form1.office_address} label={'OFFICE ADDRESS:'} handleChange={handleChange} />
+            <CustomInput name={'residential_address'} type={'text'} value={form1.residential_address} label={'RESIDENTIAL ADDRESS:'} handleChange={handleChange} />
+            <CustomInput name={'email'} type={'text'} value={form1.email} label={'EMAIL:'} handleChange={handleChange} />
+          </div>
           <article className='flex flex-col md:flex-row gap-2 my-1'>
             <CustomInput name={'phone'} type={'tel'} value={form1.phone} label={'PHONE:'} handleChange={handleChange} />
             <CustomInput name={'occupation'} type={'text'} value={form1.occupation} label={'OCCUPATION/BUSINESS TYPE:'} handleChange={handleChange} />
           </article>
-          <CustomInput name={'current_employer'} type={'text'} value={form1.current_employer} label={'CURRENT EMPLOYER:'} handleChange={handleChange} />
-          <CustomInput name={'employer_address'} type={'text'} value={form1.employer_address} label={'EMPLOYERS ADDRESS:'} handleChange={handleChange} />
-          <CustomInput name={'position'} type={'text'} value={form1.position} label={'POSITION:'} handleChange={handleChange} />
-          <CustomInput name={'length_of_employment'} type={'text'} value={form1.length_of_employment} label={'LENGTH OF EMPLOYMENT:'} handleChange={handleChange} />
-          <CustomInput name={'initial_deposit'} type={'text'} value={form1.initial_deposit} label={'DESIRED INITIAL DEPOSIT:'} handleChange={handleChange} />
+          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
+            <CustomInput name={'current_employer'} type={'text'} value={form1.current_employer} label={'CURRENT EMPLOYER:'} handleChange={handleChange} />
+            <CustomInput name={'employer_address'} type={'text'} value={form1.employer_address} label={'EMPLOYERS ADDRESS:'} handleChange={handleChange} />
+            <CustomInput name={'position'} type={'text'} value={form1.position} label={'POSITION:'} handleChange={handleChange} />
+            <CustomInput name={'length_of_employment'} type={'text'} value={form1.length_of_employment} label={'LENGTH OF EMPLOYMENT:'} handleChange={handleChange} />
+            <CustomInput name={'initial_deposit'} type={'text'} value={form1.initial_deposit} label={'DESIRED INITIAL DEPOSIT:'} handleChange={handleChange} />
+          </div>
         </section>
         {/* OTHER BANKS */}
         <section className='my-[12px]'>
           <h2 className='greenheader my-4'>ACCOUNTS WITH OTHER BANKS (INCLUDING TMFB, BRANCH)</h2>
-          <table className="tables mb-2">
+          <table className="tables mb-2 w-full">
             <thead>
               <tr>
                 <th className="py-2 px-4 border-b">Name of Bank and Address</th>
                 <th className="py-2 px-4 border-b">Account Number</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody className='w-full'>
               {form1.other_banks.map((bank, index) => (
                 <tr key={index}>
                   <td className="border-b">
@@ -361,8 +365,8 @@ const TM001 = () => {
         {/* OTHER ACCOUNTS */}
         <section className='my-[12px]'>
           <h2 className='greenheader my-4'>FOR OTHER ACCOUNTS (PARTICULARLY OF OTHER ACCOUNT HOLDERS)</h2>
-          <div className='overflow-scroll'>
-            <table className="tables mb-2 ">
+          <div className='overflow-scroll w-full'>
+            <table className="tables mb-2 w-full">
               <thead>
                 <tr>
                   <th className="py-2 px-4 border-b">Name</th>
@@ -374,7 +378,7 @@ const TM001 = () => {
               </thead>
               <tbody>
                 {form1.other_accounts.map((row, index) => (
-                  <tr key={index}>
+                  <tr key={index} className='w-auto'>
                     <td className="border-b">
                       <input
                         type="text"

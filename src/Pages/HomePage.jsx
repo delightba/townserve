@@ -5,10 +5,10 @@ import '../css/style.css'
 import { Link, useNavigate } from 'react-router-dom'
 import Openaccount from '../images/openaccount.png'
 import Deposit from '../images/deposit.png'
-import Guarantor from '../images/guarantor.jpg'
-import Esusu from '../images/esusu.jpg'
-import Credit from '../images/credit.jpg'
-import Loan from '../images/loan.jpg'
+import Guarantor from '../images/guarantor.png'
+import Esusu from '../images/esusu.png'
+import Credit from '../images/credit.png'
+// import Loan from '../images/loan.jpg'
 import { FaArrowRight } from "react-icons/fa";
 
 
@@ -36,12 +36,10 @@ const HomePage = () => {
    </header>
    <section className='relative'>
     <div className="containerr">
-     <img src={Logo} alt='other' className='w-[50%] mx-auto h-[40vh] lg:h-[60vh] object-contain' />
+     <img src={Logo} alt='other' className='w-[50%] mx-auto h-[40vh] object-contain' />
      <div className="text-center text-xl md:text-2xl lg:text-3xl py-4" >
-      <h1><i class="fa-solid fa-door-open"></i>WELCOME TO <span class="diff">TOWNSERVE</span> MICROFINANCE BANK
-      </h1>
+      <h1>Kindly complete the undernoted forms</h1>
      </div>
-     <h1 style={{ textAlign: 'center' }} className='text-lg font-bold'>HOW MAY WE SERVE YOU?</h1>
      <div class="py-[40px]">
       <div class="flex gap-4 gap-y-6 flex-wrap justify-center my-8">
 
@@ -50,7 +48,6 @@ const HomePage = () => {
          <img src={Openaccount} className='w-full h-[150px]' alt='' />
         </figure>
         <div class="article-content">
-         <h3 class="card-title">HOW TO OPEN YOUR ACCOUNT</h3>
          <article className='flex gap-1 items-center justify-center text-center'>
           <FaArrowRight className='hidden group-hover:block group-hover:animate-ping' />
           <Link to="/user/open-account" class="card-cartegory">bank account opening form</Link>
@@ -63,7 +60,6 @@ const HomePage = () => {
          <img src={Deposit} className='w-full h-[150px]' alt='' />
         </figure>
         <div class="article-content">
-         <h3 class="card-title">HOW TO DEPOSIT</h3>
          <article className='flex gap-1 items-center justify-center text-center'>
           <FaArrowRight className='hidden group-hover:block group-hover:animate-ping' />
           <Link to="/user/deposit-form" class="card-cartegory">INVESTMENT/DEPOSIT form</Link>
@@ -76,7 +72,6 @@ const HomePage = () => {
          <img src={Guarantor} className='w-full h-[150px]' alt='' />
         </figure>
         <div class="article-content">
-         <h3 class="card-title">COMPLETE A GUARANTOR FORM</h3>
          <article className='flex gap-1 items-center justify-center text-center'>
           <FaArrowRight className='hidden group-hover:block group-hover:animate-ping' />
           <Link to="/user/gua-form" class="card-cartegory !text-center">GUARANTOR form</Link>
@@ -89,10 +84,9 @@ const HomePage = () => {
          <img src={Esusu} className='w-full h-[150px]' alt='' />
         </figure>
         <div class="article-content">
-         <h3 class="card-title">CREATE ESUSU FORM</h3>
          <article className='flex gap-1 items-center justify-center text-center'>
           <FaArrowRight className='hidden group-hover:block group-hover:animate-ping' />
-          <Link to="/user/esusu-form" class="card-cartegory">ESUSU FORM form</Link>
+          <Link to="/user/esusu-form" class="card-cartegory">ESUSU FORM</Link>
          </article>
         </div>
        </article>
@@ -102,7 +96,6 @@ const HomePage = () => {
          <img src={Credit} className='w-full h-[150px]' alt='' />
         </figure>
         <div class="article-content">
-         <h3 class="card-title">CREATE BANK/CREDIT APPLICATION</h3>
          <article className='flex gap-1 items-center justify-center text-center'>
           <FaArrowRight className='hidden group-hover:block group-hover:animate-ping' />
           <Link to="/user/bcf-form" class="card-cartegory">BANK/CREDIT APPLICATION form</Link>
@@ -110,7 +103,7 @@ const HomePage = () => {
         </div>
        </article>
 
-       <article class="fcard myshadow group" onClick={() => navigate('')}>
+       {/* <article class="fcard myshadow group" onClick={() => navigate('')}>
         <figure class="">
          <img src={Loan} className='w-full h-[150px]' alt='' />
         </figure>
@@ -121,7 +114,7 @@ const HomePage = () => {
           <Link to="" class="card-cartegory">LOAN INVESTMENT APPLICATION FORM</Link>
          </article>
         </div>
-       </article>
+       </article> */}
       </div>
      </div>
     </div>

@@ -18,16 +18,18 @@ const GUAForm = ({ details, handleChange, handleSubmit, handleGuarantor, guarant
    <section>
     <h2 className='font-bold greenheader'>Guarantor</h2>
 
-    <CustomInput value={details.guarantor.name} placeholder={"Guarantor's name"} name={"name"} type={"text"} label={"Guarantor's name"} handleChange={handleGuarantor} />
-    <CustomInput value={details.guarantor.address} placeholder={"Guarantor's address"} name={"address"} type={"text"} label={"Guarantor's address"} handleChange={handleGuarantor} />
-    <CustomInput value={details.guarantor.occupation} placeholder={"Guarantor's occupation"} name={"occupation"} type={"text"} label={"Guarantor's occupation"} handleChange={handleGuarantor} />
-    <CustomInput value={details.guarantor.place_of_work} placeholder={"Guarantor's place of work"} name={"place_of_work"} type={"text"} label={"Guarantor's place of work"} handleChange={handleGuarantor} />
-    <CustomInput value={details.guarantor.name_of_bank} placeholder={"Guarantor's bank name"} name={"name_of_bank"} type={"text"} label={"Guarantor's bank name"} handleChange={handleGuarantor} />
-    <CustomInput value={details.guarantor.address_of_bank} placeholder={"Guarantor's bank address"} name={"address_of_bank"} type={"text"} label={"Guarantor's bank address"} handleChange={handleGuarantor} />
-    <CustomInput value={details.guarantor.account_number} placeholder={"Guarantor's account number"} name={"account_number"} type={"text"} label={"Guarantor's account number"} handleChange={handleGuarantor} />
-    <CustomInput value={details.guarantor.permanent_address} placeholder={"Guarantor's permanent address"} name={"permanent_address"} type={"text"} label={"Guarantor's permanent address"} handleChange={handleGuarantor} />
-    <CustomInput value={details.guarantor.tel} placeholder={"Guarantor's tel"} name={"tel"} type={"tel"} label={"Guarantor's tel"} handleChange={handleGuarantor} />
-    <CustomInput value={details.guarantor.relationship_with_applicant} placeholder={"Guarantor's relationship with applicant"} name={"relationship_with_applicant"} type={"text"} label={"Guarantor's relationship with applicant"} handleChange={handleGuarantor} />
+    <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
+     <CustomInput value={details.guarantor.name} placeholder={"Guarantor's name"} name={"name"} type={"text"} label={"Guarantor's name"} handleChange={handleGuarantor} />
+     <CustomInput value={details.guarantor.address} placeholder={"Guarantor's address"} name={"address"} type={"text"} label={"Guarantor's address"} handleChange={handleGuarantor} />
+     <CustomInput value={details.guarantor.occupation} placeholder={"Guarantor's occupation"} name={"occupation"} type={"text"} label={"Guarantor's occupation"} handleChange={handleGuarantor} />
+     <CustomInput value={details.guarantor.place_of_work} placeholder={"Guarantor's place of work"} name={"place_of_work"} type={"text"} label={"Guarantor's place of work"} handleChange={handleGuarantor} />
+     <CustomInput value={details.guarantor.name_of_bank} placeholder={"Guarantor's bank name"} name={"name_of_bank"} type={"text"} label={"Guarantor's bank name"} handleChange={handleGuarantor} />
+     <CustomInput value={details.guarantor.address_of_bank} placeholder={"Guarantor's bank address"} name={"address_of_bank"} type={"text"} label={"Guarantor's bank address"} handleChange={handleGuarantor} />
+     <CustomInput value={details.guarantor.account_number} placeholder={"Guarantor's account number"} name={"account_number"} type={"text"} label={"Guarantor's account number"} handleChange={handleGuarantor} />
+     <CustomInput value={details.guarantor.permanent_address} placeholder={"Guarantor's permanent address"} name={"permanent_address"} type={"text"} label={"Guarantor's permanent address"} handleChange={handleGuarantor} />
+     <CustomInput value={details.guarantor.tel} placeholder={"Guarantor's tel"} name={"tel"} type={"tel"} label={"Guarantor's tel"} handleChange={handleGuarantor} />
+     <CustomInput value={details.guarantor.relationship_with_applicant} placeholder={"Guarantor's relationship with applicant"} name={"relationship_with_applicant"} type={"text"} label={"Guarantor's relationship with applicant"} handleChange={handleGuarantor} />
+    </div>
     {/* sisgnature for guarantor */}
     <article className='ml-auto my-3'>
      <h1 className='greenheader pb-3'>Upload Gurantor's signature below</h1>
@@ -84,17 +86,15 @@ const GUAForm = ({ details, handleChange, handleSubmit, handleGuarantor, guarant
     </article>
 
     <h2 className='font-bold greenheader'>Applicant's Personal Data</h2>
-    <CustomInput value={details.name} placeholder={"Fullname"} name={"name"} type={"text"} label={"name"} handleChange={handleChange} />
-    <CustomInput value={details.address} placeholder={"address"} name={"address"} type={"text"} label={"Address"} handleChange={handleChange} />
-    <CustomInput value={details.state} placeholder={"state"} name={"state"} type={"text"} label={"State"} handleChange={handleChange} />
-
-    <CustomInput value={details.date} placeholder={"Today's date"} name={"date"} type={"date"} label={"Date"} handleChange={handleChange} />
-
-    <CustomInput value={details.amount} placeholder={"amount"} name={"amount"} type={"number"} label={"Amount"} handleChange={handleChange} />
-
-    <CustomInput value={details.tel} placeholder={"Applicant phone number"} name={"tel"} type={"tel"} label={"Applicant phone no."} handleChange={handleChange} />
-
-    <CustomInput value={details.nationality} placeholder={"Applicant nationality"} name={"nationality"} type={"text"} label={"Applicant nationality."} handleChange={handleChange} />
+    <section className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
+     <CustomInput value={details.name} placeholder={"Fullname"} name={"name"} type={"text"} label={"name"} handleChange={handleChange} />
+     <CustomInput value={details.address} placeholder={"address"} name={"address"} type={"text"} label={"Address"} handleChange={handleChange} />
+     <CustomInput value={details.state} placeholder={"state"} name={"state"} type={"text"} label={"State"} handleChange={handleChange} />
+     <CustomInput value={details.date} placeholder={"Today's date"} name={"date"} type={"date"} label={"Date"} handleChange={handleChange} />
+     <CustomInput value={details.amount} placeholder={"amount"} name={"amount"} type={"number"} label={"Amount"} handleChange={handleChange} />
+     <CustomInput value={details.tel} placeholder={"Applicant phone number"} name={"tel"} type={"tel"} label={"Applicant phone no."} handleChange={handleChange} />
+     <CustomInput value={details.nationality} placeholder={"Applicant nationality"} name={"nationality"} type={"text"} label={"Applicant nationality."} handleChange={handleChange} />
+    </section>
 
    </section>
 

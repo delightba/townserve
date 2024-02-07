@@ -33,7 +33,6 @@ const InstructionPopUp = ({ closeModal }) => {
         return (
           <div>
             <h1 className='font-bold text-xl text-asparagus-400'>Step 1</h1>
-            <h2 className='font-semibold text-center'>Fill the form </h2>
             <figure className='h-[70%]'>
               <img src={Form} alt="just a form" className='w-full' />
             </figure>
@@ -42,8 +41,8 @@ const InstructionPopUp = ({ closeModal }) => {
       case 2:
         return (
           <div>
-            <h1 className='font-bold text-xl text-asparagus-400'>Step 2</h1>
-            <h2 className='font-semibold text-center'>After filling the form, Click on the submit button at the bottom of the page</h2>
+            <h1 className='font-bold text-lg text-asparagus-400'>Step 2</h1>
+            <h2 className='font-semibold text-center'>Click the submit button</h2>
             <img src={Submit} alt="" />
           </div>
         );
@@ -97,7 +96,7 @@ const InstructionPopUp = ({ closeModal }) => {
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
       <div className="bg-white p-4 w-full lg:h-full max-w-lg mx-[10px] overflow-y-scroll z-50">
-        <h1 className='font-bold text-2xl text-center text-asparagus-600 py-3 underline'>Kindly follow this steps</h1>
+        <h1 className='font-bold text-2xl text-center text-asparagus-600 py-3 underline'>Please complete the following</h1>
         {renderStep()}
 
         <div className="flex justify-between mt-4">

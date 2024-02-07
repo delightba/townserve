@@ -8,22 +8,23 @@ const OfferForm = ({ handleChange, handleSubmit, details, handleSignature }) => 
   <form className='flex flex-col gap-3 p-[15px]'>
    <div>
     <h1 className='greenheader text-center'>Offer Of Investment Form</h1>
-    <p className='text-center text-lg font-medium'>Kindly fill this form before submitting</p>
    </div>
    <section>
-    <CustomInput value={details.date} placeholder={"Today's date"} name={"date"} type={"date"} label={"Date"} handleChange={handleChange} />
-    <CustomInput value={details.name} placeholder={"Fullname"} name={"name"} type={"text"} label={"name"} handleChange={handleChange} />
-    <CustomInput value={details.address} placeholder={"Your street name and number"} name={"address"} type={"text"} label={"Address"} handleChange={handleChange} />
-    <CustomInput value={details.local_government} placeholder={"Your LGA"} name={"local_government"} type={"text"} label={"LGA"} handleChange={handleChange} />
-    <CustomInput value={details.state} placeholder={"Your state"} name={"state"} type={"text"} label={"State"} handleChange={handleChange} />
-    <CustomInput value={details.product} placeholder={"Your product"} name={"product"} type={"text"} label={"Product"} handleChange={handleChange} />
-    <CustomInput value={details.tenor1} placeholder={"Your tenor"} name={"tenor1"} type={"number"} label={"Tenor (from)"} handleChange={handleChange} />
-    <CustomInput value={details.tenor2} placeholder={"Your tenor"} name={"tenor2"} type={"number"} label={"Tenor (to)"} handleChange={handleChange} />
-    <CustomInput value={details.interest1} placeholder={"Your interest"} name={"interest1"} type={"number"} label={"Interest (min)"} handleChange={handleChange} />
-    <CustomInput value={details.interest2} placeholder={"Your interest"} name={"interest2"} type={"number"} label={"Interest (max)"} handleChange={handleChange} />
-    <CustomInput value={`${details.principal_range1}`} placeholder={"eg: 50M, 300K"} name={"principal_range1"} type={"text"} label={"Principal range (min)"} handleChange={handleChange} />
-    <CustomInput value={`${details.principal_range2}`} placeholder={"eg: 50M, 300K"} name={"principal_range2"} type={"text"} label={"Principal range (max)"} handleChange={handleChange} />
-    <article className='ml-auto '>
+    <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
+     <CustomInput value={details.date} placeholder={"Today's date"} name={"date"} type={"date"} label={"Date"} handleChange={handleChange} />
+     <CustomInput value={details.name} placeholder={"Fullname"} name={"name"} type={"text"} label={"name"} handleChange={handleChange} />
+     <CustomInput value={details.address} placeholder={"Your street name and number"} name={"address"} type={"text"} label={"Address"} handleChange={handleChange} />
+     <CustomInput value={details.local_government} placeholder={"Your LGA"} name={"local_government"} type={"text"} label={"LGA"} handleChange={handleChange} />
+     <CustomInput value={details.state} placeholder={"Your state"} name={"state"} type={"text"} label={"State"} handleChange={handleChange} />
+     <CustomInput value={details.product} placeholder={"Your product"} name={"product"} type={"text"} label={"Product"} handleChange={handleChange} />
+     <CustomInput value={details.tenor1} placeholder={"Your tenor"} name={"tenor1"} type={"number"} label={"Tenor (from)"} handleChange={handleChange} />
+     <CustomInput value={details.tenor2} placeholder={"Your tenor"} name={"tenor2"} type={"number"} label={"Tenor (to)"} handleChange={handleChange} />
+     <CustomInput value={details.interest1} placeholder={"Your interest"} name={"interest1"} type={"number"} label={"Interest (min)"} handleChange={handleChange} />
+     <CustomInput value={details.interest2} placeholder={"Your interest"} name={"interest2"} type={"number"} label={"Interest (max)"} handleChange={handleChange} />
+     <CustomInput value={`${details.principal_range1}`} placeholder={"eg: 50M, 300K"} name={"principal_range1"} type={"text"} label={"Principal range (min)"} handleChange={handleChange} />
+     <CustomInput value={`${details.principal_range2}`} placeholder={"eg: 50M, 300K"} name={"principal_range2"} type={"text"} label={"Principal range (max)"} handleChange={handleChange} />
+    </div>
+    <article className='ml-auto my-4'>
      <h1 className='greenheader pb-3'>Upload your signature below</h1>
      {/* Input for image upload */}
      <input

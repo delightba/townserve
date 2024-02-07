@@ -6,10 +6,9 @@ const Form = ({ details, handleChange, handleSubmit }) => {
  return (
   <form className='flex flex-col gap-3 p-[15px]'>
    <div>
-    <h1 className='greenheader text-center'>TownServe Investment Note/Certificate Form</h1>
-    <p className='text-center text-lg font-medium'>Kindly fill this form before submitting, so we can generate the pdf file for you.</p>
+    <h1 className='greenheader text-center'>TownServe Investment Form</h1>
    </div>
-   <section>
+   <section className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
     <CustomInput value={details.date} placeholder={"Today's date"} name={"date"} type={"date"} label={"Date"} handleChange={handleChange} />
     <CustomInput value={details.name} placeholder={"Fullname"} name={"name"} type={"text"} label={"name"} handleChange={handleChange} />
     <CustomInput value={details.address} placeholder={"Your street name and number"} name={"address"} type={"text"} label={"Address"} handleChange={handleChange} />

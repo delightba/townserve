@@ -15,7 +15,7 @@ const GUAPdf = ({ details, targetRef }) => {
    {/* Guarator's form */}
    <section className='my-8'>
     <figure className='flex justify-end items-end my-4 ml-auto'>
-     <img src={details.guarantor.passport_photo} alt="passport" className='w-[200px] h-full object-contain' />
+     <img src={details.guarantor.passport_photo} alt="passport" className='w-[200px] h-[200px] object-contain' />
     </figure>
     <div>
      <h2 className="text-xl md:text-2xl lg:text-4xl underline text-center font-bold">GUARANTOR'S FORM</h2>

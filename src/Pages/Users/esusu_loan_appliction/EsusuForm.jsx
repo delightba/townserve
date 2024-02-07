@@ -16,33 +16,36 @@ const EsusuForm = ({ details, handleChange, handleSubmit, handleSignature, handl
         <p className='text-center text-lg font-medium'>Kindly fill this form before submitting, so we can generate the pdf file for you.</p>
       </div>
       <section>
-        <CustomInput value={details.address} placeholder={"address"} name={"address"} type={"text"} label={"Address"} handleChange={handleChange} />
-        <CustomInput value={details.state} placeholder={"state"} name={"state"} type={"text"} label={"State"} handleChange={handleChange} />
+        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
+          <CustomInput value={details.address} placeholder={"address"} name={"address"} type={"text"} label={"Address"} handleChange={handleChange} />
+          <CustomInput value={details.state} placeholder={"state"} name={"state"} type={"text"} label={"State"} handleChange={handleChange} />
+          <CustomInput value={details.date} placeholder={"Today's date"} name={"date"} type={"date"} label={"Date"} handleChange={handleChange} />
+          <CustomInput value={details.name} placeholder={"Fullname"} name={"name"} type={"text"} label={"name"} handleChange={handleChange} />
+          <CustomInput value={details.amount} placeholder={"amount"} name={"amount"} type={"text"} label={"Amount"} handleChange={handleChange} />
+          <CustomInput value={details.purpose} placeholder={"Purpose"} name={"purpose"} type={"text"} label={"Purpose"} handleChange={handleChange} />
+          <CustomInput value={details.tenure} placeholder={"Tenur"} name={"tenure"} type={"text"} label={"Tenure"} handleChange={handleChange} />
+          <CustomInput value={details.repayment} placeholder={"repayment period"} name={"repayment"} type={"text"} label={"Repayment (days)"} handleChange={handleChange} />
+        </div>
 
-        <CustomInput value={details.date} placeholder={"Today's date"} name={"date"} type={"date"} label={"Date"} handleChange={handleChange} />
+        <section className='my-4'>
+          <h2 className='font-bold greenheader'>Security assets:</h2>
+          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
+            <CustomInput value={details.security_asset.first} placeholder={"Asset 1"} name={"first"} type={"text"} label={"Security asset 1"} handleChange={handleSecurityAsset} />
+            <CustomInput value={details.security_asset.second} placeholder={"Asset 2"} name={"second"} type={"text"} label={"Security asset 2"} handleChange={handleSecurityAsset} />
+            <CustomInput value={details.security_asset.third} placeholder={"Asset 3"} name={"third"} type={"text"} label={"Security asset 3"} handleChange={handleSecurityAsset} />
+          </div>
+        </section>
 
-        <CustomInput value={details.name} placeholder={"Fullname"} name={"name"} type={"text"} label={"name"} handleChange={handleChange} />
-
-        <CustomInput value={details.amount} placeholder={"amount"} name={"amount"} type={"text"} label={"Amount"} handleChange={handleChange} />
-
-        <CustomInput value={details.purpose} placeholder={"Purpose"} name={"purpose"} type={"text"} label={"Purpose"} handleChange={handleChange} />
-
-        <CustomInput value={details.tenure} placeholder={"Tenur"} name={"tenure"} type={"text"} label={"Tenure"} handleChange={handleChange} />
-
-        <CustomInput value={details.repayment} placeholder={"repayment period"} name={"repayment"} type={"text"} label={"Repayment (days)"} handleChange={handleChange} />
-
-        <h2 className='font-bold greenheader'>Security assets:</h2>
-        <CustomInput value={details.security_asset.first} placeholder={"Asset 1"} name={"first"} type={"text"} label={"Security asset 1"} handleChange={handleSecurityAsset} />
-        <CustomInput value={details.security_asset.second} placeholder={"Asset 2"} name={"second"} type={"text"} label={"Security asset 2"} handleChange={handleSecurityAsset} />
-        <CustomInput value={details.security_asset.third} placeholder={"Asset 3"} name={"third"} type={"text"} label={"Security asset 3"} handleChange={handleSecurityAsset} />
-
-        <h2 className='font-bold greenheader'>Personal Data</h2>
-        <CustomInput value={details.tel} placeholder={"Applicant phone number"} name={"tel"} type={"tel"} label={"Applicant phone no."} handleChange={handleChange} />
-        <CustomInput value={details.length_of_stay} placeholder={"How long have you stayed here"} name={"length_of_stay"} type={"text"} label={"Length of stay in this address"} handleChange={handleChange} />
-
-        <CustomInput value={details.business} placeholder={"Business type"} name={"business"} type={"text"} label={"business"} handleChange={handleChange} />
-        <CustomInput value={details.business_length} placeholder={"Business length"} name={"business_length"} type={"text"} label={"business length"} handleChange={handleChange} />
-        <CustomInput value={details.marital_status} placeholder={"Marital status"} name={"marital_status"} type={"text"} label={"Marital status"} handleChange={handleChange} />
+        <section className='my-4'>
+          <h2 className='font-bold greenheader'>Personal Data</h2>
+          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
+            <CustomInput value={details.tel} placeholder={"Applicant phone number"} name={"tel"} type={"tel"} label={"Applicant phone no."} handleChange={handleChange} />
+            <CustomInput value={details.length_of_stay} placeholder={"How long have you stayed here"} name={"length_of_stay"} type={"text"} label={"Length of stay in this address"} handleChange={handleChange} />
+            <CustomInput value={details.business} placeholder={"Business type"} name={"business"} type={"text"} label={"business"} handleChange={handleChange} />
+            <CustomInput value={details.business_length} placeholder={"Business length"} name={"business_length"} type={"text"} label={"business length"} handleChange={handleChange} />
+            <CustomInput value={details.marital_status} placeholder={"Marital status"} name={"marital_status"} type={"text"} label={"Marital status"} handleChange={handleChange} />
+          </div>
+        </section>
         {/* applicants signature */}
         <article className='ml-auto my-3'>
           <h1 className='greenheader pb-3'>Upload Applicants signature below</h1>
@@ -99,12 +102,16 @@ const EsusuForm = ({ details, handleChange, handleSubmit, handleSignature, handl
         </article>
 
 
-        <h2 className='font-bold greenheader'>Guarantor</h2>
-        <CustomInput value={details.guarantor.name} placeholder={"Guarantor's name"} name={"name"} type={"text"} label={"Guarantor's name"} handleChange={handleGuarantor} />
-        <CustomInput value={details.guarantor.address} placeholder={"Guarantor's address"} name={"address"} type={"text"} label={"Guarantor's address"} handleChange={handleGuarantor} />
-        <CustomInput value={details.guarantor.occupation} placeholder={"Guarantor's occupation"} name={"occupation"} type={"text"} label={"Guarantor's occupation"} handleChange={handleGuarantor} />
-        <CustomInput value={details.guarantor.tel} placeholder={"Guarantor's tel"} name={"tel"} type={"tel"} label={"Guarantor's tel"} handleChange={handleGuarantor} />
-        <CustomInput value={details.guarantor.relationship_with_applicant} placeholder={"Guarantor's relationship with applicant"} name={"relationship_with_applicant"} type={"text"} label={"Guarantor's relationship with applicant"} handleChange={handleGuarantor} />
+        <section className='my-4'>
+          <h2 className='font-bold greenheader'>Guarantor</h2>
+          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
+            <CustomInput value={details.guarantor.name} placeholder={"Guarantor's name"} name={"name"} type={"text"} label={"Guarantor's name"} handleChange={handleGuarantor} />
+            <CustomInput value={details.guarantor.address} placeholder={"Guarantor's address"} name={"address"} type={"text"} label={"Guarantor's address"} handleChange={handleGuarantor} />
+            <CustomInput value={details.guarantor.occupation} placeholder={"Guarantor's occupation"} name={"occupation"} type={"text"} label={"Guarantor's occupation"} handleChange={handleGuarantor} />
+            <CustomInput value={details.guarantor.tel} placeholder={"Guarantor's tel"} name={"tel"} type={"tel"} label={"Guarantor's tel"} handleChange={handleGuarantor} />
+            <CustomInput value={details.guarantor.relationship_with_applicant} placeholder={"Guarantor's relationship with applicant"} name={"relationship_with_applicant"} type={"text"} label={"Guarantor's relationship with applicant"} handleChange={handleGuarantor} />
+          </div>
+        </section>
         {/* sisgnature for guarantor */}
         <article className='ml-auto my-3'>
           <h1 className='greenheader pb-3'>Upload Gurantor's signature below</h1>
