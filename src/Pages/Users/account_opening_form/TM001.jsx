@@ -29,6 +29,11 @@ const TM001 = () => {
     phone: '',
     occupation: '',
     email: '',
+    state_of_origin: '',
+    local_government: '',
+    landmark: '',
+    district: '',
+    mother_maiden_name: '',
     current_employer: '',
     employer_address: '',
     position: '',
@@ -241,6 +246,13 @@ const TM001 = () => {
             <CustomInput name={'account_type'} type={'text'} value={form1.account_type} label={'TYPE OF ACCOUNT:'} handleChange={handleChange} />
           </article>
           <CustomInput name={'fullname'} type={'text'} value={form1.fullname} label={'NAME Individiual /Corporate name:'} handleChange={handleChange} />
+          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
+            <CustomInput name={'state_of_origin'} type={'text'} value={form1.state_of_origin} label={'State of origin:'} handleChange={handleChange} />
+            <CustomInput name={'local_government'} type={'text'} value={form1.local_government} label={'Local government:'} handleChange={handleChange} />
+            <CustomInput name={'landmark'} type={'text'} value={form1.landmark} label={'landmark:'} handleChange={handleChange} />
+            <CustomInput name={'district'} type={'text'} value={form1.district} label={'district:'} handleChange={handleChange} />
+            <CustomInput name={'mother_maiden_name'} type={'text'} value={form1.mother_maiden_name} label={"Mother's maiden name"} handleChange={handleChange} />
+          </div>
           <CustomInput name={'company_name'} type={'text'} value={form1.company_name} label={'COMPANY NAME:'} handleChange={handleChange} />
           <article className='flex flex-col md:flex-row gap-2 my-1'>
             <CustomInput name={'dob'} type={'date'} value={form1.dob} label={'DATE OF BIRTH/REGISTRATION:'} handleChange={handleChange} />
