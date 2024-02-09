@@ -40,9 +40,9 @@ const EsusuForm = ({ details, handleChange, handleSubmit, handleSignature, handl
           <h2 className='font-bold greenheader'>Personal Data</h2>
           <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
             <CustomInput value={details.tel} placeholder={"Applicant phone number"} name={"tel"} type={"tel"} label={"Applicant phone no."} handleChange={handleChange} />
-            <CustomInput value={details.length_of_stay} placeholder={"How long have you stayed here"} name={"length_of_stay"} type={"text"} label={"Length of stay in this address"} handleChange={handleChange} />
+            <CustomInput value={details.length_of_stay} placeholder={"How long have you stayed here"} name={"length_of_stay"} type={"text"} label={"Length of stay in this address (years)"} handleChange={handleChange} />
             <CustomInput value={details.business} placeholder={"Business type"} name={"business"} type={"text"} label={"business"} handleChange={handleChange} />
-            <CustomInput value={details.business_length} placeholder={"Business length"} name={"business_length"} type={"text"} label={"business length"} handleChange={handleChange} />
+            <CustomInput value={details.business_length} placeholder={"Business length"} name={"business_length"} type={"text"} label={"business length (years)"} handleChange={handleChange} />
             <CustomInput value={details.marital_status} placeholder={"Marital status"} name={"marital_status"} type={"text"} label={"Marital status"} handleChange={handleChange} />
           </div>
         </section>

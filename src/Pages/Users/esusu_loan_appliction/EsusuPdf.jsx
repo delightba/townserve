@@ -43,7 +43,7 @@ const EsusuPdf = ({ details, targetRef }) => {
             <li>Purpose: <span className="font-medium">{details.purpose}</span></li>
             <li>
               <p>Tenure:  <span className="font-medium">{details.tenure}</span></p>
-              <p>Repayment: <span className="font-medium">{details.repayment}</span></p>
+              <p>Repayment: <span className="font-medium">{details.repayment} days</span></p>
             </li>
             <li>
               <p>Security as follows:</p>
@@ -67,13 +67,13 @@ const EsusuPdf = ({ details, targetRef }) => {
               </ul>
             </li>
             <li>
-              Length of stay in this address: <span className="font-medium">{details.length_of_stay}</span>
+              Length of stay in this address: <span className="font-medium">{details.length_of_stay} years</span>
             </li>
             <li>
               <ul className='flex gap-8'>
                 <li>Business engaged in: <span className="font-medium">{details.business}</span></li>
                 <li>
-                  How long: <span className="font-medium">{details.business_length}</span>
+                  How long: <span className="font-medium">{details.business_length} years</span>
                 </li>
               </ul>
             </li>
@@ -90,10 +90,9 @@ const EsusuPdf = ({ details, targetRef }) => {
           <ol className="list-decimal flex flex-col gap-2 my-4 font-semibold li-spacing">
             <li>Name of Guarantor: <span className="font-medium">{details.guarantor.name}</span></li>
             <li>Address: <span className="font-medium">{details.guarantor.address}</span></li>
-            <br />
             <li>Occupation: <span className="font-medium">{details.guarantor.occupation}</span></li>
             <li>Relationship with applicant: <span className="font-medium">{details.guarantor.relationship_with_applicant}</span></li>
-            <li>I, <span className="font-medium">{details.guarantor.relationship_with_applicant}</span> herby guarantees the repayment to Townserve Microfinance Bank of any loan not exceeding ₦{details.amount} if granted to Mr./Mrs./Miss {details.name}</li>
+            <li>I, <span className="font-medium">{details.guarantor.relationship_with_applicant}</span> to {details.name} herby guarantees the repayment to Townserve Microfinance Bank of any loan not exceeding ₦{details.amount} if granted to Mr./Mrs./Miss {details.name}</li>
 
           </ol>
           <div className='my-4 flex flex-col gap-4'>
