@@ -6,7 +6,7 @@ const Form = ({ details, handleChange, handleSubmit }) => {
  return (
   <form className='flex flex-col gap-3 p-[15px]'>
    <div>
-    <h1 className='greenheader text-center'>TownServe Investment Form</h1>
+    <h1 className='greenheader text-center'>Townserve Investment Form</h1>
    </div>
    <section className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
     <CustomInput value={details.date} placeholder={"Today's date"} name={"date"} type={"date"} label={"Date"} handleChange={handleChange} />

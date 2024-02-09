@@ -15,7 +15,7 @@ const BCFForm = ({ details, handleChange, handleSubmit, handleSignature, handleS
   <form className='flex flex-col gap-3 p-[15px]' ref={containerRef}>
    <div>
     <h1 className='greenheader text-center'>APPLICATION FOR BANK/CREDIT FACILITIES Form</h1>
-    <p className='text-center text-lg font-medium'>Kindly fill this form before submitting, so we can generate the pdf file for you.</p>
+    {/* <p className='text-center text-lg font-medium'>Kindly fill this form before submitting, so we can generate the pdf file for you.</p> */}
    </div>
    <section>
     <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>

@@ -13,7 +13,7 @@ const GUAForm = ({ details, handleChange, handleSubmit, handleGuarantor, guarant
   <form className='flex flex-col gap-3 p-[15px]' ref={containerRef}>
    <div>
     <h1 className='greenheader text-center'>APPLICATION FOR GUARANTOR'S FORM</h1>
-    <p className='text-center text-lg font-medium'>Kindly fill this form before submitting, so we can generate the pdf file for you.</p>
+    {/* <p className='text-center text-lg font-medium'>Kindly fill this form before submitting, so we can generate the pdf file for you.</p> */}
    </div>
    <section>
     <h2 className='font-bold greenheader'>Guarantor</h2>

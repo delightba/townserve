@@ -96,7 +96,7 @@ const InstructionPopUp = ({ closeModal }) => {
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
       <div className="bg-white p-4 w-full lg:h-full max-w-lg mx-[10px] overflow-y-scroll z-50">
-        <h1 className='font-bold text-2xl text-center text-asparagus-600 py-3 underline'>Please complete the following</h1>
+        <h1 className='font-bold text-lg lg:text-2xl text-center text-asparagus-600 py-3 underline'>Please complete the following</h1>
         {renderStep()}
 
         <div className="flex justify-between mt-4">

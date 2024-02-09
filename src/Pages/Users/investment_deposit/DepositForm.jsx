@@ -13,7 +13,7 @@ const DepositForm = ({ details, handleChange, handleSubmit, handleSignature, han
   <form className='flex flex-col gap-3 p-[15px]' ref={containerRef}>
    <div>
     <h1 className='greenheader text-center'>Townserve Investment/Deposit Application Form</h1>
-    <p className='text-center text-lg font-medium'>Kindly fill this form before submitting, so we can generate the pdf file for you.</p>
+    {/* <p className='text-center text-lg font-medium'>Kindly fill this form before submitting, so we can generate the pdf file for you.</p> */}
    </div>
    <div>
     <h1 className='text-xl'>Please send your money to</h1>

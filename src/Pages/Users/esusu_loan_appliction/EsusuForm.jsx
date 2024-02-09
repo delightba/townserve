@@ -13,7 +13,7 @@ const EsusuForm = ({ details, handleChange, handleSubmit, handleSignature, handl
     <form className='flex flex-col gap-3 p-[15px]' ref={containerRef}>
       <div>
         <h1 className='greenheader text-center'>APPLICATION FOR ESUSU CONTRIBUTION LOAN FORM</h1>
-        <p className='text-center text-lg font-medium'>Kindly fill this form before submitting, so we can generate the pdf file for you.</p>
+        {/* <p className='text-center text-lg font-medium'>Kindly fill this form before submitting, so we can generate the pdf file for you.</p> */}
       </div>
       <section>
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
@@ -23,7 +23,7 @@ const EsusuForm = ({ details, handleChange, handleSubmit, handleSignature, handl
           <CustomInput value={details.name} placeholder={"Fullname"} name={"name"} type={"text"} label={"name"} handleChange={handleChange} />
           <CustomInput value={details.amount} placeholder={"amount"} name={"amount"} type={"text"} label={"Amount"} handleChange={handleChange} />
           <CustomInput value={details.purpose} placeholder={"Purpose"} name={"purpose"} type={"text"} label={"Purpose"} handleChange={handleChange} />
-          <CustomInput value={details.tenure} placeholder={"Tenur"} name={"tenure"} type={"text"} label={"Tenure"} handleChange={handleChange} />
+          <CustomInput value={details.tenure} placeholder={"Tenor"} name={"tenure"} type={"date"} label={"Tenor"} handleChange={handleChange} />
           <CustomInput value={details.repayment} placeholder={"repayment period"} name={"repayment"} type={"text"} label={"Repayment (days)"} handleChange={handleChange} />
         </div>
 

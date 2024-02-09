@@ -36,7 +36,7 @@ const HomePage = () => {
    </header>
    <section className='relative'>
     <div className="containerr">
-     <img src={Logo} alt='other' className='w-[50%] mx-auto h-[40vh] object-contain' />
+     <img src={Logo} alt='other' className='w-[50%] mx-auto h-full md:h-[40vh] object-contain' />
      <div className="text-center text-xl md:text-2xl lg:text-3xl py-4" >
       <h1>Kindly complete the undernoted forms</h1>
      </div>
