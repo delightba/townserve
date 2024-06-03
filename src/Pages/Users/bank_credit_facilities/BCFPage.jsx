@@ -6,7 +6,9 @@ import BCFForm from './BCFForm';
 import BCFPdf from './BCFPdf';
 import { useReactToPrint } from 'react-to-print'
 import InstructionPopUp from '../../../Components/InstructionPopUp';
-
+import html2canvas from "html2canvas";
+import jsPDF from "jspdf";
+import axios from "axios";
 
 const BCFPage = () => {
  const targetRef = useRef()
@@ -58,6 +60,8 @@ const BCFPage = () => {
   },
   signature: '',
  })
+
+ const fileName =`${details?.name}(BANK-CREDIT Form).pdf`
 
  const [isOpen, setIsOpen] = useState(true)
  const closeModal = () => {
@@ -141,18 +145,66 @@ const BCFPage = () => {
   })
  };
 
+ const apiUrl = "https://townserve.itl.ng/api/auth/upload";
+
+ const handlePrinting = async () => {
+  try {
+    const input = targetRef.current;
+    if (!input) throw new Error('Target reference is not defined.');
+
+    // Capture the content of the element as a canvas
+    const canvas = await html2canvas(input);
+    const imgData = canvas.toDataURL('image/png');
+
+    // Create a new PDF document with A4 size
+    const pdf = new jsPDF('p', 'mm', 'a4');
+
+    // Add the image to the PDF, maintaining aspect ratio
+    const imgWidth = pdf.internal.pageSize.getWidth();
+    const imgHeight = (canvas.height / canvas.width) * imgWidth;
+
+    // Set initial y position
+    let yPos = 0;
+
+    // Loop through the canvas and add content to PDF page by page
+    let page = 1;
+    while (yPos < canvas.height) {
+      if (page > 1) {
+        pdf.addPage();
+      }
+      pdf.addImage(imgData, 'PNG', 0, -yPos, imgWidth, imgHeight);
+      yPos += pdf.internal.pageSize.getHeight();
+      page++;
+    }
+    // Generate the PDF as a Blob
+    const pdfBlob = pdf.output('blob');
+
+    // Create a FormData object and append the Blob with a defined file name
+    const formData = new FormData();
+    formData.append('pdf_file', pdfBlob, fileName);
+
+    // Send the FormData object to the server using Axios
+    const response = await axios.post(apiUrl, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+
+    if (response.status !== 200) {
+      throw new Error(`Server error: ${response.statusText}`);
+    } else{
+      sessionStorage.clear()
+      navigate('/') 
+    }
+  } catch (error) {
+    console.error('Error during print or upload process:', error);
+  }
+};
+
  const handlePrint = useReactToPrint({
   content: () => targetRef.current,
   documentTitle: `${details?.name}`,
-  onAfterPrint: () => {
-   setTimeout(() => {
-    alert('Now attach the file you downloaded')
-    window.location.href = `mailto:tmfbapplicationform@gmail.com?subject=My%20Credit%20Application%20Form&body='Attached to this mail is my BANK/CREDIT APPLICATION Form, kindly treat as urgent. Thank you.'`;
-    sessionStorage.clear()
-    window.location.reload()
-    navigate('/')
-   }, 200)
-  }
+  onAfterPrint: handlePrinting
  })
  return (
   <div className="w-full md:w-[80%] mx-auto mt-8">

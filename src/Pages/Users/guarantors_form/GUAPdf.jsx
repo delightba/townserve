@@ -54,7 +54,7 @@ const GUAPdf = ({ details, targetRef }) => {
        RELATIONSHIP WITH THE APPLICANT: <span className="font-medium">{details.guarantor.relationship_with_applicant}</span>
       </li>
       <li>
-       In case of default by any cause at the due daate, I, <span className="font-semibold underline">{details.guarantor.name} hereby guarantee the REPAYMENT to Townserve Microfinance Bank Ltd of any Loan/Overdraft/L.P.O Finance/Business Finance not exceeding <span className="semi-bold underline">#{details.amount}</span>granted to Mr./Mrs./Miss <span className="semi-bold underline">{details.name}</span>he applicant</span>
+       In case of default by any cause at the due daate, I, <span className="font-semibold underline">{details.guarantor.name} hereby guarantee the REPAYMENT to Townserve Microfinance Bank Ltd of any Loan/Overdraft/L.P.O Finance/Business Finance not exceeding <span className="semi-bold underline">₦{details.amount} </span>granted to Mr./Mrs./Miss <span className="semi-bold underline">{details.name}</span>he applicant</span>
       </li>
      </ol>
      <h2>Tel. No: {details.guarantor.tel}</h2>
@@ -109,7 +109,7 @@ const GUAPdf = ({ details, targetRef }) => {
      <h2 className='text-lg font-medium'>Do hereby solemnly and sincerely decalre as follows:</h2>
      <ol className="list-decimal ml-2 flex flex-col gap-4 p-2">
       <li>
-       That <span className="font-medium">{details.name}</span> is proposing with my full knowledge and consent, to take up a loan facility of <span className="font-medium">#{details.amount}</span> from Townserce Microfinance Bank Limited (hereafter referred to as the Company)
+       That <span className="font-medium">{details.name}</span> is proposing with my full knowledge and consent, to take up a loan facility of <span className="font-medium">₦{details.amount}</span> from Townserce Microfinance Bank Limited (hereafter referred to as the Company)
       </li>
       <li>
        That the particulars of the Guarantor as given in part 1 hereof are correct
