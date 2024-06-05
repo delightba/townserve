@@ -8,8 +8,7 @@ import InstructionPopUp from '../../Components/InstructionPopUp';
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 import axios from "axios";
-
-
+import Loading from '../../Components/Loading';
 
 
 const OfferInvestment = () => {
@@ -40,6 +39,8 @@ const OfferInvestment = () => {
     principal_range2: '',
     signature: ''
   })
+  const [isUploading, setIsUploading] = useState(false);
+
   const fileName =`${details?.name}(Offer-Investment Form).pdf`
   const [isFillingForm, setIsFillingForm] = useState(true)
 
@@ -138,10 +139,13 @@ const OfferInvestment = () => {
       if (response.status !== 200) {
         throw new Error(`Server error: ${response.statusText}`);
       } else{
+        setIsUploading(false)
         sessionStorage.clear()
       }
     } catch (error) {
       console.error('Error during print or upload process:', error);
+    } finally{
+      setIsUploading(false)
     }
   };
 
@@ -153,6 +157,7 @@ const OfferInvestment = () => {
   return (
     <div className="w-full md:w-[80%] mx-auto mt-8">
       {isOpen && <InstructionPopUp closeModal={closeModal} />}
+      {isUploading && <Loading />}
       {isFillingForm && <OfferForm details={details} handleChange={handleChange} handleSubmit={handleSubmit} handleSignature={handleCustomerSignatureChange} />}
       {!isFillingForm &&
         <div className="relative flex flex-col gap-3">

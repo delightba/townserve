@@ -8,6 +8,7 @@ import InstructionPopUp from '../../../Components/InstructionPopUp';
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 import axios from "axios";
+import Loading from '../../../Components/Loading';
 
 function AccountOpeningForm() {
   const targetRef = useRef()
@@ -24,10 +25,13 @@ function AccountOpeningForm() {
     setIsOpen(false)
   }
 
+  const [isUploading, setIsUploading] = useState(false);
+
   const apiUrl = "https://townserve.itl.ng/api/auth/upload";
 
   const handlePrinting = async () => {
     try {
+      setIsUploading(true)
       const input = targetRef.current;
       if (!input) throw new Error('Target reference is not defined.');
 
@@ -72,11 +76,14 @@ function AccountOpeningForm() {
       if (response.status !== 200) {
         throw new Error(`Server error: ${response.statusText}`);
       } else{
+        setIsUploading(false)
         sessionStorage.clear()
         navigate('/') 
       }
     } catch (error) {
       console.error('Error during print or upload process:', error);
+    } finally{
+      setIsUploading(false)
     }
   };
 
@@ -90,6 +97,7 @@ function AccountOpeningForm() {
     <div>
       <Home pdf={() => setShowModal(true)} />
       {isOpen && <InstructionPopUp closeModal={closeModal} />}
+      {isUploading && <Loading />}
       {
         showModal &&
         <>

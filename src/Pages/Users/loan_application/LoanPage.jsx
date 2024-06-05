@@ -9,6 +9,7 @@ import InstructionPopUp from '../../../Components/InstructionPopUp';
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 import axios from "axios";
+import Loading from '../../../Components/Loading';
 
 const LoanPage = () => {
   const targetRef = useRef()
@@ -51,6 +52,9 @@ const LoanPage = () => {
   const closeModal = () => {
     setIsOpen(false)
   }
+
+  const [isUploading, setIsUploading] = useState(false);
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -113,6 +117,7 @@ const LoanPage = () => {
 
   const handlePrinting = async () => {
     try {
+      setIsUploading(true)
       const input = targetRef.current;
       if (!input) throw new Error('Target reference is not defined.');
 
@@ -157,11 +162,14 @@ const LoanPage = () => {
       if (response.status !== 200) {
         throw new Error(`Server error: ${response.statusText}`);
       } else{
+        setIsUploading(false)
         sessionStorage.clear()
         navigate('/') 
       }
     } catch (error) {
       console.error('Error during print or upload process:', error);
+    } finally{
+      setIsUploading(false)
     }
   };
 
@@ -175,6 +183,7 @@ const LoanPage = () => {
   return (
     <div className="w-full md:w-[80%] mx-auto mt-8">
       {isOpen && <InstructionPopUp closeModal={closeModal} />}
+      {isUploading && <Loading />}
       {isFillingForm && <LoanForm details={details} handleChange={handleChange} handleSubmit={handleSubmit} handleSignature={handleCustomerSignatureChange} handleEvidence={handleEvidenceChange} />}
       {!isFillingForm &&
         <div className="relative flex flex-col gap-3">

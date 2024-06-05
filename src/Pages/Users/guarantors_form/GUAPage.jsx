@@ -9,6 +9,7 @@ import InstructionPopUp from "../../../Components/InstructionPopUp";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 import axios from "axios";
+import Loading from "../../../Components/Loading";
 
 const GUAPage = () => {
   const targetRef = useRef();
@@ -49,6 +50,8 @@ const GUAPage = () => {
       },
     }
   );
+  const [isUploading, setIsUploading] = useState(false);
+
 
   const fileName =`${details?.name}(Guarantor Form).pdf`
 
@@ -147,6 +150,7 @@ const GUAPage = () => {
 
   const handlePrinting = async () => {
     try {
+      setIsUploading(true)
       const input = targetRef.current;
       if (!input) throw new Error('Target reference is not defined.');
 
@@ -191,11 +195,14 @@ const GUAPage = () => {
       if (response.status !== 200) {
         throw new Error(`Server error: ${response.statusText}`);
       } else{
+        setIsUploading(false)
         sessionStorage.clear()
         navigate('/') 
       }
     } catch (error) {
       console.error('Error during print or upload process:', error);
+    } finally{
+      setIsUploading(false)
     }
   };
 
@@ -208,6 +215,7 @@ const GUAPage = () => {
   return (
     <div className="w-full md:w-[80%] mx-auto mt-8">
       {isOpen && <InstructionPopUp closeModal={closeModal} />}
+      {isUploading && <Loading />}
       {isFillingForm && (
         <GUAForm
           details={details}

@@ -9,6 +9,7 @@ import InstructionPopUp from '../../../Components/InstructionPopUp';
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 import axios from "axios";
+import Loading from '../../../Components/Loading';
 
 const EsusuPage = () => {
   const targetRef = useRef()
@@ -55,6 +56,7 @@ const EsusuPage = () => {
     signature: '',
     applicant_passport_photo: '',
   })
+  const [isUploading, setIsUploading] = useState(false);
 
   const fileName =`${details?.name}(ESUSU Form).pdf`
 
@@ -203,6 +205,7 @@ const EsusuPage = () => {
 
   const handlePrinting = async () => {
     try {
+      setIsUploading(true)
       const input = targetRef.current;
       if (!input) throw new Error('Target reference is not defined.');
 
@@ -247,11 +250,14 @@ const EsusuPage = () => {
       if (response.status !== 200) {
         throw new Error(`Server error: ${response.statusText}`);
       } else{
+        setIsUploading(false)
         sessionStorage.clear()
         navigate('/') 
       }
     } catch (error) {
       console.error('Error during print or upload process:', error);
+    } finally{
+      setIsUploading(false)
     }
   };
 
@@ -265,6 +271,7 @@ const EsusuPage = () => {
   return (
     <div className="w-full md:w-[80%] mx-auto mt-8">
       {isOpen && <InstructionPopUp closeModal={closeModal} />}
+      {isUploading && <Loading />}
       {isFillingForm && <EsusuForm details={details} handleChange={handleChange} handleSubmit={handleSubmit} handleSignature={handleCustomerSignatureChange} handleSecurityAsset={handleSecurityAssetChange} handleGuarantor={handleGuarantorsChange} customerpassport={handleCustomerPassportChange} guarantorpassport={handleGuarantorPassportChange} guarantorsignature={handleGuarantorSignatureChange} />}
       {!isFillingForm &&
         <div className="relative flex flex-col gap-3">
