@@ -18,9 +18,9 @@ const DepositForm = ({ details, handleChange, handleSubmit, handleSignature, han
    <div>
     <h1 className='text-xl'>Please send your money to</h1>
     <ul className='my-3 flex flex-col gap-3 text-xl text-green-600 font-bold'>
-     <li>Bank - Polaris Bank</li>
+     <li>Bank - Zenith Bank</li>
      <li>Name: Townserve Microfinance Bank Limited</li>
-     <li>No: 1770640271.</li>
+     <li>No: 1311664758.</li>
     </ul>
    </div>
    <section >
