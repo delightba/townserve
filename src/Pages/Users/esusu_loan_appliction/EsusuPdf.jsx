@@ -8,7 +8,7 @@ const EsusuPdf = ({ details, targetRef }) => {
       <p className='font-bold text-lg'>TM 008</p>
       <header className='flex flex-col justify-center text-right text-[14px] w-[55%] h-[100px] mx-auto mb-[20px]'>
         <img src={Logo} alt="" className='w-full h-[100px] mx-auto' />
-        <address className='text-asparagus-600'>26,Gbasemo Street, Aga, Ikorodu, Lagos State</address>
+        <address className='text-asparagus-600'>2 TOS Benson Rd, Ojogbe Junction, Ikorodu Lagos State</address>
         <a href="tel:+"><span className='text-red-600'>Tel:</span>01-7349666, 08078755269</a>
         <a href="mailto:townservemicrofinancebank@yahoo.com"> <span className='text-red-600'>Email:</span> townservemicrofinancebank@yahoo.com</a>
       </header>
