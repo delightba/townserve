@@ -24,15 +24,15 @@ const EsusuForm = ({ details, handleChange, handleSubmit, handleSignature, handl
           <CustomInput value={details.amount} placeholder={"amount"} name={"amount"} type={"text"} label={"Amount"} handleChange={handleChange} />
           <CustomInput value={details.purpose} placeholder={"Purpose"} name={"purpose"} type={"text"} label={"Purpose"} handleChange={handleChange} />
           <CustomInput value={details.tenure} placeholder={"Tenor"} name={"tenure"} type={"date"} label={"Tenor"} handleChange={handleChange} />
-          <CustomInput value={details.repayment} placeholder={"repayment period"} name={"repayment"} type={"text"} label={"Repayment (days)"} handleChange={handleChange} />
+          <CustomInput value={details.repayment} placeholder={"repayment period"} name={"repayment"} type={"text"} label={"Repayment (month)"} handleChange={handleChange} />
         </div>
 
         <section className='my-4'>
-          <h2 className='font-bold greenheader'>Security assets:</h2>
+          <h2 className='font-bold greenheader'>Collateral details:</h2>
           <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
-            <CustomInput value={details.security_asset.first} placeholder={"Asset 1"} name={"first"} type={"text"} label={"Security asset 1"} handleChange={handleSecurityAsset} />
-            <CustomInput value={details.security_asset.second} placeholder={"Asset 2"} name={"second"} type={"text"} label={"Security asset 2"} handleChange={handleSecurityAsset} />
-            <CustomInput value={details.security_asset.third} placeholder={"Asset 3"} name={"third"} type={"text"} label={"Security asset 3"} handleChange={handleSecurityAsset} />
+            <CustomInput value={details.security_asset?.first} placeholder={"Asset 1"} name={"first"} type={"text"} label={"Collateral details 1"} handleChange={handleSecurityAsset} />
+            <CustomInput value={details.security_asset?.second} placeholder={"Asset 2"} name={"second"} type={"text"} label={"Collateral details 2"} handleChange={handleSecurityAsset} />
+            <CustomInput value={details.security_asset?.third} placeholder={"Asset 3"} name={"third"} type={"text"} label={"Collateral details 3"} handleChange={handleSecurityAsset} />
           </div>
         </section>
 

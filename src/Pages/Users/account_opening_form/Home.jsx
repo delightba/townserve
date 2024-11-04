@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
 import TM001 from './TM001';
-import ReferenceForm from './ReferenceForm';
 import PageTwoContent from './Page2TM001';
 import TM002 from './TM002';
 
@@ -31,8 +30,6 @@ const Home = ({ pdf }) => {
         return <PageTwoContent />;
       case 3:
         return <TM002 />;
-      case 4:
-        return <ReferenceForm />;
       default:
         return null;
     }
@@ -47,12 +44,12 @@ const Home = ({ pdf }) => {
             Previous
           </button>
         )}
-        {currentStage < 4 && (
+        {currentStage < 3 && (
           <button onClick={handleNextStage} className="next">
             Next
           </button>
         )}
-        {currentStage === 4 && (
+        {currentStage === 3 && (
           <button onClick={pdf} className="back !bg-green-500">
             Submit
           </button>

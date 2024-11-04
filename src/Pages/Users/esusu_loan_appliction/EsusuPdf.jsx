@@ -32,10 +32,11 @@ const EsusuPdf = ({ details, targetRef }) => {
       <section className='my-[5px]'>
         <h2 className='smallheader'>APPLICATION FOR ESUSU CONTRIBUTION LOAN (ECL)</h2>
         <div className='my-1'>
-          <p className='text-lg'>I <span className='font-semibold'>{details.name} </span>wish to apply for a loan facility.</p>
+          <p className='text-lg'>I <span className='font-semibold'>{details.guarantor.name} </span>hereby guarantee the repayment to townserve microfinance bank of any loan not exceeding ₦{details.amount} if granted to Mr/Mrs/Miss {details.name} .</p>
+          <p className='text-lg'>In case of default by any cause at the due date, I will pay the outstanding balance</p>
         </div>
         {/* loan overdraft */}
-        <div className='my-2'>
+        {/* <div className='my-2'>
           <ol className="flex flex-col gap-2 font-semibold li-spacing">
             <li>
               Amount: <span className="font-medium">{details.amount}</span>
@@ -54,9 +55,9 @@ const EsusuPdf = ({ details, targetRef }) => {
               </ol>
             </li>
           </ol>
-        </div>
+        </div> */}
         {/* personal data */}
-        <div>
+        {/* <div>
           <h2 className='font-bold text-xl underline'>Personal Details</h2>
           <ol className="list-decimal flex flex-col gap-2 my-2 font-semibold li-spacing">
             <li>Address: <span className="font-medium">{details.address}</span></li>
@@ -83,10 +84,10 @@ const EsusuPdf = ({ details, targetRef }) => {
             <img src={details.signature} alt="" className='w-[150px] h-full object-contain' />
             <p className='text-sm font-bold'>{details.date}</p>
           </article>
-        </div>
+        </div> */}
 
         <div>
-          <h2 className='smallheader'>Guarantor's Data:</h2>
+          {/* <h2 className='smallheader'>Guarantor's Data:</h2>
           <ol className="list-decimal flex flex-col gap-2 my-4 font-semibold li-spacing">
             <li>Name of Guarantor: <span className="font-medium">{details.guarantor.name}</span></li>
             <li>Address: <span className="font-medium">{details.guarantor.address}</span></li>
@@ -94,7 +95,7 @@ const EsusuPdf = ({ details, targetRef }) => {
             <li>Relationship with applicant: <span className="font-medium">{details.guarantor.relationship_with_applicant}</span></li>
             <li>I, <span className="font-medium">{details.guarantor.relationship_with_applicant}</span> to {details.name} herby guarantees the repayment to Townserve Microfinance Bank of any loan not exceeding ₦{details.amount} if granted to Mr./Mrs./Miss {details.name}</li>
 
-          </ol>
+          </ol> */}
           <div className='my-4 flex flex-col gap-4'>
             <article>
               <h3 className='py-3 font-bold'>Signature and date</h3>

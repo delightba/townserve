@@ -34,11 +34,11 @@ const BCFForm = ({ details, handleChange, handleSubmit, handleSignature, handleS
     </div>
 
     <div className='my-4'>
-     <h2 className='font-bold greenheader'>Security assets:</h2>
+     <h2 className='font-bold greenheader'>Collateral detailss:</h2>
      <article className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
-      <CustomInput value={details.security_asset.first} placeholder={"Asset 1"} name={"first"} type={"text"} label={"Security asset 1"} handleChange={handleSecurityAsset} />
-      <CustomInput value={details.security_asset.second} placeholder={"Asset 2"} name={"second"} type={"text"} label={"Security asset 2"} handleChange={handleSecurityAsset} />
-      <CustomInput value={details.security_asset.third} placeholder={"Asset 3"} name={"third"} type={"text"} label={"Security asset 3"} handleChange={handleSecurityAsset} />
+      <CustomInput value={details.security_asset.first} placeholder={"Asset 1"} name={"first"} type={"text"} label={"Collateral details 1"} handleChange={handleSecurityAsset} />
+      <CustomInput value={details.security_asset.second} placeholder={"Asset 2"} name={"second"} type={"text"} label={"Collateral details 2"} handleChange={handleSecurityAsset} />
+      <CustomInput value={details.security_asset.third} placeholder={"Asset 3"} name={"third"} type={"text"} label={"Collateral details 3"} handleChange={handleSecurityAsset} />
      </article>
     </div>
 

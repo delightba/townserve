@@ -3,7 +3,6 @@ import React from 'react';
 import TM001 from './TM001';
 import TM002 from './TM002';
 import PageTwoContent from './Page2TM001';
-import ReferenceForm from './ReferenceForm';
 
 const Download = ({ targetRef }) => {
  return (
@@ -18,10 +17,6 @@ const Download = ({ targetRef }) => {
    <br />
    <div>
     <TM002 />
-   </div>
-   <br />
-   <div>
-    <ReferenceForm />
    </div>
   </div>
  );

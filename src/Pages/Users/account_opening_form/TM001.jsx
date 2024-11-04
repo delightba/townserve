@@ -22,8 +22,10 @@ const TM001 = () => {
     fullname: '',
     company_name: '',
     dob: '',
+    nin:'',
+    bvn:'',
     nationality: '',
-    rc: {},
+    // rc: {},
     office_address: '',
     residential_address: '',
     phone: '',
@@ -146,23 +148,23 @@ const TM001 = () => {
       [name]: uppercaseValue,
     });
   };
-  const handleRCChange = (e, fieldName) => {
-    const { value } = e.target;
-    setForm1((prev) => ({
-      ...prev,
-      rc: {
-        ...prev.rc,
-        [fieldName]: value.toUpperCase(),
-      },
-    }));
-    saveFormDataToLocalStorage({
-      ...form1,
-      rc: {
-        ...form1.rc,
-        [fieldName]: value.toUpperCase(),
-      },
-    });
-  };
+  // const handleRCChange = (e, fieldName) => {
+  //   const { value } = e.target;
+  //   setForm1((prev) => ({
+  //     ...prev,
+  //     rc: {
+  //       ...prev.rc,
+  //       [fieldName]: value.toUpperCase(),
+  //     },
+  //   }));
+  //   saveFormDataToLocalStorage({
+  //     ...form1,
+  //     rc: {
+  //       ...form1.rc,
+  //       [fieldName]: value.toUpperCase(),
+  //     },
+  //   });
+  // };
 
   const handleImageChange = async (index, file) => {
     // Convert the file to a data URL
@@ -246,6 +248,10 @@ const TM001 = () => {
             <CustomInput name={'account_type'} type={'text'} value={form1.account_type} label={'Type of account:'} handleChange={handleChange} />
           </article>
           <CustomInput name={'fullname'} type={'text'} value={form1.fullname} label={'Name Individiual /Corporate name:'} handleChange={handleChange} />
+          <article className="flex flex-col md:flex-row gap-2 my-1">
+          <CustomInput name={'nin'} type={'number'} value={form1.nin} label={'NIN'} handleChange={handleChange} />
+          <CustomInput name={'bvn'} type={'number'} value={form1.bvn} label={'BVN'} handleChange={handleChange} />
+          </article>
           <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
             <CustomInput name={'state_of_origin'} type={'text'} value={form1.state_of_origin} label={'State of origin:'} handleChange={handleChange} />
             <CustomInput name={'local_government'} type={'text'} value={form1.local_government} label={'Local government:'} handleChange={handleChange} />
@@ -258,7 +264,7 @@ const TM001 = () => {
             <CustomInput name={'dob'} type={'date'} value={form1.dob} label={'Date Of Birth/Registration:'} handleChange={handleChange} />
             <CustomInput name={'nationality'} type={'text'} value={form1.nationality} label={'Nationality:'} handleChange={handleChange} />
           </article>
-          <table className="tables mt-4">
+          {/* <table className="tables mt-4">
             <thead>
               <tr>
                 <th className="py-2 px-4 border-b">RC NUMBER</th>
@@ -294,7 +300,7 @@ const TM001 = () => {
                 </td>
               </tr>
             </tbody>
-          </table>
+          </table> */}
           <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
             <CustomInput name={'office_address'} type={'text'} value={form1.office_address} label={'Office address:'} handleChange={handleChange} />
             <CustomInput name={'residential_address'} type={'text'} value={form1.residential_address} label={'Residential address:'} handleChange={handleChange} />
