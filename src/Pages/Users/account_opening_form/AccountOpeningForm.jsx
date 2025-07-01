@@ -14,6 +14,7 @@ function AccountOpeningForm() {
   const targetRef = useRef()
   const navigate = useNavigate()
   const [showModal, setShowModal] = useState(false)
+  const [showSuccess, setShowSuccess] = useState(false)
 
   const name = sessionStorage.getItem('TM001FormData')
   const parsed = JSON.parse(name)
@@ -37,7 +38,9 @@ function AccountOpeningForm() {
 
       // Capture the content of the element as a canvas
       const canvas = await html2canvas(input);
-      const imgData = canvas.toDataURL('image/png');
+
+      // Compress to JPEG and lower quality to reduce file size
+      const imgData = canvas.toDataURL('image/jpeg', 0.6); // 60% quality
 
       // Create a new PDF document with A4 size
       const pdf = new jsPDF('p', 'mm', 'a4');
@@ -55,7 +58,7 @@ function AccountOpeningForm() {
         if (page > 1) {
           pdf.addPage();
         }
-        pdf.addImage(imgData, 'PNG', 0, -yPos, imgWidth, imgHeight);
+        pdf.addImage(imgData, 'JPEG', 0, -yPos, imgWidth, imgHeight, '', 'FAST');
         yPos += pdf.internal.pageSize.getHeight();
         page++;
       }
@@ -71,18 +74,19 @@ function AccountOpeningForm() {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
+        timeout: 20000 // 20 seconds timeout
       });
 
       if (response.status !== 200) {
         throw new Error(`Server error: ${response.statusText}`);
-      } else{
+      } else {
         setIsUploading(false)
+        setShowSuccess(true)
         sessionStorage.clear()
-        navigate('/') 
       }
     } catch (error) {
       console.error('Error during print or upload process:', error);
-    } finally{
+      alert('Upload failed: ' + (error?.message || error));
       setIsUploading(false)
     }
   };
@@ -105,6 +109,42 @@ function AccountOpeningForm() {
           <Download targetRef={targetRef} />
         </>
       }
+      {showSuccess && (
+        <div style={{
+          position: 'fixed',
+          top: 0, left: 0, right: 0, bottom: 0,
+          background: 'rgba(0,0,0,0.5)',
+          display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1000
+        }}>
+          <div style={{
+            background: '#fff',
+            padding: '2rem',
+            borderRadius: '8px',
+            textAlign: 'center',
+            minWidth: '300px'
+          }}>
+            <h2 style={{ color: 'green', marginBottom: '1rem' }}>Upload Successful!</h2>
+            <p>Your form has been uploaded successfully.</p>
+            <button
+              style={{
+                marginTop: '1.5rem',
+                padding: '0.5rem 1.5rem',
+                background: '#16a34a',
+                color: '#fff',
+                border: 'none',
+                borderRadius: '4px',
+                cursor: 'pointer'
+              }}
+              onClick={() => {
+                setShowSuccess(false);
+                navigate('/');
+              }}
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
