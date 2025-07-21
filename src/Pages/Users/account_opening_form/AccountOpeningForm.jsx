@@ -39,29 +39,47 @@ function AccountOpeningForm() {
       // Capture the content of the element as a canvas
       const canvas = await html2canvas(input);
 
-      // Compress to JPEG and lower quality to reduce file size
-      const imgData = canvas.toDataURL('image/jpeg', 0.6); // 60% quality
-
-      // Create a new PDF document with A4 size
+      // Split canvas into 3 parts for 3 pages
       const pdf = new jsPDF('p', 'mm', 'a4');
+      const pdfWidth = pdf.internal.pageSize.getWidth();
+      const pdfHeight = pdf.internal.pageSize.getHeight();
 
-      // Add the image to the PDF, maintaining aspect ratio
-      const imgWidth = pdf.internal.pageSize.getWidth();
-      const imgHeight = (canvas.height / canvas.width) * imgWidth;
+      // Convert px to mm
+      const pxToMm = px => px * 0.264583;
 
-      // Set initial y position
-      let yPos = 0;
+      // Calculate image dimensions
+      const imgProps = {
+        width: canvas.width,
+        height: canvas.height
+      };
+      const imgWidthMm = pdfWidth;
+      const imgHeightMm = pxToMm(imgProps.height) * (pdfWidth / pxToMm(imgProps.width));
 
-      // Loop through the canvas and add content to PDF page by page
-      let page = 1;
-      while (yPos < canvas.height) {
-        if (page > 1) {
-          pdf.addPage();
-        }
-        pdf.addImage(imgData, 'JPEG', 0, -yPos, imgWidth, imgHeight, '', 'FAST');
-        yPos += pdf.internal.pageSize.getHeight();
-        page++;
+      // Calculate the height for each page in px
+      const pageHeightPx = Math.floor(canvas.height / 3);
+
+      for (let i = 0; i < 3; i++) {
+        const pageCanvas = document.createElement('canvas');
+        pageCanvas.width = canvas.width;
+        // Last page may be a bit taller due to rounding
+        pageCanvas.height = (i === 2) ? canvas.height - pageHeightPx * 2 : pageHeightPx;
+        const ctx = pageCanvas.getContext('2d');
+        ctx.drawImage(
+          canvas,
+          0,
+          i * pageHeightPx,
+          canvas.width,
+          pageCanvas.height,
+          0,
+          0,
+          canvas.width,
+          pageCanvas.height
+        );
+        const imgData = pageCanvas.toDataURL('image/jpeg', 0.6);
+        if (i > 0) pdf.addPage();
+        pdf.addImage(imgData, 'JPEG', 0, 0, imgWidthMm, pdfHeight);
       }
+
       // Generate the PDF as a Blob
       const pdfBlob = pdf.output('blob');
 

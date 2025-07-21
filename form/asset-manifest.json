@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/static/css/main.d9682618.css",
+    "main.js": "/static/js/main.0123c1a7.js",
+    "static/js/703.4251dbb8.chunk.js": "/static/js/703.4251dbb8.chunk.js",
+    "static/js/379.19fe06c3.chunk.js": "/static/js/379.19fe06c3.chunk.js",
+    "static/media/save.png": "/static/media/save.45a47f9ef5d96e842180.png",
+    "static/media/form.png": "/static/media/form.9f31a5ad1b1396bea686.png",
+    "static/media/send.png": "/static/media/send.f2245d854786d32bea2e.png",
+    "static/media/mainlogo.png": "/static/media/mainlogo.1848ebf74143ce9c3f90.png",
+    "static/media/VAyR.gif": "/static/media/VAyR.b2a8fa3d8baba9fc720f.gif",
+    "static/media/guarantor.png": "/static/media/guarantor.826f487f72f768b37fb1.png",
+    "static/media/credit.png": "/static/media/credit.e886e4f6a84512b8dcb8.png",
+    "static/media/esusu.png": "/static/media/esusu.89b41b9d790128164d35.png",
+    "static/media/mail.png": "/static/media/mail.9eff2ab388e2d364e37b.png",
+    "static/media/openaccount.png": "/static/media/openaccount.e1bf95c56935f66f6a4e.png",
+    "index.html": "/index.html",
+    "main.d9682618.css.map": "/static/css/main.d9682618.css.map",
+    "main.0123c1a7.js.map": "/static/js/main.0123c1a7.js.map",
+    "703.4251dbb8.chunk.js.map": "/static/js/703.4251dbb8.chunk.js.map",
+    "379.19fe06c3.chunk.js.map": "/static/js/379.19fe06c3.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d9682618.css",
+    "static/js/main.0123c1a7.js"
+  ]
+}

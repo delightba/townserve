@@ -1,233 +1,339 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef, useState } from 'react';
 import { GrDocumentPdf } from "react-icons/gr";
 import { readFileAsDataURL } from '../../../Components/FormatDate';
 import { useNavigate } from 'react-router-dom';
 import BCFForm from './BCFForm';
 import BCFPdf from './BCFPdf';
-import { useReactToPrint } from 'react-to-print'
+import { useReactToPrint } from 'react-to-print';
 import InstructionPopUp from '../../../Components/InstructionPopUp';
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 import axios from "axios";
 import Loading from '../../../Components/Loading';
+import ProceedModal from '../../../ProceedModal';
 
 const BCFPage = () => {
- const targetRef = useRef()
- const navigate = useNavigate()
- const localStorageKey = 'BCFPage';
- // Function to load form data from localStorage
- const loadFormDataFromLocalStorage = () => {
-  const storedFormData = sessionStorage.getItem(localStorageKey);
-  return storedFormData ? JSON.parse(storedFormData) : null;
- };
+  const targetRef = useRef();
+  const navigate = useNavigate();
+  const localStorageKey = 'BCFPage';
+  const [showModal, setShowModal] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
+  const [isFillingForm, setIsFillingForm] = useState(true);
+  const [isUploading, setIsUploading] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
 
- const saveFormDataToLocalStorage = (formData) => {
-  sessionStorage.setItem(localStorageKey, JSON.stringify(formData));
- };
- const [isFillingForm, setIsFillingForm] = useState(true)
- const [details, setDetails] = useState(loadFormDataFromLocalStorage() || {
-  address: '',
-  state: '',
-  date: '',
-  name: '',
-  amount: '',
-  purpose: '',
-  tenure: '',
-  pay_back_period: '',
-  issuing_company: '',
-  lpo_and_date: '',
-  shares_held: '',
-  shares_receipt_number: '',
-  security_asset: {
-   first: '',
-   second: '',
-   third: ''
-  },
-  applicant_name: '',
-  applicant_address: '',
-  tel: '',
-  length_of_stay: '',
-  state_of_origin: '',
-  permanent_address: '',
-  business: '',
-  business_length: '',
-  marital_status: '',
-  nok: '',
-  nok_address: '',
-  relationship: '',
-  guarantors: {
-   first: '',
-   second: ''
-  },
-  signature: '',
- })
- const [isUploading, setIsUploading] = useState(false);
+  // Initial form state
+  const initialFormState = {
+    address: '',
+    state: '',
+    date: '',
+    name: '',
+    amount: '',
+    purpose: '',
+    tenure: '',
+    pay_back_period: '',
+    issuing_company: '',
+    lpo_and_date: '',
+    shares_held: '',
+    shares_receipt_number: '',
+    security_asset: {
+      first: '',
+      second: '',
+      third: ''
+    },
+    applicant_name: '',
+    applicant_address: '',
+    tel: '',
+    length_of_stay: '',
+    state_of_origin: '',
+    permanent_address: '',
+    business: '',
+    business_length: '',
+    marital_status: '',
+    nok: '',
+    nok_address: '',
+    relationship: '',
+    guarantors: {
+      first: '',
+      second: ''
+    },
+    signature: '',
+  };
 
- const fileName =`${details?.name}(BANK-CREDIT Form).pdf`
+  const [details, setDetails] = useState(() => {
+    const storedFormData = sessionStorage.getItem(localStorageKey);
+    return storedFormData ? JSON.parse(storedFormData) : initialFormState;
+  });
 
- const [isOpen, setIsOpen] = useState(true)
- const closeModal = () => {
-  setIsOpen(false)
- }
+  const fileName = `${details?.name || 'Customer'}(BANK-CREDIT Form).pdf`;
+  const apiUrl = "https://townserve.itl.ng/api/auth/upload";
 
- const handleChange = (e) => {
-  const { name, value } = e.target;
-  const uppercaseValue = value.toUpperCase()
+  const saveFormDataToLocalStorage = (formData) => {
+    sessionStorage.setItem(localStorageKey, JSON.stringify(formData));
+  };
 
-  setDetails((prev) => ({
-   ...prev,
-   [name]: uppercaseValue
-  }))
-  saveFormDataToLocalStorage({
-   ...details,
-   [name]: uppercaseValue
-  })
- }
+  const closeModal = () => setIsOpen(false);
 
- const handleCustomerSignatureChange = async (e) => {
-  const file = e.target.files[0];
-  if (file) {
-   // Convert the file to a data URL
-   const dataUrl = await readFileAsDataURL(file);
-   setDetails((prev) => ({
-    ...prev,
-    signature: dataUrl,
-   }));
-   // Save the updated form data to localStorage
-   saveFormDataToLocalStorage({
-    ...details,
-    signature: dataUrl,
-   });
-  }
- };
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    const uppercaseValue = value.toUpperCase();
 
- const handleSubmit = () => {
-  for (const key in details) {
-   if (details[key] === '') {
-    alert(`Please fill in all fields`);
-    return;
-   }
-  }
-  setIsFillingForm(false)
- }
-
- const handleSecurityAssetChange = (e) => {
-  const { name, value } = e.target;
-  const uppercaseValue = value.toUpperCase()
-  setDetails((prevDetails) => ({
-   ...prevDetails,
-   security_asset: {
-    ...prevDetails.security_asset,
-    [name]: uppercaseValue
-   }
-  }));
-  saveFormDataToLocalStorage({
-   ...details,
-   security_asset: { ...details.security_asset, [name]: uppercaseValue },
-  })
- };
-
- const handleGuarantorsChange = (e) => {
-  const { name, value } = e.target;
-  const uppercaseValue = value.toUpperCase()
-
-  setDetails((prevDetails) => ({
-   ...prevDetails,
-   guarantors: {
-    ...prevDetails.guarantors,
-    [name]: uppercaseValue
-   }
-  }));
-  saveFormDataToLocalStorage({
-   ...details,
-   guarantors: {
-    ...details.guarantors,
-    [name]: uppercaseValue
-   }
-  })
- };
-
- const apiUrl = "https://townserve.itl.ng/api/auth/upload";
-
- const handlePrinting = async () => {
-  try {
-    setIsUploading(true)
-    const input = targetRef.current;
-    if (!input) throw new Error('Target reference is not defined.');
-
-    // Capture the content of the element as a canvas
-    const canvas = await html2canvas(input);
-    const imgData = canvas.toDataURL('image/png');
-
-    // Create a new PDF document with A4 size
-    const pdf = new jsPDF('p', 'mm', 'a4');
-
-    // Add the image to the PDF, maintaining aspect ratio
-    const imgWidth = pdf.internal.pageSize.getWidth();
-    const imgHeight = (canvas.height / canvas.width) * imgWidth;
-
-    // Set initial y position
-    let yPos = 0;
-
-    // Loop through the canvas and add content to PDF page by page
-    let page = 1;
-    while (yPos < canvas.height) {
-      if (page > 1) {
-        pdf.addPage();
-      }
-      pdf.addImage(imgData, 'PNG', 0, -yPos, imgWidth, imgHeight);
-      yPos += pdf.internal.pageSize.getHeight();
-      page++;
-    }
-    // Generate the PDF as a Blob
-    const pdfBlob = pdf.output('blob');
-
-    // Create a FormData object and append the Blob with a defined file name
-    const formData = new FormData();
-    formData.append('pdf_file', pdfBlob, fileName);
-
-    // Send the FormData object to the server using Axios
-    const response = await axios.post(apiUrl, formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
+    setDetails(prev => {
+      const newDetails = {
+        ...prev,
+        [name]: uppercaseValue
+      };
+      saveFormDataToLocalStorage(newDetails);
+      return newDetails;
     });
+  };
 
-    if (response.status !== 200) {
-      throw new Error(`Server error: ${response.statusText}`);
-    } else{
-      setIsUploading(false)
-      sessionStorage.clear()
-      navigate('/') 
+  const handleFileUpload = async (e, field) => {
+    const file = e.target.files[0];
+    if (file) {
+      const dataUrl = await readFileAsDataURL(file);
+      setDetails(prev => {
+        const newDetails = {
+          ...prev,
+          [field]: dataUrl
+        };
+        saveFormDataToLocalStorage(newDetails);
+        return newDetails;
+      });
     }
-  } catch (error) {
-    console.error('Error during print or upload process:', error);
-  } finally{
-    setIsUploading(false)
-  }
+  };
+
+  const handleSecurityAssetChange = (e) => {
+    const { name, value } = e.target;
+    const uppercaseValue = value.toUpperCase();
+    
+    setDetails(prev => {
+      const newDetails = {
+        ...prev,
+        security_asset: {
+          ...prev.security_asset,
+          [name]: uppercaseValue
+        }
+      };
+      saveFormDataToLocalStorage(newDetails);
+      return newDetails;
+    });
+  };
+
+  const handleGuarantorsChange = (e) => {
+    const { name, value } = e.target;
+    const uppercaseValue = value.toUpperCase();
+
+    setDetails(prev => {
+      const newDetails = {
+        ...prev,
+        guarantors: {
+          ...prev.guarantors,
+          [name]: uppercaseValue
+        }
+      };
+      saveFormDataToLocalStorage(newDetails);
+      return newDetails;
+    });
+  };
+
+  const handleSubmit = () => {
+    // Required fields validation
+    const requiredFields = [
+      'address', 'state', 'date', 'name', 'amount', 'purpose',
+      'tenure', 'pay_back_period', 'issuing_company', 'lpo_and_date',
+      'shares_held', 'shares_receipt_number', 'applicant_name',
+      'applicant_address', 'tel', 'length_of_stay', 'state_of_origin',
+      'permanent_address', 'business', 'business_length', 'marital_status',
+      'nok', 'nok_address', 'relationship', 'signature'
+    ];
+
+    const missingFields = requiredFields.filter(field => !details[field]);
+    
+    // Security assets validation (at least one should be filled)
+    const securityAssetsFilled = Object.values(details.security_asset).some(
+      value => value.trim() !== ''
+    );
+
+    // Guarantors validation (both should be filled)
+    const guarantorsFilled = Object.values(details.guarantors).every(
+      value => value.trim() !== ''
+    );
+
+    if (missingFields.length > 0 || !securityAssetsFilled || !guarantorsFilled) {
+      alert('Please fill in all required fields');
+      return;
+    }
+
+    setIsFillingForm(false);
+    setShowModal(true);
+  };
+
+  const handlePrinting = async () => {
+    try {
+      setIsUploading(true);
+      const input = targetRef.current;
+      if (!input) throw new Error('Form reference not found');
+
+      // Create a new PDF
+      const pdf = new jsPDF({
+        orientation: 'portrait',
+        unit: 'mm',
+        format: 'a4'
+      });
+
+      // Calculate the PDF dimensions
+      const pdfWidth = pdf.internal.pageSize.getWidth();
+      const pdfHeight = pdf.internal.pageSize.getHeight();
+      const margin = 10; // 10mm margin on all sides
+      const contentWidth = pdfWidth - 2 * margin;
+      const contentHeight = pdfHeight - 2 * margin;
+
+      // Capture the form as an image
+      const canvas = await html2canvas(input, {
+        scale: 2, // Higher quality
+        logging: false,
+        useCORS: true,
+        scrollX: 0,
+        scrollY: 0,
+        windowWidth: input.scrollWidth,
+        windowHeight: input.scrollHeight
+      });
+
+      // Calculate aspect ratio
+      const imgRatio = canvas.height / canvas.width;
+      let imgWidth = contentWidth;
+      let imgHeight = imgWidth * imgRatio;
+
+      // If image is too tall, scale it down
+      if (imgHeight > contentHeight) {
+        const scaleFactor = contentHeight / imgHeight;
+        imgWidth *= scaleFactor;
+        imgHeight = contentHeight;
+      }
+
+      // Calculate position to center the image
+      const xPos = (pdfWidth - imgWidth) / 2;
+      const yPos = (pdfHeight - imgHeight) / 2;
+
+      // Add the image to the PDF
+      pdf.addImage(canvas, 'JPEG', xPos, yPos, imgWidth, imgHeight);
+
+      // Generate PDF as Blob
+      const pdfBlob = pdf.output('blob');
+
+      // Prepare form data for upload
+      const formData = new FormData();
+      formData.append('pdf_file', pdfBlob, fileName);
+
+      // Upload to server
+      const response = await axios.post(apiUrl, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+        timeout: 30000
+      });
+
+      if (response.status === 200) {
+        setShowSuccess(true);
+        sessionStorage.clear();
+      } else {
+        throw new Error(`Server error: ${response.statusText}`);
+      }
+    } catch (error) {
+      console.error('Error during PDF generation or upload:', error);
+      alert(`Error: ${error.message || 'Failed to generate or upload PDF'}`);
+    } finally {
+      setIsUploading(false);
+    }
+  };
+
+  const handlePrint = useReactToPrint({
+    content: () => targetRef.current,
+    documentTitle: fileName,
+    onAfterPrint: handlePrinting
+  });
+
+  const handleBackToForm = () => {
+    setIsFillingForm(true);
+    setShowModal(false);
+  };
+
+  return (
+    <div className="w-full md:w-[80%] mx-auto mt-8">
+      {isOpen && <InstructionPopUp closeModal={closeModal} />}
+      {isUploading && <Loading />}
+
+      {isFillingForm ? (
+        <BCFForm 
+          details={details}
+          handleChange={handleChange}
+          handleSubmit={handleSubmit}
+          handleSignature={(e) => handleFileUpload(e, 'signature')}
+          handleSecurityAsset={handleSecurityAssetChange}
+          handleGuarantor={handleGuarantorsChange}
+        />
+      ) : (
+        <div className="relative">
+          {/* PDF container with exact A4 dimensions */}
+          <div 
+            ref={targetRef}
+            className="bg-white p-6 mx-auto shadow-md"
+            style={{
+              width: '210mm',
+              minHeight: '297mm',
+              boxSizing: 'border-box'
+            }}
+          >
+            <BCFPdf details={details} />
+          </div>
+
+          {/* Action buttons */}
+          <div className="flex justify-center gap-4 mt-6">
+            <button 
+              onClick={handleBackToForm}
+              className="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600"
+            >
+              Back to Edit
+            </button>
+            <button 
+              onClick={() => setShowModal(true)}
+              className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 flex items-center gap-2"
+            >
+              <GrDocumentPdf /> Download PDF
+            </button>
+          </div>
+
+          {/* Download confirmation modal */}
+          {showModal && (
+            <ProceedModal 
+              handleDownload={handlePrint}
+              closeModal={() => setShowModal(false)}
+            />
+          )}
+        </div>
+      )}
+
+      {/* Success modal */}
+      {showSuccess && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white p-8 rounded-lg max-w-md text-center">
+            <h2 className="text-2xl font-bold text-green-600 mb-4">Success!</h2>
+            <p className="mb-6">Your Bank Credit form has been successfully submitted.</p>
+            <button
+              onClick={() => {
+                setShowSuccess(false);
+                navigate('/');
+              }}
+              className="px-6 py-2 bg-green-600 text-white rounded hover:bg-green-700"
+            >
+              Return to Home
+            </button>
+          </div>
+        </div>
+      )}
+    </div>
+  );
 };
 
- const handlePrint = useReactToPrint({
-  content: () => targetRef.current,
-  documentTitle: `${details?.name}`,
-  onAfterPrint: handlePrinting
- })
- return (
-  <div className="w-full md:w-[80%] mx-auto mt-8">
-   {isOpen && <InstructionPopUp closeModal={closeModal} />}
-   {isUploading && <Loading />}
-   {isFillingForm && <BCFForm details={details} handleChange={handleChange} handleSubmit={handleSubmit} handleSignature={handleCustomerSignatureChange} handleSecurityAsset={handleSecurityAssetChange} handleGuarantor={handleGuarantorsChange} />}
-   {!isFillingForm &&
-    <div className="relative flex flex-col gap-3">
-     <BCFPdf details={details} targetRef={targetRef} />
-     <div className="mx-auto flex gap-3">
-      <button type='button' onClick={handlePrint}>Download<GrDocumentPdf size={24} className='text-blue-600' /></button>
-      <button type="button" className='back' onClick={() => setIsFillingForm(true)}>Make changes</button>
-     </div>
-    </div>
-   }
-  </div>
- )
-}
-
-export default BCFPage
+export default BCFPage;
