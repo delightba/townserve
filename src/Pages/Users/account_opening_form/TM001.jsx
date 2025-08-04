@@ -238,9 +238,9 @@ const TM001 = () => {
     <main className='px-4 py-8'>
       <div>
         <p className='font-bold'>TM 001</p>
-        <div className='mb-4'>
+        {/* <div className='mb-4'>
           <img src={Logo} alt="logo" className='mx-auto w-[25%]' />
-        </div>
+        </div> */}
         <section>
           <h2 className='greenheader'>APPLICATION FOR OPENING PERSONAL/JOINT, CORPORATE, CLUB/ASS. ACCOUNT</h2>
           <article className='flex flex-col md:flex-row gap-2 my-1'>

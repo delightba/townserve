@@ -7,10 +7,10 @@ const GUAPdf = ({ details, targetRef }) => {
  return (
   <div ref={targetRef} className='p-[20px] lg:py-[60px] lg:px-[70px] w-full lg:w-[60%] mx-auto'>
    <header className='flex flex-col justify-center text-right text-[14px] w-[55%] h-[100px] mx-auto mb-[20px]'>
-    <img src={Logo} alt="" className='w-full h-[100px] mx-auto' />
-    <address className='text-asparagus-600'>2 TOS Benson Rd, Ojogbe Junction, Ikorodu Lagos State</address>
+    {/* <img src={Logo} alt="" className='w-full h-[100px] mx-auto' /> */}
+    {/* <address className='text-asparagus-600'>2 TOS Benson Rd, Ojogbe Junction, Ikorodu Lagos State</address>
     <a href="tel:+"><span className='text-red-600'>Tel:</span>01-7349666, 08078755269</a>
-    <a href="mailto:townservemicrofinancebank@yahoo.com"> <span className='text-red-600'>Email:</span> townservemicrofinancebank@yahoo.com</a>
+    <a href="mailto:townservemicrofinancebank@yahoo.com"> <span className='text-red-600'>Email:</span> townservemicrofinancebank@yahoo.com</a> */}
    </header>
    {/* Guarator's form */}
    <section className='my-8'>

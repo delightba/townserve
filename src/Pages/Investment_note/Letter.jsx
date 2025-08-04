@@ -67,7 +67,7 @@ const Letter = ({ details, targetRef }) => {
     </ul>
    </section>
    <section className='my-3 flex flex-col gap-4 font-medium text-lg'>
-    <p>Kindly note that interest is payable at maturity less 10% Withholding Tax (WHT). However, a minimum of 5 working days shall be required in a case of premature termination either in part or in full. this shall also attract a penalty of 25% of the accrued interest on your investment.</p>
+    <p>Kindly note that Collateral details is payable at maturity less 10% Withholding Tax (WHT). However, a minimum of 5 working days shall be required in a case of premature termination either in part or in full. this shall also attract a penalty of 25% of the accrued interest on your investment.</p>
     <p>Kindly confirm your acceptance by acknowleding and returning to us the duplicate copy of this letter.</p>
     <p>Thank you for your continued patronage.</p>
    </section>

@@ -32,6 +32,8 @@ const DepositPage = () => {
     name_of_investors: '',
     type_of_investment: '',
     amount_to_invest: '',
+    interest_rate_type: '',
+    interest_rate_value: '',
     interest_rate: '',
     duration: '',
     commencement_date: '',
@@ -60,11 +62,18 @@ const DepositPage = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    const uppercaseValue = value.toUpperCase()
-
-    const updatedDetails = {
+    
+    let updatedDetails = {
       ...details,
-      [name]: uppercaseValue
+      [name]: value
+    };
+
+    // Combine interest rate fields when either changes
+    if (name === 'interest_rate_type' || name === 'interest_rate_value') {
+      updatedDetails = {
+        ...updatedDetails,
+        interest_rate: `${updatedDetails.interest_rate_type || ''} ${updatedDetails.interest_rate_value || ''}%`.trim()
+      };
     }
 
     setDetails(updatedDetails)
