@@ -1,5 +1,5 @@
 // src/Pages/Users/account_opening_form/AccountOpeningForm.jsx
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Logo from "../../../images/logo.png";
 
@@ -15,6 +15,7 @@ function AccountOpeningForm() {
   const [isUploading, setIsUploading] = useState(false);
   const [uploadStatus, setUploadStatus] = useState(null);
   const [hasDownloaded, setHasDownloaded] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const [formData, setFormData] = useState({
     // Step 1 — Branch & Identity
     branch: "",
@@ -97,6 +98,16 @@ function AccountOpeningForm() {
     signature3: null,
     signature4: null
   });
+
+  // Handle window resize for responsive design
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
@@ -252,9 +263,6 @@ function AccountOpeningForm() {
     },
     col: (span = 12) => ({
       gridColumn: `span ${span}`,
-      "@media (max-width: 768px)": {
-        gridColumn: "span 12",
-      },
     }),
     label: {
       display: "block",
@@ -372,12 +380,9 @@ function AccountOpeningForm() {
     },
   };
 
-  // Media query for responsive design
-  const mediaQuery = window.matchMedia("(max-width: 768px)");
-
   // Adjust grid columns for mobile
   const getColSpan = (span) => {
-    return mediaQuery.matches ? 12 : span;
+    return isMobile ? 12 : span;
   };
 
   const download = async () => {
@@ -404,56 +409,96 @@ function AccountOpeningForm() {
     // Add a small delay to show the loading state
     await new Promise((resolve) => setTimeout(resolve, 1000));
 
-    // Create account holders table
+    // Create account holders table with better formatting
+    const accountHoldersData = [];
+    
+    // Header row
+    accountHoldersData.push([
+      { text: 'HOLDER 1', style: 'tableHeader', alignment: 'center' },
+      { text: 'HOLDER 2', style: 'tableHeader', alignment: 'center' },
+      { text: 'HOLDER 3', style: 'tableHeader', alignment: 'center' },
+      { text: 'HOLDER 4', style: 'tableHeader', alignment: 'center' }
+    ]);
+    
+    // Name row
+    accountHoldersData.push([
+      { text: formData.name1 || 'Not provided', fontSize: 9, margin: [0, 2, 0, 2] },
+      { text: formData.name2 || 'Not provided', fontSize: 9, margin: [0, 2, 0, 2] },
+      { text: formData.name3 || 'Not provided', fontSize: 9, margin: [0, 2, 0, 2] },
+      { text: formData.name4 || 'Not provided', fontSize: 9, margin: [0, 2, 0, 2] }
+    ]);
+    
+    // Address row
+    accountHoldersData.push([
+      { text: formData.address1 || 'Not provided', fontSize: 8, margin: [0, 2, 0, 2] },
+      { text: formData.address2 || 'Not provided', fontSize: 8, margin: [0, 2, 0, 2] },
+      { text: formData.address3 || 'Not provided', fontSize: 8, margin: [0, 2, 0, 2] },
+      { text: formData.address4 || 'Not provided', fontSize: 8, margin: [0, 2, 0, 2] }
+    ]);
+    
+    // Telephone row
+    accountHoldersData.push([
+      { text: formData.telephone1 || 'Not provided', fontSize: 9, margin: [0, 2, 0, 2] },
+      { text: formData.telephone2 || 'Not provided', fontSize: 9, margin: [0, 2, 0, 2] },
+      { text: formData.telephone3 || 'Not provided', fontSize: 9, margin: [0, 2, 0, 2] },
+      { text: formData.telephone4 || 'Not provided', fontSize: 9, margin: [0, 2, 0, 2] }
+    ]);
+    
+    // Email row
+    accountHoldersData.push([
+      { text: formData.email1 || 'Not provided', fontSize: 8, margin: [0, 2, 0, 2] },
+      { text: formData.email2 || 'Not provided', fontSize: 8, margin: [0, 2, 0, 2] },
+      { text: formData.email3 || 'Not provided', fontSize: 8, margin: [0, 2, 0, 2] },
+      { text: formData.email4 || 'Not provided', fontSize: 8, margin: [0, 2, 0, 2] }
+    ]);
+    
+    // Membership row
+    accountHoldersData.push([
+      { text: formData.membershipno1 || 'Not provided', fontSize: 9, margin: [0, 2, 0, 2] },
+      { text: formData.membershipno2 || 'Not provided', fontSize: 9, margin: [0, 2, 0, 2] },
+      { text: formData.membershipno3 || 'Not provided', fontSize: 9, margin: [0, 2, 0, 2] },
+      { text: formData.membershipno4 || 'Not provided', fontSize: 9, margin: [0, 2, 0, 2] }
+    ]);
+    
+    // Signature row
+    accountHoldersData.push([
+      signatureUrls.signature1 ? { image: signatureUrls.signature1, width: 60, height: 30, alignment: 'center', margin: [0, 2, 0, 2] } : { text: 'Not provided', fontSize: 9, margin: [0, 2, 0, 2] },
+      signatureUrls.signature2 ? { image: signatureUrls.signature2, width: 60, height: 30, alignment: 'center', margin: [0, 2, 0, 2] } : { text: 'Not provided', fontSize: 9, margin: [0, 2, 0, 2] },
+      signatureUrls.signature3 ? { image: signatureUrls.signature3, width: 60, height: 30, alignment: 'center', margin: [0, 2, 0, 2] } : { text: 'Not provided', fontSize: 9, margin: [0, 2, 0, 2] },
+      signatureUrls.signature4 ? { image: signatureUrls.signature4, width: 60, height: 30, alignment: 'center', margin: [0, 2, 0, 2] } : { text: 'Not provided', fontSize: 9, margin: [0, 2, 0, 2] }
+    ]);
+
     const accountHoldersTable = {
       table: {
         widths: ['*', '*', '*', '*'],
-        body: [
-          [
-            { text: 'HOLDER 1', style: 'tableHeader', alignment: 'center' },
-            { text: 'HOLDER 2', style: 'tableHeader', alignment: 'center' },
-            { text: 'HOLDER 3', style: 'tableHeader', alignment: 'center' },
-            { text: 'HOLDER 4', style: 'tableHeader', alignment: 'center' }
-          ],
-          [
-            formData.name1 || 'Not provided',
-            formData.name2 || 'Not provided',
-            formData.name3 || 'Not provided',
-            formData.name4 || 'Not provided'
-          ],
-          [
-            formData.address1 || 'Not provided',
-            formData.address2 || 'Not provided',
-            formData.address3 || 'Not provided',
-            formData.address4 || 'Not provided'
-          ],
-          [
-            formData.telephone1 || 'Not provided',
-            formData.telephone2 || 'Not provided',
-            formData.telephone3 || 'Not provided',
-            formData.telephone4 || 'Not provided'
-          ],
-          [
-            formData.email1 || 'Not provided',
-            formData.email2 || 'Not provided',
-            formData.email3 || 'Not provided',
-            formData.email4 || 'Not provided'
-          ],
-          [
-            formData.membershipno1 || 'Not provided',
-            formData.membershipno2 || 'Not provided',
-            formData.membershipno3 || 'Not provided',
-            formData.membershipno4 || 'Not provided'
-          ],
-          [
-            signatureUrls.signature1 ? { image: signatureUrls.signature1, width: 80, height: 40 } : 'Not provided',
-            signatureUrls.signature2 ? { image: signatureUrls.signature2, width: 80, height: 40 } : 'Not provided',
-            signatureUrls.signature3 ? { image: signatureUrls.signature3, width: 80, height: 40 } : 'Not provided',
-            signatureUrls.signature4 ? { image: signatureUrls.signature4, width: 80, height: 40 } : 'Not provided'
-          ]
-        ]
+        body: accountHoldersData
       },
-      layout: 'lightHorizontalLines',
+      layout: {
+        hLineWidth: function(i, node) {
+          return (i === 0 || i === node.table.body.length) ? 1 : 0.5;
+        },
+        vLineWidth: function(i, node) {
+          return 0.5;
+        },
+        hLineColor: function(i, node) {
+          return '#aaaaaa';
+        },
+        vLineColor: function(i, node) {
+          return '#aaaaaa';
+        },
+        paddingLeft: function(i, node) {
+          return 4;
+        },
+        paddingRight: function(i, node) {
+          return 4;
+        },
+        paddingTop: function(i, node) {
+          return 2;
+        },
+        paddingBottom: function(i, node) {
+          return 2;
+        }
+      },
       margin: [0, 0, 0, 10]
     };
 
@@ -606,14 +651,14 @@ function AccountOpeningForm() {
         },
         tableHeader: {
           bold: true,
-          fontSize: 12,
+          fontSize: 10,
           color: 'black'
         }
       },
-      pageMargins: [40, 40, 40, 40],
+      pageMargins: [20, 20, 20, 20],
       defaultStyle: {
-        fontSize: 12,
-        lineHeight: 1.3,
+        fontSize: 10,
+        lineHeight: 1.2,
       },
     };
 
@@ -685,6 +730,47 @@ function AccountOpeningForm() {
             100% { transform: rotate(360deg); }
           }
           
+          input::placeholder {
+            color: #94a3b8;
+            font-style: italic;
+            font-size: 12px;
+          }
+          
+          textarea::placeholder {
+            color: #94a3b8;
+            font-style: italic;
+            font-size: 12px;
+          }
+          
+          .mobile-scroll-container {
+            overflow-x: auto;
+            width: 100%;
+            -webkit-overflow-scrolling: touch;
+          }
+          
+          .account-holders-table {
+            min-width: ${isMobile ? "700px" : "100%"};
+          }
+          
+          .account-holders-table th,
+          .account-holders-table td {
+            padding: 6px;
+            text-align: center;
+            font-size: 12px;
+          }
+          
+          .account-holders-table th {
+            background-color: #f0f0f0;
+            font-weight: bold;
+          }
+          
+          .account-holders-table input {
+            width: 95%;
+            padding: 4px;
+            font-size: 12px;
+            box-sizing: border-box;
+          }
+          
           @media (max-width: 768px) {
             .col-mobile-12 {
               grid-column: span 12 !important;
@@ -699,32 +785,58 @@ function AccountOpeningForm() {
               width: 100%;
               margin-bottom: 8px;
             }
+            
+            .logo-container {
+              margin-left: 0 !important;
+              display: flex;
+              justify-content: center;
+            }
+            
+            .logo-image {
+              width: 280px !important;
+              height: 90px !important;
+            }
+            
+            .title-container {
+              flex-direction: column;
+              gap: 20px !important;
+            }
+            
+            .main-title {
+              font-size: 1rem !important;
+              margin-top: 10px !important;
+              margin-bottom: 20px !important;
+            }
           }
         `}
       </style>
 
       {/* HEADER */}
-      <img
-        src={Logo}
-        alt="Logo"
-        style={{
-          width: "400px",
-          height: "120px",
-          objectFit: "contain",
-          alignItems: "center",
-          marginLeft: "300px",
-        }}
-      />
+      <div className="logo-container" style={{ display: 'flex', justifyContent: 'center' }}>
+        <img
+          src={Logo}
+          alt="Logo"
+          className="logo-image"
+          style={{
+            width: "400px",
+            height: "120px",
+            objectFit: "contain",
+          }}
+        />
+      </div>
       <div
+        className="title-container"
         style={{
           display: "flex",
           alignItems: "center",
           gap: "60px",
           marginTop: "30px",
+          flexDirection: isMobile ? "column" : "row"
         }}
       >
         <div style={{ flex: 1 }}>
           <h1
+            className="main-title"
             style={{
               margin: 0,
               fontSize: "1.2rem",
@@ -795,12 +907,10 @@ function AccountOpeningForm() {
         {/* STEP 1 */}
         {step === 1 && (
           <>
-            {/* <div style={styles.sectionTitle}>Branch & Account</div> */}
             <div style={styles.grid}>
               <div
                 style={{
                   ...styles.col(getColSpan(6)),
-                  gridColumn: `span ${getColSpan(6)}`,
                 }}
                 className="col-mobile-12"
               >
@@ -810,12 +920,12 @@ function AccountOpeningForm() {
                   name="branch"
                   value={formData.branch}
                   onChange={handleChange}
+                  placeholder="Enter branch location (e.g., Main Branch, Ikeja)"
                 />
               </div>
               <div
                 style={{
                   ...styles.col(getColSpan(6)),
-                  gridColumn: `span ${getColSpan(6)}`,
                 }}
                 className="col-mobile-12"
               >
@@ -825,18 +935,17 @@ function AccountOpeningForm() {
                   name="accountType"
                   value={formData.accountType}
                   onChange={handleChange}
+                  placeholder="e.g., Savings, Current, Corporate, Joint"
                 />
               </div>
             </div>
 
             <div style={styles.divider}></div>
 
-            {/* <div style={styles.sectionTitle}>Identity</div> */}
             <div style={styles.grid}>
               <div
                 style={{
                   ...styles.col(getColSpan(12)),
-                  gridColumn: `span ${getColSpan(12)}`,
                 }}
                 className="col-mobile-12"
               >
@@ -846,12 +955,12 @@ function AccountOpeningForm() {
                   name="surname"
                   value={formData.surname}
                   onChange={handleChange}
+                  placeholder="Enter your surname/family name"
                 />
               </div>
               <div
                 style={{
                   ...styles.col(getColSpan(6)),
-                  gridColumn: `span ${getColSpan(6)}`,
                 }}
                 className="col-mobile-12"
               >
@@ -861,12 +970,12 @@ function AccountOpeningForm() {
                   name="firstname"
                   value={formData.firstname}
                   onChange={handleChange}
+                  placeholder="Enter your first/given name"
                 />
               </div>
               <div
                 style={{
                   ...styles.col(getColSpan(6)),
-                  gridColumn: `span ${getColSpan(6)}`,
                 }}
                 className="col-mobile-12"
               >
@@ -876,12 +985,12 @@ function AccountOpeningForm() {
                   name="middlename"
                   value={formData.middlename}
                   onChange={handleChange}
+                  placeholder="Enter middle name (if applicable)"
                 />
               </div>
               <div
                 style={{
                   ...styles.col(getColSpan(12)),
-                  gridColumn: `span ${getColSpan(12)}`,
                 }}
                 className="col-mobile-12"
               >
@@ -891,12 +1000,12 @@ function AccountOpeningForm() {
                   name="companyName"
                   value={formData.companyName}
                   onChange={handleChange}
+                  placeholder="For corporate accounts only - enter registered company name"
                 />
               </div>
               <div
                 style={{
                   ...styles.col(getColSpan(6)),
-                  gridColumn: `span ${getColSpan(6)}`,
                 }}
                 className="col-mobile-12"
               >
@@ -912,7 +1021,6 @@ function AccountOpeningForm() {
               <div
                 style={{
                   ...styles.col(getColSpan(3)),
-                  gridColumn: `span ${getColSpan(3)}`,
                 }}
                 className="col-mobile-12"
               >
@@ -922,12 +1030,12 @@ function AccountOpeningForm() {
                   name="nationality"
                   value={formData.nationality}
                   onChange={handleChange}
+                  placeholder="e.g., Nigerian, American"
                 />
               </div>
               <div
                 style={{
                   ...styles.col(getColSpan(3)),
-                  gridColumn: `span ${getColSpan(3)}`,
                 }}
                 className="col-mobile-12"
               >
@@ -937,6 +1045,7 @@ function AccountOpeningForm() {
                   name="rcNumber"
                   value={formData.rcNumber}
                   onChange={handleChange}
+                  placeholder="For corporate accounts - enter CAC registration number"
                 />
               </div>
             </div>
@@ -944,7 +1053,7 @@ function AccountOpeningForm() {
             <div
               style={{
                 ...styles.btnRow,
-                flexDirection: window.innerWidth < 768 ? "column" : "row",
+                flexDirection: isMobile ? "column" : "row",
               }}
               className="btn-row-mobile"
             >
@@ -957,7 +1066,7 @@ function AccountOpeningForm() {
                   alignItems: "center",
                   justifyContent: "center",
                   gap: "8px",
-                  width: window.innerWidth < 768 ? "100%" : "auto",
+                  width: isMobile ? "100%" : "auto",
                 }}
                 className="btn-mobile"
               >
@@ -974,7 +1083,6 @@ function AccountOpeningForm() {
               <div
                 style={{
                   ...styles.col(getColSpan(12)),
-                  gridColumn: `span ${getColSpan(12)}`,
                 }}
                 className="col-mobile-12"
               >
@@ -984,12 +1092,12 @@ function AccountOpeningForm() {
                   name="mailingAddress"
                   value={formData.mailingAddress}
                   onChange={handleChange}
+                  placeholder="Address where correspondence should be sent"
                 />
               </div>
               <div
                 style={{
                   ...styles.col(getColSpan(12)),
-                  gridColumn: `span ${getColSpan(12)}`,
                 }}
                 className="col-mobile-12"
               >
@@ -1001,12 +1109,12 @@ function AccountOpeningForm() {
                   name="addressAbroad"
                   value={formData.addressAbroad}
                   onChange={handleChange}
+                  placeholder="Foreign address if applicable"
                 />
               </div>
               <div
                 style={{
                   ...styles.col(getColSpan(12)),
-                  gridColumn: `span ${getColSpan(12)}`,
                 }}
                 className="col-mobile-12"
               >
@@ -1016,12 +1124,12 @@ function AccountOpeningForm() {
                   name="officeAddress"
                   value={formData.officeAddress}
                   onChange={handleChange}
+                  placeholder="Business or workplace address"
                 />
               </div>
               <div
                 style={{
                   ...styles.col(getColSpan(12)),
-                  gridColumn: `span ${getColSpan(12)}`,
                 }}
                 className="col-mobile-12"
               >
@@ -1031,12 +1139,12 @@ function AccountOpeningForm() {
                   name="residentialAddress"
                   value={formData.residentialAddress}
                   onChange={handleChange}
+                  placeholder="Your home address"
                 />
               </div>
               <div
                 style={{
                   ...styles.col(getColSpan(4)),
-                  gridColumn: `span ${getColSpan(4)}`,
                 }}
                 className="col-mobile-12"
               >
@@ -1046,12 +1154,12 @@ function AccountOpeningForm() {
                   name="phone"
                   value={formData.phone}
                   onChange={handleChange}
+                  placeholder="Primary phone number"
                 />
               </div>
               <div
                 style={{
                   ...styles.col(getColSpan(4)),
-                  gridColumn: `span ${getColSpan(4)}`,
                 }}
                 className="col-mobile-12"
               >
@@ -1061,12 +1169,12 @@ function AccountOpeningForm() {
                   name="occupation"
                   value={formData.occupation}
                   onChange={handleChange}
+                  placeholder="e.g., Engineer, Business Owner, Teacher"
                 />
               </div>
               <div
                 style={{
                   ...styles.col(getColSpan(4)),
-                  gridColumn: `span ${getColSpan(4)}`,
                 }}
                 className="col-mobile-12"
               >
@@ -1077,6 +1185,7 @@ function AccountOpeningForm() {
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
+                  placeholder="Your email address"
                 />
               </div>
             </div>
@@ -1088,7 +1197,6 @@ function AccountOpeningForm() {
               <div
                 style={{
                   ...styles.col(getColSpan(6)),
-                  gridColumn: `span ${getColSpan(6)}`,
                 }}
                 className="col-mobile-12"
               >
@@ -1098,12 +1206,12 @@ function AccountOpeningForm() {
                   name="employer"
                   value={formData.employer}
                   onChange={handleChange}
+                  placeholder="Name of your employer or business"
                 />
               </div>
               <div
                 style={{
                   ...styles.col(getColSpan(6)),
-                  gridColumn: `span ${getColSpan(6)}`,
                 }}
                 className="col-mobile-12"
               >
@@ -1113,12 +1221,12 @@ function AccountOpeningForm() {
                   name="employerAddress"
                   value={formData.employerAddress}
                   onChange={handleChange}
+                  placeholder="Address of your employer"
                 />
               </div>
               <div
                 style={{
                   ...styles.col(getColSpan(4)),
-                  gridColumn: `span ${getColSpan(4)}`,
                 }}
                 className="col-mobile-12"
               >
@@ -1128,12 +1236,12 @@ function AccountOpeningForm() {
                   name="position"
                   value={formData.position}
                   onChange={handleChange}
+                  placeholder="Your job title or position"
                 />
               </div>
               <div
                 style={{
                   ...styles.col(getColSpan(4)),
-                  gridColumn: `span ${getColSpan(4)}`,
                 }}
                 className="col-mobile-12"
               >
@@ -1143,12 +1251,12 @@ function AccountOpeningForm() {
                   name="lengthOfEmployment"
                   value={formData.lengthOfEmployment}
                   onChange={handleChange}
+                  placeholder="e.g., 2 years, 6 months"
                 />
               </div>
               <div
                 style={{
                   ...styles.col(getColSpan(4)),
-                  gridColumn: `span ${getColSpan(4)}`,
                 }}
                 className="col-mobile-12"
               >
@@ -1158,6 +1266,7 @@ function AccountOpeningForm() {
                   name="initialDeposit"
                   value={formData.initialDeposit}
                   onChange={handleChange}
+                  placeholder="Amount you wish to deposit initially"
                 />
               </div>
             </div>
@@ -1171,7 +1280,6 @@ function AccountOpeningForm() {
               <div
                 style={{
                   ...styles.col(getColSpan(8)),
-                  gridColumn: `span ${getColSpan(8)}`,
                 }}
                 className="col-mobile-12"
               >
@@ -1181,12 +1289,12 @@ function AccountOpeningForm() {
                   name="otherBankNameAddress"
                   value={formData.otherBankNameAddress}
                   onChange={handleChange}
+                  placeholder="Bank name and branch address"
                 />
               </div>
               <div
                 style={{
                   ...styles.col(getColSpan(4)),
-                  gridColumn: `span ${getColSpan(4)}`,
                 }}
                 className="col-mobile-12"
               >
@@ -1196,6 +1304,7 @@ function AccountOpeningForm() {
                   name="otherBankAccountNumber"
                   value={formData.otherBankAccountNumber}
                   onChange={handleChange}
+                  placeholder="Your account number at that bank"
                 />
               </div>
             </div>
@@ -1207,7 +1316,6 @@ function AccountOpeningForm() {
               <div
                 style={{
                   ...styles.col(getColSpan(12)),
-                  gridColumn: `span ${getColSpan(12)}`,
                 }}
                 className="col-mobile-12"
               >
@@ -1217,12 +1325,12 @@ function AccountOpeningForm() {
                   name="referee1Name"
                   value={formData.referee1Name}
                   onChange={handleChange}
+                  placeholder="Full name of your first referee"
                 />
               </div>
               <div
                 style={{
                   ...styles.col(getColSpan(8)),
-                  gridColumn: `span ${getColSpan(8)}`,
                 }}
                 className="col-mobile-12"
               >
@@ -1232,12 +1340,12 @@ function AccountOpeningForm() {
                   name="referee1Bank"
                   value={formData.referee1Bank}
                   onChange={handleChange}
+                  placeholder="Referee's bank name"
                 />
               </div>
               <div
                 style={{
                   ...styles.col(getColSpan(4)),
-                  gridColumn: `span ${getColSpan(4)}`,
                 }}
                 className="col-mobile-12"
               >
@@ -1247,13 +1355,13 @@ function AccountOpeningForm() {
                   name="referee1Account"
                   value={formData.referee1Account}
                   onChange={handleChange}
+                  placeholder="Referee's account number"
                 />
               </div>
 
               <div
                 style={{
                   ...styles.col(getColSpan(12)),
-                  gridColumn: `span ${getColSpan(12)}`,
                 }}
                 className="col-mobile-12"
               >
@@ -1263,12 +1371,12 @@ function AccountOpeningForm() {
                   name="referee2Name"
                   value={formData.referee2Name}
                   onChange={handleChange}
+                  placeholder="Full name of your second referee"
                 />
               </div>
               <div
                 style={{
                   ...styles.col(getColSpan(8)),
-                  gridColumn: `span ${getColSpan(8)}`,
                 }}
                 className="col-mobile-12"
               >
@@ -1278,12 +1386,12 @@ function AccountOpeningForm() {
                   name="referee2Bank"
                   value={formData.referee2Bank}
                   onChange={handleChange}
+                  placeholder="Referee's bank name"
                 />
               </div>
               <div
                 style={{
                   ...styles.col(getColSpan(4)),
-                  gridColumn: `span ${getColSpan(4)}`,
                 }}
                 className="col-mobile-12"
               >
@@ -1293,6 +1401,7 @@ function AccountOpeningForm() {
                   name="referee2Account"
                   value={formData.referee2Account}
                   onChange={handleChange}
+                  placeholder="Referee's account number"
                 />
               </div>
             </div>
@@ -1300,7 +1409,7 @@ function AccountOpeningForm() {
             <div
               style={{
                 ...styles.btnRow,
-                flexDirection: window.innerWidth < 768 ? "column" : "row",
+                flexDirection: isMobile ? "column" : "row",
               }}
               className="btn-row-mobile"
             >
@@ -1308,7 +1417,7 @@ function AccountOpeningForm() {
                 onClick={prevStep}
                 style={{
                   ...styles.btnGhost,
-                  width: window.innerWidth < 768 ? "100%" : "auto",
+                  width: isMobile ? "100%" : "auto",
                 }}
                 className="btn-mobile"
               >
@@ -1322,7 +1431,7 @@ function AccountOpeningForm() {
                   alignItems: "center",
                   justifyContent: "center",
                   gap: "8px",
-                  width: window.innerWidth < 768 ? "100%" : "auto",
+                  width: isMobile ? "100%" : "auto",
                 }}
                 className="btn-mobile"
               >
@@ -1344,133 +1453,136 @@ function AccountOpeningForm() {
               Other Account Holders
             </div>
 
-            <table
-              style={{
-                width: "100%",
-                borderCollapse: "collapse",
-                marginBottom: "16px",
-              }}
-            >
-              <thead>
-                <tr>
-                  <th
-                    style={{
-                      border: "1px solid #ccc",
-                      padding: "8px",
-                      backgroundColor: "#f0f0f0",
-                    }}
-                  ></th>
-                  {[1, 2, 3, 4].map((i) => (
+            <div className="mobile-scroll-container">
+              <table
+                className="account-holders-table"
+                style={{
+                  width: "100%",
+                  borderCollapse: "collapse",
+                  marginBottom: "16px",
+                }}
+              >
+                <thead>
+                  <tr>
                     <th
-                      key={i}
                       style={{
                         border: "1px solid #ccc",
-                        padding: "8px",
                         backgroundColor: "#f0f0f0",
-                        textAlign: "center",
+                        width: isMobile ? "100px" : "auto",
+                        minWidth: "100px"
                       }}
-                    >
-                      Holder {i}
-                    </th>
+                    ></th>
+                    {[1, 2, 3, 4].map((i) => (
+                      <th
+                        key={i}
+                        style={{
+                          border: "1px solid #ccc",
+                          backgroundColor: "#f0f0f0",
+                          textAlign: "center",
+                          minWidth: isMobile ? "120px" : "auto"
+                        }}
+                      >
+                        Holder {i}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {[
+                    { label: "NAME", field: "name", type: "text", placeholder: "Full name" },
+                    { label: "ADDRESS", field: "address", type: "text", placeholder: "Complete address" },
+                    { label: "TELEPHONE", field: "telephone", type: "text", placeholder: "Phone number" },
+                    { label: "EMAIL", field: "email", type: "email", placeholder: "Email address" },
+                    { label: "MEMBERSHIP NO", field: "membershipno", type: "text", placeholder: "Membership number" },
+                    { label: "SIGNATURE", field: "signature", type: "file", accept: "image/*" },
+                  ].map((field, idx) => (
+                    <tr key={idx}>
+                      <td
+                        style={{
+                          border: "1px solid #ccc",
+                          fontWeight: "bold",
+                          backgroundColor: "#fafafa",
+                          width: isMobile ? "100px" : "auto",
+                          minWidth: "100px"
+                        }}
+                      >
+                        {field.label}
+                      </td>
+                      {[1, 2, 3, 4].map((i) => {
+                        const fieldName = `${field.field}${i}`;
+                        return (
+                          <td
+                            key={i}
+                            style={{
+                              border: "1px solid #ccc",
+                              textAlign: "center",
+                            }}
+                          >
+                            {field.type === "file" ? (
+                              <input
+                                style={{
+                                  width: "95%",
+                                  padding: "4px",
+                                  boxSizing: "border-box",
+                                }}
+                                type="file"
+                                accept={field.accept}
+                                name={fieldName}
+                                onChange={handleChange}
+                              />
+                            ) : (
+                              <input
+                                style={{
+                                  width: "95%",
+                                  padding: "4px",
+                                  boxSizing: "border-box",
+                                }}
+                                type={field.type}
+                                name={fieldName}
+                                value={formData[fieldName] || ""}
+                                onChange={handleChange}
+                                placeholder={field.placeholder}
+                              />
+                            )}
+                          </td>
+                        );
+                      })}
+                    </tr>
                   ))}
-                </tr>
-              </thead>
-              <tbody>
-                {[
-                  { label: "NAME", field: "name", type: "text" },
-                  { label: "ADDRESS", field: "address", type: "text" },
-                  { label: "TELEPHONE", field: "telephone", type: "text" },
-                  { label: "EMAIL", field: "email", type: "email" },
-                  { label: "MEMBERSHIP NO", field: "membershipno", type: "text" },
-                  { label: "SIGNATURE", field: "signature", type: "file", accept: "image/*" },
-                ].map((field, idx) => (
-                  <tr key={idx}>
+                  {/* Single Fax row below */}
+                  <tr>
                     <td
                       style={{
                         border: "1px solid #ccc",
-                        padding: "8px",
                         fontWeight: "bold",
                         backgroundColor: "#fafafa",
-                        width: "150px",
                       }}
                     >
-                      {field.label}
+                      FAX
                     </td>
-                    {[1, 2, 3, 4].map((i) => {
-                      const fieldName = `${field.field}${i}`;
-                      return (
-                        <td
-                          key={i}
-                          style={{
-                            border: "1px solid #ccc",
-                            padding: "4px",
-                            textAlign: "center",
-                          }}
-                        >
-                          {field.type === "file" ? (
-                            <input
-                              style={{
-                                width: "90%",
-                                padding: "4px",
-                                boxSizing: "border-box",
-                              }}
-                              type="file"
-                              accept={field.accept}
-                              name={fieldName}
-                              onChange={handleChange}
-                            />
-                          ) : (
-                            <input
-                              style={{
-                                width: "90%",
-                                padding: "4px",
-                                boxSizing: "border-box",
-                              }}
-                              type={field.type}
-                              name={fieldName}
-                              value={formData[fieldName] || ""}
-                              onChange={handleChange}
-                            />
-                          )}
-                        </td>
-                      );
-                    })}
-                  </tr>
-                ))}
-                {/* Single Fax row below */}
-                <tr>
-                  <td
-                    style={{
-                      border: "1px solid #ccc",
-                      padding: "8px",
-                      fontWeight: "bold",
-                      backgroundColor: "#fafafa",
-                    }}
-                  >
-                    FAX
-                  </td>
-                  <td
-                    colSpan={4}
-                    style={{
-                      border: "1px solid #ccc",
-                      padding: "4px",
-                      textAlign: "center",
-                    }}
-                  >
-                    <input
+                    <td
+                      colSpan={4}
                       style={{
-                        width: "95%",
-                        padding: "4px",
-                        boxSizing: "border-box",
+                        border: "1px solid #ccc",
+                        textAlign: "center",
                       }}
-                      name="fax"
-                      value={formData.fax || ""}
-                      onChange={handleChange}
-                    />
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+                    >
+                      <input
+                        style={{
+                          width: "95%",
+                          padding: "4px",
+                          boxSizing: "border-box",
+                        }}
+                        name="fax"
+                        value={formData.fax || ""}
+                        onChange={handleChange}
+                        placeholder="Fax number (if applicable)"
+                      />
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
 
             <div
               style={{
@@ -1490,8 +1602,8 @@ function AccountOpeningForm() {
             >
               Customer Signature & Declaration
             </div>
-            <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
-              <div style={{ flex: "1 1 45%" }}>
+            <div style={{ display: "flex", gap: "16px", flexWrap: "wrap", flexDirection: isMobile ? "column" : "row" }}>
+              <div style={{ flex: isMobile ? "1 1 100%" : "1 1 45%" }}>
                 <label
                   style={{
                     display: "block",
@@ -1512,8 +1624,11 @@ function AccountOpeningForm() {
                   name="customerSignature"
                   onChange={handleChange}
                 />
+                <div style={{ fontSize: "12px", color: "#64748b", marginTop: "4px" }}>
+                  Upload an image of your signature
+                </div>
               </div>
-              <div style={{ flex: "1 1 45%" }}>
+              <div style={{ flex: isMobile ? "1 1 100%" : "1 1 45%" }}>
                 <label
                   style={{
                     display: "block",
@@ -1542,7 +1657,7 @@ function AccountOpeningForm() {
                 display: "flex",
                 gap: "12px",
                 marginTop: "20px",
-                flexDirection: window.innerWidth < 768 ? "column" : "row",
+                flexDirection: isMobile ? "column" : "row",
               }}
             >
               <button
@@ -1553,7 +1668,7 @@ function AccountOpeningForm() {
                   backgroundColor: "#fff",
                   color: "#007bff",
                   cursor: "pointer",
-                  width: window.innerWidth < 768 ? "100%" : "auto",
+                  width: isMobile ? "100%" : "auto",
                 }}
               >
                 Back
@@ -1566,7 +1681,7 @@ function AccountOpeningForm() {
                   backgroundColor: "#007bff",
                   color: "#fff",
                   cursor: "pointer",
-                  width: window.innerWidth < 768 ? "100%" : "auto",
+                  width: isMobile ? "100%" : "auto",
                 }}
               >
                 Download PDF
@@ -1579,7 +1694,7 @@ function AccountOpeningForm() {
                   backgroundColor: "#28a745",
                   color: "#fff",
                   cursor: "pointer",
-                  width: window.innerWidth < 768 ? "100%" : "auto",
+                  width: isMobile ? "100%" : "auto",
                 }}
               >
                 Upload PDF
